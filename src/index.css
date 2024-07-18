@@ -1,0 +1,74 @@
+@font-face {
+  font-family: "SUIT-Bold";
+  src: url("./styles/fonts/SUIT-Bold.ttf");
+}
+
+@font-face {
+  font-family: "SUIT-ExtraBold";
+  src: url("./styles/fonts/SUIT-ExtraBold.ttf");
+}
+
+@font-face {
+  font-family: "SUIT-ExtraLight";
+  src: url("./styles/fonts/SUIT-ExtraLight.ttf");
+}
+
+@font-face {
+  font-family: "SUIT-Heavy";
+  src: url("./styles/fonts/SUIT-Heavy.ttf");
+}
+
+@font-face {
+  font-family: "SUIT-Light";
+  src: url("./styles/fonts/SUIT-Light.ttf");
+}
+
+@font-face {
+  font-family: "SUIT-Medium";
+  src: url("./styles/fonts/SUIT-Medium.ttf");
+}
+
+@font-face {
+  font-family: "SUIT-Regular";
+  src: url("./styles/fonts/SUIT-Regular.ttf");
+}
+
+@font-face {
+  font-family: "SUIT-SemiBold";
+  src: url("./styles/fonts/SUIT-SemiBold.ttf");
+}
+
+@font-face {
+  font-family: "SUIT-Thin";
+  src: url("./styles/fonts/SUIT-Thin.ttf");
+}
+
+@font-face {
+  font-family: "GS-Bold";
+  src: url("./styles/fonts/GeneralSans-Bold.ttf");
+}
+
+@font-face {
+  font-family: "GS-Extralight";
+  src: url("./styles/fonts/GeneralSans-Extralight.ttf");
+}
+
+@font-face {
+  font-family: "GS-Light";
+  src: url("./styles/fonts/GeneralSans-Light.ttf");
+}
+
+@font-face {
+  font-family: "GS-Medium";
+  src: url("./styles/fonts/GeneralSans-Medium.ttf");
+}
+
+@font-face {
+  font-family: "GS-Regular";
+  src: url("./styles/fonts/GeneralSans-Regular.ttf");
+}
+
+@font-face {
+  font-family: "GS-Semibold";
+  src: url("./styles/fonts/GeneralSans-Semibold.ttf");
+}
