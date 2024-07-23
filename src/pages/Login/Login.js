@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import KakaoLogin from "../components/KakaoLogin";
+import KakaoLogin from "../../components/KakaoLogin";
 
 const Login = () => {
   return (
