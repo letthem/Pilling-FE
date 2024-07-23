@@ -1,0 +1,3 @@
+const Join = () => {
+  return <></>;
+};

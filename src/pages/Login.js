@@ -1,5 +1,16 @@
+import styled from "styled-components";
+import KakaoLogin from "../components/KakaoLogin";
+
 const Login = () => {
-  return <>Login페이지입니다. - 시작페이지</>;
+  return (
+    <LoginBox>
+      <KakaoLogin />
+    </LoginBox>
+  );
 };
 
 export default Login;
+
+const LoginBox = styled.div`
+  box-sizing: border-box;
+`;
