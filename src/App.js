@@ -4,6 +4,7 @@ import Home from "./pages/Home.js";
 import NotFoundPage from "./pages/NotFoundPage.js";
 import AuthKakao from "./pages/AuthKakao.js";
 import Login from "./pages/Login.js";
+import Calender from "./pages/Calender/index.js";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           <Route path="/" element={<Login />} />
           <Route path="/auth/kakao" element={<AuthKakao />} />
           <Route path="/home" element={<Home />} />
+          <Route path="/calender" element={<Calender />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </BrowserRouter>
