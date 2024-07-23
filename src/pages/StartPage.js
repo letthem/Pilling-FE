@@ -75,6 +75,7 @@ const Hello = styled.div`
 `;
 
 const Intro = styled.div`
+  width: 100%;
   margin: 3.438rem 1.875rem 0;
   display: flex;
   flex-direction: column;
