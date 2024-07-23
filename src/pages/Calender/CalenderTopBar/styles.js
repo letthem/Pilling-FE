@@ -3,8 +3,6 @@ import styled from "styled-components";
 export const CalenderTopBarWrapper = styled.div`
   background-color: white;
   margin-top: 3.75rem;
-  margin-right: 1.5rem;
-  margin-left: 1.5rem;
   width: auto;
   height: 3rem;
   display: flex;
@@ -21,6 +19,7 @@ export const Btn = styled.div`
   text-align: center;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 `;
 
 export const Title = styled.span`
