@@ -29,7 +29,7 @@ export const PlusBtn = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 50%;
-  border: 2px dashed #d4f120;
+  border: 0.125rem dashed #d4f120;
   margin-top: 2.75rem;
   cursor: pointer;
 `;
