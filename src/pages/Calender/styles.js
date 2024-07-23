@@ -43,7 +43,7 @@ export const Ment = styled.p`
   margin-top: 1.125rem;
   color: #737b98;
   font-family: "SUIT-Regular";
-  font-size: 15px;
+  font-size: 0.938rem;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
