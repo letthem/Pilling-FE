@@ -9,6 +9,7 @@ import {
   Ment,
   PlusBtn,
 } from "./styles";
+import CalendarBox from "./CalendarBox";
 
 const Calendar = () => {
   return (
@@ -16,7 +17,8 @@ const Calendar = () => {
       <CalendarTopBar />
       <CalendarWrapper>
         <CalendarContainer>
-          <img src={calendar} />
+          {/* <img src={calendar} /> */}
+          <CalendarBox/>
         </CalendarContainer>
         <PlusBtn>
           <Add src={add} />
