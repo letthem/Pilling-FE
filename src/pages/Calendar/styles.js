@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const CalenderWrapper = styled.div`
+export const CalendarWrapper = styled.div`
   margin-right: 1.5rem;
   margin-left: 1.5rem;
   display: flex;
@@ -9,7 +9,7 @@ export const CalenderWrapper = styled.div`
   align-items: center;
 `;
 
-export const CalenderContainer = styled.div`
+export const CalendarContainer = styled.div`
   margin-top: 1.25rem;
   padding: 0.5rem;
   border-radius: 1.875rem;

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const CalenderTopBarWrapper = styled.div`
+export const CalendarTopBarWrapper = styled.div`
   background-color: white;
   margin: 3.75rem 1.5rem 0;
   width: auto;
