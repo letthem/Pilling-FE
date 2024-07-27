@@ -9,36 +9,36 @@ export const ModalBackground = styled.div`
   background: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
-  align-items: center;
 `;
 
 export const ModalContainer = styled.div`
+  position: absolute;
+  top: 8.438rem;
   background: white;
   max-width: 29rem;
   min-width: 20rem;
-  height: 416px;
-  margin: 0 1.5rem;
+  width: calc(100% - 3rem);
+  height: 26rem;
   display: flex;
   flex-direction: column;
   border-radius: 1.875rem;
-  width: 100%;
 `;
 
 export const SearchBox = styled.div`
-  height: 52px;
-  margin: 1.5rem;
+  height: 3.25rem;
+  margin: 1.5rem 1.5rem 0.25rem 1.5rem;
   background-color: #f7f6f9;
-  border: 1px solid #fff;
-  border-radius: 30px;
+  border: 0.063rem solid #fff;
+  border-radius: 1.875rem;
   display: flex;
   justify-content: space-between;
 
   input {
     flex-grow: 1;
-    padding: 1rem 12px 1rem 20px;
+    padding: 1rem 0.75rem;
     color: #1b1a1f;
     font-family: "SUIT-SemiBold";
-    font-size: 14px;
+    font-size: 0.875rem;
     line-height: 120%;
     background-color: transparent;
     border: none;
@@ -47,28 +47,41 @@ export const SearchBox = styled.div`
     &::placeholder {
       color: #adadad;
       font-family: "SUIT-Regular";
-      font-size: 14px;
+      font-size: 0.875rem;
       line-height: 120%;
     }
   }
   img {
-    margin-right: 20px;
-    width: 20px;
+    margin-right: 0.875rem;
+    width: 0.875rem;
     cursor: pointer;
   }
 `;
 
 export const ResultList = styled.ul`
   list-style: none;
-  padding: 0;
-  margin: 0;
-  flex-grow: 1; /* 결과 리스트가 남은 공간을 차지하도록 설정 */
-  overflow-y: auto; /* 내용이 많을 경우 스크롤 가능하게 설정 */
+  margin: 0 2.25rem;
+  flex-grow: 1;
+  overflow-y: auto;
+  padding: 0 0.25rem;
+
+  &::-webkit-scrollbar {
+    width: 0.25rem;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 0.875rem;
+    background: #c4f261;
+  }
 `;
 
 export const ResultItem = styled.li`
-  padding: 0.5rem 1rem;
-  border-bottom: 1px solid #eee;
+  padding: 0.875rem 0;
+  border-bottom: 0.063rem solid #e5e4e6;
+  font-family: "SUID-Medium";
+  font-size: 0.875rem;
+  line-height: 1.2;
+  cursor: pointer;
 
   &:last-child {
     border-bottom: none;

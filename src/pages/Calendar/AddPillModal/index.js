@@ -36,7 +36,18 @@ const AddPillModal = ({ onClose, onSave }) => {
   // 약 검색 버튼 혹은 엔터
   const handleSearch = () => {
     // dummy data
-    const pills = ["타이레놀", "애드빌", "부루펜", "타이레놀이브"];
+    const pills = [
+      "어린이용타이레놀정80mg",
+      "타이레놀정160mg",
+      "타이레놀8시간이알서방정",
+      "어린이타이레놀현탁액",
+      "어린이타이레놀산160mg",
+      "타이레놀정500mg",
+      "타이레놀정굳굳",
+      "애드빌",
+      "부루펜",
+      "타이레놀이브",
+    ];
     setResults(pills.filter((pill) => pill.includes(inputValue)));
   };
 

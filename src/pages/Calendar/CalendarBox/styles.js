@@ -60,7 +60,7 @@ export const DayContainer = styled.div`
   grid-row-gap: 0.938rem;
   grid-column-gap: 0.25rem;
   color: #7a7a7a;
-  margin: 15px 0.75rem 1rem;
+  margin: 0.938rem 0.75rem 1rem;
 `;
 
 export const CalendarItem = styled.div`
