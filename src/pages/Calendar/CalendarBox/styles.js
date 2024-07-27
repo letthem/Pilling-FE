@@ -3,11 +3,12 @@ import styled from "styled-components";
 export const CalendarBoxLayout = styled.div`
   background-color: #1b1a1f;
   border-radius: 24px;
-  /* margin: 0.5rem; */
+  margin: 0 auto;
+  padding: 0.5rem;
+  max-width: 32rem;
 `;
 
 export const CalendarBoxWrapper = styled.div`
-  margin: 0.5rem 0.5rem 0.5rem 0.5rem;
   display: flex;
   flex-direction: column;
 `;
@@ -81,12 +82,32 @@ export const Day = styled(CalendarItem)`
         ? "#2b2a2f"
         : "transperent"};
 
-  padding: 2px;
   border-radius: 12px;
   width: 40px;
   height: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  span {
+    text-align: center;
+    font-family: "GS-Regular";
+    font-size: 11px;
+    line-height: 15.4px;
+    margin-left: 10px;
+    width: 14px;
+  }
 `;
 
+export const Circle = styled.div`
+  background-color: #1b1a1f;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  margin-top: 9px;
+  margin-right: 18px;
+`;
 export const ChangeButton = styled.div`
   display: flex;
   justify-content: flex-end;

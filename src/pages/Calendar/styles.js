@@ -11,7 +11,7 @@ export const CalendarWrapper = styled.div`
 
 export const CalendarContainer = styled.div`
   margin-top: 1.25rem;
-  /* padding: 0.5rem; */
+  padding: 0.5rem;
   border-radius: 1.875rem;
   background-color: #f7f6f9;
   width: auto;
@@ -24,7 +24,7 @@ export const PlusBtn = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 50%;
-  border: 0.125rem dashed #C4F261;
+  border: 0.125rem dashed #c4f261;
   margin-top: 2.75rem;
   cursor: pointer;
 `;

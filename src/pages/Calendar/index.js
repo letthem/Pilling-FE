@@ -1,6 +1,5 @@
 import { PLFrame } from "../../components/PLFrame";
 import CalendarTopBar from "./CalendarTopBar";
-import calendar from "./../../assets/Calendar/calendar.svg";
 import add from "./../../assets/Calendar/add.svg";
 import {
   Add,
@@ -17,8 +16,7 @@ const Calendar = () => {
       <CalendarTopBar />
       <CalendarWrapper>
         <CalendarContainer>
-          {/* <img src={calendar} /> */}
-          <CalendarBox/>
+          <CalendarBox />
         </CalendarContainer>
         <PlusBtn>
           <Add src={add} />
