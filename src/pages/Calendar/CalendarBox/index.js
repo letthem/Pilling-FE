@@ -9,7 +9,7 @@ import {
   startOfWeek,
   subMonths,
 } from "date-fns";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   CalendarItem,
   CalendarBoxWrapper,
@@ -29,6 +29,14 @@ import arrowLeft from "./../../../assets/Calendar/arrow-left-white.svg";
 
 const CalendarBox = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
+  const [clickedDate, setClickedDate] = useState(null);
+
+  // 처음 마운트될 때 오늘 날짜로 상태 초기화
+  useEffect(() => {
+    const today = format(new Date(), "yyyy-MM-dd");
+    setClickedDate(today);
+  }, []);
+
   const startCurrentMonth = startOfMonth(currentDate);
   const endCurrentMonth = endOfMonth(currentDate);
   const startOfFirstWeek = startOfWeek(startCurrentMonth, { weekStartsOn: 0 });
@@ -99,6 +107,8 @@ const CalendarBox = () => {
                 $isToday={date.isToday}
                 className={date.month}
                 key={date.date}
+                $isClicked={clickedDate === date.date}
+                onClick={() => setClickedDate(date.date)}
               >
                 <span>{date.day}</span>
                 <Circle></Circle>

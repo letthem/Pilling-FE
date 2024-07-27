@@ -70,14 +70,22 @@ export const CalendarItem = styled.div`
 
 export const Day = styled(CalendarItem)`
   color: ${(props) =>
-    props.$isToday ? "black" : !props.$isCurrentMonth ? "#1b1a1f" : "#CCCCCC"};
+    props.$isClicked
+      ? "black"
+      : props.$isToday
+        ? "#C4F261"
+        : !props.$isCurrentMonth
+          ? "#1b1a1f"
+          : "#CCCCCC"};
 
   background-color: ${(props) =>
-    props.$isToday
+    props.$isClicked
       ? "#C4F261"
-      : props.$isCurrentMonth
+      : props.$isToday
         ? "#2b2a2f"
-        : "transperent"};
+        : props.$isCurrentMonth
+          ? "#2b2a2f"
+          : "transparent"};
 
   border-radius: 0.75rem;
   width: 2.5rem;
@@ -86,10 +94,16 @@ export const Day = styled(CalendarItem)`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 
   span {
     text-align: center;
-    font-family: "GS-Regular";
+    font-family: ${(props) =>
+      props.$isClicked
+        ? "GS-Regular"
+        : props.$isToday
+          ? "GS-Semibold"
+          : "GS-Regular"};
     font-size: 0.688rem;
     line-height: 0.963rem;
     margin-left: 0.625rem;
