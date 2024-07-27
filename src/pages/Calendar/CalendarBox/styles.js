@@ -2,8 +2,8 @@ import styled from "styled-components";
 
 export const CalendarBoxLayout = styled.div`
   background-color: #1b1a1f;
-  border-radius: 24px;
-  margin: 0 auto;
+  border-radius: 1.5rem;
+  /* margin: 0 auto; */
   padding: 0.5rem;
   max-width: 32rem;
 `;
@@ -19,11 +19,9 @@ export const CalendarBoxContainer = styled.div`
 `;
 
 export const MonthBox = styled.div`
-  margin-top: 20px;
-  margin-left: 27.5px;
-  margin-right: 24.5px;
+  margin: 1.25rem 1.531rem 0rem 1.719rem;
   display: flex;
-  height: 56px;
+  height: 3.5rem;
   align-items: center;
   justify-content: space-between;
 `;
@@ -31,39 +29,38 @@ export const MonthBox = styled.div`
 export const DateBox = styled.div`
   display: flex;
   flex-direction: column;
-  /* margin-left: 27.5px; */
 `;
 
 export const MonthDisplay = styled.div`
   color: #c4f261;
-  font-size: 24px;
+  font-size: 1.5rem;
   font-family: "GS-Medium";
   span {
-    font-size: 22px;
+    font-size: 1.719rem;
   }
 `;
 
 export const YearDisplay = styled.div`
-  margin-top: 8px;
+  margin-top: 0.5rem;
   color: #7d7c81;
-  font-size: 15px;
+  font-size: 0.938rem;
   font-family: "GS-Regular";
 `;
 
 export const WeekContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(7, minmax(50px, 1fr));
+  grid-template-columns: repeat(7, minmax(3.125rem, 1fr));
   color: #7a7a7a;
-  margin: 15px 12px 1rem;
+  margin: 0.938rem 0.75rem 1rem;
 `;
 
 export const DayContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(7, minmax(50px, 1fr));
-  grid-row-gap: 15px;
-  grid-column-gap: 4px;
+  grid-template-columns: repeat(7, minmax(3.125rem, 1fr));
+  grid-row-gap: 0.938rem;
+  grid-column-gap: 0.25rem;
   color: #7a7a7a;
-  margin: 15px 12px 1rem;
+  margin: 15px 0.75rem 1rem;
 `;
 
 export const CalendarItem = styled.div`
@@ -82,9 +79,9 @@ export const Day = styled(CalendarItem)`
         ? "#2b2a2f"
         : "transperent"};
 
-  border-radius: 12px;
-  width: 40px;
-  height: 40px;
+  border-radius: 0.75rem;
+  width: 2.5rem;
+  height: 2.5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -93,39 +90,37 @@ export const Day = styled(CalendarItem)`
   span {
     text-align: center;
     font-family: "GS-Regular";
-    font-size: 11px;
-    line-height: 15.4px;
-    margin-left: 10px;
-    width: 14px;
+    font-size: 0.688rem;
+    line-height: 0.963rem;
+    margin-left: 0.625rem;
+    width: 0.875rem;
   }
 `;
 
 export const Circle = styled.div`
   background-color: #1b1a1f;
-  width: 6px;
-  height: 6px;
+  width: 0.375rem;
+  height: 0.375rem;
   border-radius: 50%;
-  margin-top: 9px;
-  margin-right: 18px;
+  margin-top: 0.563rem;
+  margin-right: 1.125rem;
 `;
 export const ChangeButton = styled.div`
   display: flex;
   justify-content: flex-end;
-  /* margin-right: 24.5px; */
 
   button {
-    /* margin-bottom: 29px; */
     display: flex;
-    width: 38px;
-    height: 38px;
-    padding: 11px;
-    border-radius: 12px;
+    width: 2.375rem;
+    height: 2.375rem;
+    padding: 0.688rem;
+    border-radius: 0.75rem;
     justify-content: center;
     align-items: center;
     background-color: #2b2a2f;
     border: none;
     outline: none;
-    margin-left: 6px;
+    margin-left: 0.375rem;
     cursor: pointer;
   }
 `;
