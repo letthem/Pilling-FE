@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import KakaoImg from "../assets/login/KakaoLogo.svg";
+import KakaoImg from "../assets/Login/KakaoLogo.svg";
 
 const KakaoLogin = () => {
   const Rest_api_key = process.env.REACT_APP_KAKAO_API_KEY; // REST API KEY
@@ -42,7 +42,7 @@ const KakaoBtn = styled.div`
   box-sizing: border-box;
   border-radius: 20px;
   background-color: #ffe500;
-  width: 60%;
+  width: 100%;
   height: 60px;
   margin: 548px 20px 0;
 

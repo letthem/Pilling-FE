@@ -3,8 +3,8 @@ import "./reset.css";
 import Home from "./pages/Home.js";
 import NotFoundPage from "./pages/NotFoundPage.js";
 import AuthKakao from "./pages/AuthKakao.js";
-import Join from "./components/Join.js";
-import StartPage from "./pages/StartPage.js";
+import Join from "./pages/Login/Join.js";
+import StartPage from "./pages/StartPage/StartPage.js";
 import Login from "./pages/Login/index.js";
 import Calender from "./pages/Calender/index.js";
 

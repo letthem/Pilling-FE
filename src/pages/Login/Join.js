@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import { useState } from "react";
 import { useNavigate } from "react-router";
-import { axiosInstance } from "../api/api";
+import { axiosInstance } from "../../api/api";
+import { PLFrame } from "../../components/PLFrame";
 
 const Join = () => {
   const [name, setName] = useState("");
@@ -36,8 +37,8 @@ const Join = () => {
   const isNicknameValid = name.length > 0 && warn === "";
 
   return (
-    <JoinWrapper>
-      <form onSubmit={handleSubmit}>
+    <PLFrame>
+      <Formtag onSubmit={handleSubmit}>
         <JoinBox>
           <p>가입을 축하드려요!</p>
           <p>어떻게 불러드리면 될까요?</p>
@@ -66,8 +67,8 @@ const Join = () => {
         >
           확인
         </JoinCheckBox>
-      </form>
-    </JoinWrapper>
+      </Formtag>
+    </PLFrame>
   );
 };
 
@@ -82,8 +83,9 @@ const JoinWrapper = styled.div`
 `;
 
 const JoinBox = styled.div`
-  margin: 5.063rem 1.25rem 18.125rem;
-
+  position: absolute;
+  width: 100%;
+  top: 8rem;
   p {
     color: #1b1a1f;
     font-family: "SUIT-Bold";
@@ -94,23 +96,25 @@ const JoinBox = styled.div`
 `;
 
 const JoinInput = styled.input`
+  width: 100%;
   height: 3.75rem;
   margin-top: 2.063rem;
   border-radius: 1rem;
-  border: none;
-  outline: 0.063rem solid ${(props) => (props.warn ? "#ff3434" : "#adadad")};
-  width: 75%;
-  text-align: left;
   padding: 0 1.25rem;
+  border: none;
+  box-sizing: border-box;
+  outline: 0.063rem solid ${(props) => (props.warn ? "#ff3434" : "#adadad")};
+  text-align: left;
 
   &:focus {
-    outline: 0.063rem solid ${(props) => (props.warn ? "#ff3434" : "#d4f120")};
+    outline: 0.063rem solid ${(props) => (props.warn ? "#ff3434" : "#C4F261")};
   }
 `;
 
 const JoinCheckBox = styled.button`
-  margin: 0 1.25rem;
-  width: 80%;
+  position: absolute;
+  bottom: 9.188rem;
+  width: 100%;
   height: 3.75rem;
   color: ${(props) => (props.valid ? "white" : "rgba(27, 26, 31, 0.2)")};
   background: ${(props) => (props.valid ? "#1B1A1F" : "#F7F6F9")};
@@ -138,4 +142,10 @@ const MessageWrapper = styled.div`
     color: #ff3434;
     line-height: 120%;
   }
+`;
+
+const Formtag = styled.form`
+  position: relative;
+  height: 52.75rem;
+  margin: 0 1.5rem;
 `;

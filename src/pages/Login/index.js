@@ -1,11 +1,12 @@
 import styled from "styled-components";
 import KakaoLogin from "../../components/KakaoLogin";
+import { PLFrame } from "../../components/PLFrame";
 
 const Login = () => {
   return (
-    <LoginBox>
+    <PLFrame>
       <KakaoLogin />
-    </LoginBox>
+    </PLFrame>
   );
 };
 
