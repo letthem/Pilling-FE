@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const CalendarBoxLayout = styled.div`
   background-color: #1b1a1f;
   border-radius: 24px;
-  margin: 0.5rem;
+  /* margin: 0.5rem; */
 `;
 
 export const CalendarBoxWrapper = styled.div`
@@ -34,7 +34,7 @@ export const DateBox = styled.div`
 `;
 
 export const MonthDisplay = styled.div`
-  color: #d4f120;
+  color: #c4f261;
   font-size: 24px;
   font-family: "GS-Medium";
   span {
@@ -72,10 +72,14 @@ export const CalendarItem = styled.div`
 
 export const Day = styled(CalendarItem)`
   color: ${(props) =>
-    !props.$isCurrentMonth ? "#7A7A7A" : props.$isToday ? "black" : "#CCCCCC"};
+    props.$isToday ? "black" : !props.$isCurrentMonth ? "#1b1a1f" : "#CCCCCC"};
 
   background-color: ${(props) =>
-    props.$isToday ? "#D4F120" : "#2b2a2f"}; /* 오늘 날짜를 강조하는 색상 */
+    props.$isToday
+      ? "#C4F261"
+      : props.$isCurrentMonth
+        ? "#2b2a2f"
+        : "transperent"};
 
   padding: 2px;
   border-radius: 12px;
