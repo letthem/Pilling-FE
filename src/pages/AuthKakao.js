@@ -53,7 +53,7 @@ const AuthKakao = () => {
   return (
     <PLFrame>
       <AnimateDiv>
-        <p>Piliing</p>
+        <p>PILLING</p>
         <img src={mediImg} />
         <span>로그인 중입니다. 잠시만 기다려주세요!</span>
       </AnimateDiv>

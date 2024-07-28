@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./reset.css";
-import Home from "./pages/Home/Home.js";
+import Home from "./pages/Home/index.js";
 import NotFoundPage from "./pages/NotFoundPage.js";
 import AuthKakao from "./pages/AuthKakao.js";
 import Join from "./pages/Login/Join.js";
