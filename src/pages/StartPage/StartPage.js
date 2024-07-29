@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useLocation } from "react-router";
 import { Link } from "react-router-dom";
-import phone from "../../assets/Login/phone.svg";
+import phone from "../../assets/login/phone2.svg";
 import { PLFrame } from "../../components/PLFrame";
 import Hello from "./Hello";
 

@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import KakaoImg from "../assets/Login/KakaoLogo.svg";
+import KakaoImg from "../assets/login/KakaoLogo2.svg";
 
 const KakaoLogin = () => {
   const Rest_api_key = process.env.REACT_APP_KAKAO_API_KEY; // REST API KEY

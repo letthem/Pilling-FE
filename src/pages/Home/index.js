@@ -24,6 +24,7 @@ const Home = () => {
           <MedicineLeft src={medicineLeft} />
         </SearchBarSection>
         <CalenderSection />
+        <Navbar />
       </HomeWrapper>
     </PLFrame>
   );

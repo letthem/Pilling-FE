@@ -19,8 +19,8 @@ export const LogoSection = styled.div`
   font-size: 20px;
   margin-top: 15px;
   display: grid;
-  grid-template-columns: 1fr auto; /* Adjust layout to have text and image in two columns */
-  gap: 102px; /* Space between text and image */
+  grid-template-columns: 1fr auto; 
+  gap: 102px; 
   align-items: center;
   line-height: 2.125rem;
 
