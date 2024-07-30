@@ -3,9 +3,7 @@ import styled from "styled-components";
 export const CalendarBoxLayout = styled.div`
   background-color: #1b1a1f;
   border-radius: 1.5rem;
-  /* margin: 0 auto; */
-  padding: 0.5rem;
-  max-width: 32rem;
+  /* padding: 0.5rem; */
 `;
 
 export const CalendarBoxWrapper = styled.div`
@@ -36,7 +34,7 @@ export const MonthDisplay = styled.div`
   font-size: 1.5rem;
   font-family: "GS-Medium";
   span {
-    font-size: 1.719rem;
+    font-size: 27.504px;
   }
 `;
 
@@ -49,23 +47,26 @@ export const YearDisplay = styled.div`
 
 export const WeekContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(7, minmax(3.125rem, 1fr));
+  grid-template-columns: repeat(7, 1fr);
   color: #7a7a7a;
-  margin: 0.938rem 0.75rem 1rem;
-`;
-
-export const DayContainer = styled.div`
-  display: grid;
-  grid-template-columns: repeat(7, minmax(3.125rem, 1fr));
-  grid-row-gap: 0.938rem;
-  grid-column-gap: 0.25rem;
-  color: #7a7a7a;
-  margin: 0.938rem 0.75rem 1rem;
+  margin: 1.25rem 0.75rem 0.9375rem;
 `;
 
 export const CalendarItem = styled.div`
   display: flex;
   justify-content: center;
+  font-size: 11px;
+  font-family: "GS-Medium";
+`;
+
+export const DayContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+
+  grid-row-gap: 0.5rem;
+  grid-column-gap: 0.25rem;
+  color: #7a7a7a;
+  margin: 0rem 0.75rem 1rem;
 `;
 
 export const Day = styled(CalendarItem)`
@@ -88,13 +89,14 @@ export const Day = styled(CalendarItem)`
           : "transparent"};
 
   border-radius: 0.75rem;
-  width: 2.5rem;
-  height: 2.5rem;
+  /* width: 2.5rem;
+  height: 2.5rem; */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  padding: 6px 8px;
 
   span {
     text-align: center;
@@ -119,6 +121,7 @@ export const Circle = styled.div`
   margin-top: 0.563rem;
   margin-right: 1.125rem;
 `;
+
 export const ChangeButton = styled.div`
   display: flex;
   justify-content: flex-end;

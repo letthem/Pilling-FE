@@ -13,7 +13,7 @@ export const ModalBackground = styled.div`
 
 export const ModalContainer = styled.div`
   position: absolute;
-  top: 8.438rem;
+  top: 6.5625rem;
   background: white;
   max-width: 29rem;
   min-width: 20rem;
@@ -35,7 +35,7 @@ export const SearchBox = styled.div`
 
   input {
     flex-grow: 1;
-    padding: 1rem 0.75rem;
+    padding: 1rem 1.25rem;
     color: #1b1a1f;
     font-family: "SUIT-SemiBold";
     font-size: 0.875rem;

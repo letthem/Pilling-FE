@@ -24,6 +24,7 @@ import {
   DateBox,
   CalendarBoxLayout,
   Circle,
+  DayDate,
 } from "./styles.js";
 import arrowLeft from "./../../../assets/Calendar/arrow-left-white.svg";
 

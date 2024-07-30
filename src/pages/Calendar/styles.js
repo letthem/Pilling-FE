@@ -1,8 +1,7 @@
 import styled from "styled-components";
 
 export const CalendarWrapper = styled.div`
-  margin-right: 1.5rem;
-  margin-left: 1.5rem;
+  margin: 0 1.5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -10,11 +9,11 @@ export const CalendarWrapper = styled.div`
 `;
 
 export const CalendarContainer = styled.div`
-  margin-top: 1.25rem;
+  margin-top: 2.5rem;
   padding: 0.5rem;
   border-radius: 1.875rem;
   background-color: #f7f6f9;
-  width: auto;
+  width: 21.375rem;
 `;
 
 export const PlusBtn = styled.div`

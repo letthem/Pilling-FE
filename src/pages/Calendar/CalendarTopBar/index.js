@@ -6,11 +6,11 @@ const CalendarTopBar = () => {
   return (
     <CalendarTopBarWrapper>
       <Btn>
-        <img src={arrowLeft} />
+        <img src={arrowLeft} alt="arrowLeft" />
       </Btn>
       <Title>복용일지</Title>
       <Btn>
-        <img src={more} />
+        <img src={more} alt="more" />
       </Btn>
     </CalendarTopBarWrapper>
   );
