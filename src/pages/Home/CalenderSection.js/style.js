@@ -5,6 +5,7 @@ export const WeeklyCalenderWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   height: 211px;
+  margin-bottom: 36px;
 `;
 
 export const CalenderBox = styled.div`

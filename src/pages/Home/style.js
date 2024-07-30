@@ -12,7 +12,7 @@ export const Logo = styled.div`
   font-family: "Super_Plants";
   font-size: 3.75rem;
   text-align: left;
-  margin: 98px 140px 0 35px;
+  margin: 42px 140px 0 35px;
 `;
 export const LogoSection = styled.div`
   font-family: "SUIT-SemiBold";
