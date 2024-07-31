@@ -65,9 +65,9 @@ const Calendar = () => {
     setDeleteIndex(null);
   };
 
-  const handleCheckboxChange = (itemIndex) => {
-    const newItems = items.map((item, i) =>
-      i === itemIndex ? { ...item, taken: !item.taken } : item
+  const handleCheckboxChange = (item) => {
+    const newItems = items.map((i) =>
+      i === item ? { ...i, taken: !i.taken } : i
     );
     setItems(newItems);
   };
@@ -87,18 +87,18 @@ const Calendar = () => {
           <ItemList>
             {filteredItems.map((item, index) => (
               <Item key={index}>
-                <CheckboxContainer onClick={() => handleCheckboxChange(index)}>
+                <CheckboxContainer onClick={() => handleCheckboxChange(item)}>
                   <HiddenCheckbox
                     checked={item.taken}
-                    onChange={() => handleCheckboxChange(index)}
+                    onChange={() => handleCheckboxChange(item)}
                   />
                   <StyledCheckbox checked={item.taken} />
                 </CheckboxContainer>
                 <PillName>{item.pill}</PillName>
                 <TagListBox>
                   {item.tags && item.tags.length > 0 ? (
-                    item.tags.map((tag, index) => (
-                      <TagItemBox key={index}>
+                    item.tags.map((tag, tagIndex) => (
+                      <TagItemBox key={tagIndex}>
                         <span>{tag}</span>
                       </TagItemBox>
                     ))
@@ -106,9 +106,7 @@ const Calendar = () => {
                     <div>태그가 없습니다.</div>
                   )}
                 </TagListBox>
-                <DeleteButton
-                  onClick={() => handleDeleteItem(items.indexOf(item))}
-                >
+                <DeleteButton onClick={() => handleDeleteItem(index)}>
                   <img src={trashBin} alt="trashBin" />
                 </DeleteButton>
               </Item>
