@@ -23,7 +23,13 @@ export const Btn = styled.div`
 `;
 
 export const Title = styled.span`
-  font-family: "SUIT-Semibold";
-  font-size: 1.063rem;
-  line-height: 100%;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+
+  span {
+    font-family: "SUIT-Semibold";
+    font-size: 1.063rem;
+    line-height: 100%;
+  }
 `;

@@ -8,10 +8,10 @@ const CalendarTopBar = () => {
       <Btn>
         <img src={arrowLeft} alt="arrowLeft" />
       </Btn>
-      <Title>복용일지</Title>
-      <Btn>
-        <img src={more} alt="more" />
-      </Btn>
+      <Title>
+        <span>복용일지</span>
+      </Title>
+      <div style={{ width: "3rem" }} />
     </CalendarTopBarWrapper>
   );
 };
