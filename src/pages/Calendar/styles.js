@@ -119,3 +119,9 @@ export const Button = styled.button`
     }
   }
 `;
+
+// CheckBox
+
+export const Checkbox = styled.input`
+  margin-right: 0.5rem;
+`;

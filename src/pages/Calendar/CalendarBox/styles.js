@@ -88,6 +88,8 @@ export const Day = styled.div`
           ? "#2b2a2f"
           : "transparent"};
 
+  border: ${(props) => (props.$allItemsChecked ? "0.0625rem solid #C4F261" : "none")};
+  box-sizing: border-box;
   border-radius: 0.75rem;
   display: flex;
   width: 2.5rem;
@@ -100,8 +102,8 @@ export const Day = styled.div`
 
   span {
     position: absolute;
-    top: 0.375rem;
-    right: 0.5rem;
+    top: ${(props) => (props.$allItemsChecked ? "0.3125rem" : "0.375rem")};
+    right: ${(props) => (props.$allItemsChecked ? "0.4375rem" : "0.5rem")};
     text-align: center;
     font-family: ${(props) =>
       props.$isClicked
@@ -113,16 +115,19 @@ export const Day = styled.div`
     line-height: 0.963rem;
     width: 0.875rem;
   }
+
+  p {
+    position: absolute;
+    left: ${(props) => (props.$allItemsChecked ? "0.4375rem" : "0.5rem")};
+    bottom: ${(props) => (props.$allItemsChecked ? "0.1875rem" : "0.25rem")};
+  }
 `;
 
 export const Circle = styled.div`
-  position: absolute;
   background-color: #1b1a1f;
   width: 0.375rem;
   height: 0.375rem;
   border-radius: 50%;
-  left: 0.5rem;
-  bottom: 0.25rem;
 `;
 
 export const ChangeButton = styled.div`

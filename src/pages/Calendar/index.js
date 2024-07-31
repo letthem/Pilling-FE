@@ -11,6 +11,7 @@ import {
   ItemList,
   Item,
   DeleteButton,
+  Checkbox,
 } from "./styles";
 import CalendarBox from "./CalendarBox";
 import AddPillModal from "./AddPillModal";
@@ -39,7 +40,7 @@ const Calendar = () => {
   };
 
   const handleSaveItem = (item) => {
-    setItems([...items, { ...item, date: clickedDate }]);
+    setItems([...items, { ...item, date: clickedDate, taken: false }]);
   };
 
   const handleDeleteItem = (index) => {
@@ -58,6 +59,13 @@ const Calendar = () => {
     setDeleteIndex(null);
   };
 
+  const handleCheckboxChange = (itemIndex) => {
+    const newItems = items.map((item, i) =>
+      i === itemIndex ? { ...item, taken: !item.taken } : item
+    );
+    setItems(newItems);
+  };
+
   const filteredItems = items.filter((item) => item.date === clickedDate);
 
   return (
@@ -73,6 +81,11 @@ const Calendar = () => {
           <ItemList>
             {filteredItems.map((item, index) => (
               <Item key={index}>
+                <Checkbox
+                  type="checkbox"
+                  checked={item.taken}
+                  onChange={() => handleCheckboxChange(items.indexOf(item))}
+                />
                 <div>
                   <div>{item.pill}</div>
                   <div>
@@ -81,7 +94,10 @@ const Calendar = () => {
                       : "No tags"}
                   </div>
                 </div>
-                <DeleteButton onClick={() => handleDeleteItem(index)}>
+
+                <DeleteButton
+                  onClick={() => handleDeleteItem(items.indexOf(item))}
+                >
                   삭제
                 </DeleteButton>
               </Item>

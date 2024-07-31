@@ -40,16 +40,22 @@ const CalendarBox = ({ clickedDate, setClickedDate, items = [] }) => {
     end: endOfLastWeek,
   });
 
-  const formatDays = days.map((day) => ({
-    date: format(day, "yyyy-MM-dd"),
-    year: format(day, "yyyy"),
-    month: format(day, "M"),
-    day: format(day, "dd"),
-    isToday: isToday(day),
-    hasItems:
-      items.filter((item) => item.date === format(day, "yyyy-MM-dd")).length >
-      0,
-  }));
+  const formatDays = days.map((day) => {
+    const date = format(day, "yyyy-MM-dd");
+    const itemsForDay = items.filter((item) => item.date === date);
+    const allItemsChecked =
+      itemsForDay.length > 0 && itemsForDay.every((item) => item.taken);
+
+    return {
+      date,
+      year: format(day, "yyyy"),
+      month: format(day, "M"),
+      day: format(day, "dd"),
+      isToday: isToday(day),
+      hasItems: itemsForDay.length > 0,
+      allItemsChecked,
+    };
+  });
 
   const weeks = ["일", "월", "화", "수", "목", "금", "토"];
 
@@ -106,9 +112,14 @@ const CalendarBox = ({ clickedDate, setClickedDate, items = [] }) => {
                 $isClicked={clickedDate === date.date}
                 onClick={() => setClickedDate(date.date)}
                 $hasItems={date.hasItems}
+                $allItemsChecked={date.allItemsChecked}
               >
                 <span>{date.day}</span>
-                {date.hasItems && <Circle />}
+                {date.hasItems && (
+                  <p>
+                    <Circle />
+                  </p>
+                )}
               </Day>
             ))}
           </DayContainer>
