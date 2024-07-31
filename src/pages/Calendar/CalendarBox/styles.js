@@ -100,6 +100,7 @@ export const Day = styled.div`
   align-items: center;
   cursor: ${(props) => (props.$isCurrentMonth ? "pointer" : "default")};
   position: relative;
+  opacity: ${(props) => (props.$isCurrentMonth ? 1 : 0)};
 
   span {
     position: absolute;
