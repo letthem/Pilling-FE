@@ -34,7 +34,7 @@ export const MonthDisplay = styled.div`
   font-size: 1.5rem;
   font-family: "GS-Medium";
   span {
-    font-size: 27.504px;
+    font-size: 1.719rem;
   }
 `;
 
@@ -55,7 +55,7 @@ export const WeekContainer = styled.div`
 export const CalendarItem = styled.div`
   display: flex;
   justify-content: center;
-  font-size: 11px;
+  font-size: 0.6875rem;
   font-family: "GS-Medium";
 `;
 
@@ -96,7 +96,7 @@ export const Day = styled(CalendarItem)`
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  padding: 6px 8px;
+  padding: 0.375rem 0.5rem;
 
   span {
     text-align: center;

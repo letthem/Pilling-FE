@@ -121,7 +121,7 @@ const TagModal = ({
                 <img src={arrowLeft} alt="backBtn" />
               </BackButton>
               <UserAddTagTitle>질병 태그 등록</UserAddTagTitle>
-              <div style={{ width: "20px", marginRight: "28px" }} />
+              <div style={{ width: "1.25rem", marginRight: "1.75rem" }} />
             </UserAddTagTopBar>
             <UserAddTagInputBox
               type="text"

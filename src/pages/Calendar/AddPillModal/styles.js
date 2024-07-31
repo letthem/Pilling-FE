@@ -105,27 +105,27 @@ export const ResultItem = styled.li`
 
 export const WarningModalContainer = styled.div`
   position: absolute;
-  top: 322px;
+  top: 20.125rem;
   background: white;
   display: flex;
   flex-direction: column;
   border-radius: 1.875rem;
-  width: 263px;
-  height: 72px;
+  width: 16.4375rem;
+  height: 4.5rem;
   align-items: center;
 `;
 
 export const WarningMessage = styled.div`
-  margin-top: 30px;
+  margin-top: 1.875rem;
   color: #1b1a1f;
   font-family: "SUIT-Medium";
-  font-size: 16px;
+  font-size: 1rem;
   line-height: 1;
   display: flex;
   text-align: center;
   align-items: center;
-  width: 203px;
-  height: 12px;
+  width: 12.6875rem;
+  height: 0.75rem;
 `;
 
 export const CloseButton = styled.button`
@@ -142,54 +142,54 @@ export const CloseButton = styled.button`
 
 export const DeleteModalContainer = styled.div`
   position: absolute;
-  top: 302px;
+  top: 18.875rem;
   background: white;
   display: flex;
   flex-direction: column;
   border-radius: 1.875rem;
-  width: 342px;
-  height: 152px;
+  width: 21.375rem;
+  height: 9.5rem;
   align-items: center;
 `;
 
 export const DeleteMessage = styled.div`
-  margin-top: 30px;
+  margin-top: 1.875rem;
   color: #1b1a1f;
   font-family: "SUIT-Medium";
-  font-size: 16px;
+  font-size: 1rem;
   line-height: 1;
   text-align: left;
-  width: 282px;
-  height: 12px;
+  width: 17.625rem;
+  height: 0.75rem;
 `;
 
 export const ButtonContainer = styled.div`
   display: flex;
-  gap: 10px;
-  margin-top: 24px;
+  gap: 0.625rem;
+  margin-top: 1.5rem;
 `;
 
 export const CancelButton = styled.div`
-  width: 136px;
-  height: 56px;
+  width: 8.5rem;
+  height: 3.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 0.6px solid #d9d9d9;
+  border: 0.0375rem solid #d9d9d9;
   background: white;
-  border-radius: 20px;
+  border-radius: 1.25rem;
   color: #1b1a1f;
   cursor: pointer;
 `;
 
 export const ConfirmButton = styled.div`
-  width: 136px;
-  height: 56px;
+  width: 8.5rem;
+  height: 3.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
   background: #1b1a1f;
-  border-radius: 20px;
+  border-radius: 1.25rem;
   color: white;
   cursor: pointer;
 `;

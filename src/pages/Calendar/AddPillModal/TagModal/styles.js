@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 export const TagModalContainer = styled.div`
   position: absolute;
-  top: 65px;
+  top: 4.0625rem;
   background: white;
   display: flex;
   flex-direction: column;
@@ -29,9 +29,9 @@ export const TopBar = styled.div`
 `;
 
 export const BackButton = styled.div`
-  width: 20px;
-  height: 20px;
-  margin-left: 28px;
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-left: 1.75rem;
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -49,10 +49,10 @@ export const ReasonText = styled.p`
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-top: 30px;
+  margin-top: 1.875rem;
   color: #adadad;
   font-family: "SUIT-Regular";
-  font-size: 12px;
+  font-size: 0.75rem;
   font-weight: 400;
   line-height: 1.2;
 `;
@@ -62,16 +62,16 @@ export const ReasonText = styled.p`
 export const TagList = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
-  margin: 12px 30px 0;
+  gap: 0.375rem;
+  margin: 0.75rem 1.875rem 0;
   flex-grow: 1;
 `;
 
 export const TagItem = styled.div`
-  padding: 0 12px;
-  height: 38px;
-  border: 0.5px solid ${({ selected }) => (selected ? "#C4F261" : "#ADADAD")};
-  border-radius: 20px;
+  padding: 0 0.75rem;
+  height: 2.375rem;
+  border: 0.0313rem solid ${({ selected }) => (selected ? "#C4F261" : "#ADADAD")};
+  border-radius: 1.25rem;
   background-color: ${({ selected }) => (selected ? "#C4F261" : "white")};
   cursor: pointer;
   &:hover {
@@ -83,13 +83,13 @@ export const TagItem = styled.div`
   span {
     color: ${({ selected }) => (selected ? "black" : "#adadad")};
     font-family: "SUIT-Regular";
-    font-size: 14px;
+    font-size: 0.875rem;
     line-height: 1;
   }
 `;
 
 export const TagXBtn = styled.div`
-  margin-left: 8px;
+  margin-left: 0.5rem;
 `;
 
 export const SaveButton = styled.div`
@@ -97,19 +97,19 @@ export const SaveButton = styled.div`
   justify-content: center;
   align-items: center;
   text-align: center;
-  width: 116px;
-  height: 48px;
+  width: 7.25rem;
+  height: 3rem;
   position: absolute;
-  bottom: 28px;
-  left: 113px;
+  bottom: 1.75rem;
+  left: 7.0625rem;
   background: ${({ disabled }) => (disabled ? "#F7F6F9;" : "#1B1A1F")};
-  border-radius: 16px;
+  border-radius: 1rem;
   cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
 
   span {
     color: ${({ disabled }) => (disabled ? "#ccc" : "white")};
     font-family: "SUIT-Medium";
-    font-size: 14px;
+    font-size: 0.875rem;
     font-style: normal;
     font-weight: 500;
     line-height: 1;
@@ -120,7 +120,7 @@ export const SaveButton = styled.div`
 
 export const UserAddTagModalContainer = styled.div`
   position: absolute;
-  top: 175px;
+  top: 10.9375rem;
   background: white;
   display: flex;
   flex-direction: column;
@@ -128,15 +128,15 @@ export const UserAddTagModalContainer = styled.div`
 `;
 
 export const UserAddTagModalWrapper = styled.div`
-  width: 342px;
-  height: 280px;
+  width: 21.375rem;
+  height: 17.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
 
 export const UserAddTagTopBar = styled.div`
-  margin: 39px 28px 0;
+  margin: 2.4375rem 1.75rem 0;
   width: 100%;
   height: 1.25rem;
   display: flex;
@@ -152,17 +152,17 @@ export const UserAddTagTitle = styled.h2`
 `;
 
 export const UserAddTagInputBox = styled.input`
-  margin-top: 38px;
-  width: 246px;
-  height: 72px;
+  margin-top: 2.375rem;
+  width: 15.375rem;
+  height: 4.5rem;
   text-align: left;
-  padding: 0 16px;
-  border-radius: 16px;
-  border: 1px solid #adadad;
+  padding: 0 1rem;
+  border-radius: 1rem;
+  border: 0.0625rem solid #adadad;
   outline: none;
 
   font-family: "SUIT-Regular";
-  font-size: 14px;
+  font-size: 0.875rem;
   line-height: 1.2;
   color: #1b1a1f;
 
@@ -180,11 +180,11 @@ export const UserAddTagInputBox = styled.input`
 `;
 
 export const AddTagButton = styled.div`
-  margin-top: 36px;
-  width: 73px;
-  height: 48px;
+  margin-top: 2.25rem;
+  width: 4.5625rem;
+  height: 3rem;
   display: flex;
-  border-radius: 16px;
+  border-radius: 1rem;
   justify-content: center;
   align-items: center;
   background: ${({ disabled }) => (disabled ? "#F7F6F9" : "#1B1A1F")};
