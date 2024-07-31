@@ -72,14 +72,20 @@ export const ResultList = styled.ul`
     width: 0.25rem;
   }
 
+  &::-webkit-scrollbar-track {
+    background: #f7f6f9;
+    border-radius: 1.25rem;
+    width: 0.375rem;
+  }
+
   &::-webkit-scrollbar-thumb {
-    border-radius: 0.875rem;
+    border-radius: 1.25rem;
     background: #c4f261;
   }
 `;
 
 export const ResultItem = styled.li`
-  padding: 0.875rem 0;
+  padding: 1.25rem 0;
   border-bottom: 0.063rem solid #e5e4e6;
   font-family: "SUIT-Medium";
   font-size: 0.875rem;
