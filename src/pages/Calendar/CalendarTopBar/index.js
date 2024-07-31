@@ -1,6 +1,5 @@
 import { Btn, CalendarTopBarWrapper, Title } from "./styles";
 import arrowLeft from "./../../../assets/Calendar/arrow-left.svg";
-import more from "./../../../assets/Calendar/more.svg";
 
 const CalendarTopBar = () => {
   return (

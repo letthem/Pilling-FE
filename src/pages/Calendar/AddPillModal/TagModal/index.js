@@ -1,15 +1,22 @@
 import React, { useState } from "react";
 import {
+  TopBar,
   TagList,
   TagItem,
   SaveButton,
   Title,
   BackButton,
+  TagXBtn,
   InputBox,
-  AddTagButton
+  AddTagButton,
+  TagModalWrapper,
+  ReasonText,
 } from "./styles";
-import WarningModal from "./WarningModal";
-import DeleteConfirmModal from "./DeleteConfirmModal"; // 삭제 확인 모달
+import WarningModal from "../WarningModal";
+import DeleteConfirmModal from "../DeleteConfirmModal"; // 삭제 확인 모달
+import arrowLeft from "./../../../../assets/Calendar/arrow-left.svg";
+import tagXBtn from "./../../../../assets/Calendar/tagXBtn.svg";
+import tagXBtnGray from "./../../../../assets/Calendar/tagXBtnGray.svg";
 
 const TagModal = ({
   selectedPill,
@@ -32,6 +39,7 @@ const TagModal = ({
     "복통",
     "소화불량",
     "두통",
+    "발열",
     "알러지",
     "여드름",
     "항생제",
@@ -102,8 +110,11 @@ const TagModal = ({
     <>
       {isAddingTag ? (
         <>
-          <BackButton onClick={handleBackFromAddTag}>뒤로가기</BackButton>
-          <Title>새로운 태그 추가</Title>
+          <TopBar>
+            <BackButton onClick={handleBackFromAddTag}></BackButton>
+            <Title>새로운 태그 추가</Title>
+            <div style={{ width: "1.25rem" }} />
+          </TopBar>
           <InputBox>
             <input
               type="text"
@@ -117,9 +128,15 @@ const TagModal = ({
           </AddTagButton>
         </>
       ) : (
-        <>
-          <BackButton onClick={onBack}>뒤로가기</BackButton>
-          <Title>선택한 약: {selectedPill}</Title>
+        <TagModalWrapper>
+          <TopBar>
+            <BackButton onClick={onBack}>
+              <img src={arrowLeft} alt="backBtn" />
+            </BackButton>
+            <Title>{selectedPill}</Title>
+            <div style={{ width: "1.25rem" }} />
+          </TopBar>
+          <ReasonText>복용사유를 선택하세요</ReasonText>
           <TagList>
             {tags.map((tag, index) => (
               <TagItem
@@ -127,17 +144,23 @@ const TagModal = ({
                 selected={selectedTags.includes(tag)}
                 onClick={() => handleTagClick(tag)}
               >
-                {tag}
+                <span>{tag}</span>
               </TagItem>
             ))}
+            {/* 사용자 등록 태그 */}
             {customTags.map((tag, index) => (
               <TagItem
                 key={index + tags.length}
                 selected={selectedTags.includes(tag)}
                 onClick={() => handleTagClick(tag)}
               >
-                {tag}
-                <button onClick={(e) => handleDeleteButtonClick(e, tag)}>x</button>
+                <span>{tag}</span>
+                <TagXBtn onClick={(e) => handleDeleteButtonClick(e, tag)}>
+                  <img
+                    src={selectedTags.includes(tag) ? tagXBtn : tagXBtnGray}
+                    alt="tagXBtn"
+                  />
+                </TagXBtn>
               </TagItem>
             ))}
             <TagItem
@@ -147,13 +170,13 @@ const TagModal = ({
                   : setIsAddingTag(true)
               }
             >
-              +
+              <span>+</span>
             </TagItem>
           </TagList>
           <SaveButton onClick={handleSave} disabled={selectedTags.length === 0}>
-            등록 완료
+            <span>등록 완료</span>
           </SaveButton>
-        </>
+        </TagModalWrapper>
       )}
       {isWarningModalOpen && (
         <WarningModal

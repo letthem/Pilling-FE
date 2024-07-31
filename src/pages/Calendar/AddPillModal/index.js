@@ -1,5 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
-import { ModalBackground, ModalContainer, ResultItem, ResultList, SearchBox } from "./styles";
+import {
+  ModalBackground,
+  ModalContainer,
+  ResultItem,
+  ResultList,
+  SearchBox,
+  SearchModal,
+} from "./styles";
 import search from "./../../../assets/Calendar/search.svg";
 import TagModal from "./TagModal";
 import CancelConfirmModal from "../CancelCofirmModal";
@@ -81,7 +88,7 @@ const AddPillModal = ({ onClose, onSave }) => {
             setCustomTags={setCustomTags}
           />
         ) : (
-          <>
+          <SearchModal>
             <SearchBox>
               <input
                 ref={inputRef}
@@ -100,7 +107,7 @@ const AddPillModal = ({ onClose, onSave }) => {
                 </ResultItem>
               ))}
             </ResultList>
-          </>
+          </SearchModal>
         )}
         {isCancelConfirmOpen && (
           <CancelConfirmModal
