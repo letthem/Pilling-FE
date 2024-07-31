@@ -11,6 +11,12 @@ import {
   AddTagButton,
   TagModalWrapper,
   ReasonText,
+  UserAddTagModalWrapper,
+  TagModalContainer,
+  UserAddTagModalContainer,
+  UserAddTagTopBar,
+  UserAddTagInputBox,
+  UserAddTagTitle,
 } from "./styles";
 import WarningModal from "../WarningModal";
 import DeleteConfirmModal from "../DeleteConfirmModal"; // 삭제 확인 모달
@@ -109,74 +115,84 @@ const TagModal = ({
   return (
     <>
       {isAddingTag ? (
-        <>
-          <TopBar>
-            <BackButton onClick={handleBackFromAddTag}></BackButton>
-            <Title>새로운 태그 추가</Title>
-            <div style={{ width: "1.25rem" }} />
-          </TopBar>
-          <InputBox>
-            <input
+        <UserAddTagModalContainer>
+          <UserAddTagModalWrapper>
+            <UserAddTagTopBar>
+              <BackButton onClick={handleBackFromAddTag}>
+                <img src={arrowLeft} alt="backBtn" />
+              </BackButton>
+              <UserAddTagTitle>질병 태그 등록</UserAddTagTitle>
+              <div style={{ width: "20px", marginRight: "28px" }} />
+            </UserAddTagTopBar>
+            <UserAddTagInputBox
               type="text"
               value={newTag}
               onChange={handleNewTagChange}
-              placeholder="태그를 입력하세요"
+              placeholder="직접 입력(띄어쓰기 없이 6자 이내)"
             />
-          </InputBox>
-          <AddTagButton onClick={handleAddCustomTag} disabled={!newTag.trim()}>
-            추가
-          </AddTagButton>
-        </>
-      ) : (
-        <TagModalWrapper>
-          <TopBar>
-            <BackButton onClick={onBack}>
-              <img src={arrowLeft} alt="backBtn" />
-            </BackButton>
-            <Title>{selectedPill}</Title>
-            <div style={{ width: "1.25rem" }} />
-          </TopBar>
-          <ReasonText>복용사유를 선택하세요</ReasonText>
-          <TagList>
-            {tags.map((tag, index) => (
-              <TagItem
-                key={index}
-                selected={selectedTags.includes(tag)}
-                onClick={() => handleTagClick(tag)}
-              >
-                <span>{tag}</span>
-              </TagItem>
-            ))}
-            {/* 사용자 등록 태그 */}
-            {customTags.map((tag, index) => (
-              <TagItem
-                key={index + tags.length}
-                selected={selectedTags.includes(tag)}
-                onClick={() => handleTagClick(tag)}
-              >
-                <span>{tag}</span>
-                <TagXBtn onClick={(e) => handleDeleteButtonClick(e, tag)}>
-                  <img
-                    src={selectedTags.includes(tag) ? tagXBtn : tagXBtnGray}
-                    alt="tagXBtn"
-                  />
-                </TagXBtn>
-              </TagItem>
-            ))}
-            <TagItem
-              onClick={() =>
-                customTags.length >= 3
-                  ? setIsWarningModalOpen(true)
-                  : setIsAddingTag(true)
-              }
+            <AddTagButton
+              onClick={handleAddCustomTag}
+              disabled={!newTag.trim()}
             >
-              <span>+</span>
-            </TagItem>
-          </TagList>
-          <SaveButton onClick={handleSave} disabled={selectedTags.length === 0}>
-            <span>등록 완료</span>
-          </SaveButton>
-        </TagModalWrapper>
+              저장
+            </AddTagButton>
+          </UserAddTagModalWrapper>
+        </UserAddTagModalContainer>
+      ) : (
+        <TagModalContainer>
+          <TagModalWrapper>
+            <TopBar>
+              <BackButton onClick={onBack}>
+                <img src={arrowLeft} alt="backBtn" />
+              </BackButton>
+              <Title>{selectedPill}</Title>
+              <div style={{ width: "1.25rem" }} />
+            </TopBar>
+            <ReasonText>복용사유를 선택하세요</ReasonText>
+            <TagList>
+              {tags.map((tag, index) => (
+                <TagItem
+                  key={index}
+                  selected={selectedTags.includes(tag)}
+                  onClick={() => handleTagClick(tag)}
+                >
+                  <span>{tag}</span>
+                </TagItem>
+              ))}
+              {/* 사용자 등록 태그 */}
+              {customTags.map((tag, index) => (
+                <TagItem
+                  key={index + tags.length}
+                  selected={selectedTags.includes(tag)}
+                  onClick={() => handleTagClick(tag)}
+                >
+                  <span>{tag}</span>
+                  <TagXBtn onClick={(e) => handleDeleteButtonClick(e, tag)}>
+                    <img
+                      src={selectedTags.includes(tag) ? tagXBtn : tagXBtnGray}
+                      alt="tagXBtn"
+                    />
+                  </TagXBtn>
+                </TagItem>
+              ))}
+              <TagItem
+                onClick={() =>
+                  customTags.length >= 3
+                    ? setIsWarningModalOpen(true)
+                    : setIsAddingTag(true)
+                }
+              >
+                <span>+</span>
+              </TagItem>
+            </TagList>
+            <SaveButton
+              onClick={handleSave}
+              disabled={selectedTags.length === 0}
+            >
+              <span>등록 완료</span>
+            </SaveButton>
+          </TagModalWrapper>
+        </TagModalContainer>
       )}
       {isWarningModalOpen && (
         <WarningModal

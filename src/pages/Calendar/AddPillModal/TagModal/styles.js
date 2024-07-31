@@ -2,6 +2,15 @@ import styled from "styled-components";
 
 // TagModalWrapper
 
+export const TagModalContainer = styled.div`
+  position: absolute;
+  top: 65px;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  border-radius: 1.875rem;
+`;
+
 export const TagModalWrapper = styled.div`
   width: 21.375rem;
   height: 32.5rem;
@@ -22,6 +31,7 @@ export const TopBar = styled.div`
 export const BackButton = styled.div`
   width: 20px;
   height: 20px;
+  margin-left: 28px;
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -106,44 +116,78 @@ export const SaveButton = styled.div`
   }
 `;
 
-// -----------------
+// UserAddTagModal
 
-export const InputBox = styled.div`
+export const UserAddTagModalContainer = styled.div`
+  position: absolute;
+  top: 175px;
+  background: white;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  border-radius: 1.875rem;
+`;
+
+export const UserAddTagModalWrapper = styled.div`
+  width: 342px;
+  height: 280px;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  margin-bottom: 1rem;
+`;
 
-  input {
-    width: 100%;
-    padding: 0.5rem 1rem;
-    border: 1px solid #ddd;
-    border-radius: 0.5rem;
-    font-size: 1rem;
-    outline: none;
+export const UserAddTagTopBar = styled.div`
+  margin: 39px 28px 0;
+  width: 100%;
+  height: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
 
-    &:focus-within {
-      border-color: #ff0; /* 형광 노란색 */
-      box-shadow: 0 0 0 2px #ff0; /* 형광 노란색 */
-    }
+export const UserAddTagTitle = styled.h2`
+  text-align: center;
+  line-height: 1.2;
+  font-size: 1rem;
+  font-family: "SUIT-SemiBold";
+`;
+
+export const UserAddTagInputBox = styled.input`
+  margin-top: 38px;
+  width: 246px;
+  height: 72px;
+  text-align: left;
+  padding: 0 16px;
+  border-radius: 16px;
+  border: 1px solid #adadad;
+  outline: none;
+
+  font-family: "SUIT-Regular";
+  font-size: 14px;
+  line-height: 1.2;
+  color: #1b1a1f;
+
+  &:focus-within {
+    border-color: #c4f261;
   }
 
   &::placeholder {
     color: #adadad;
     font-family: "SUIT-Regular";
     font-size: 0.875rem;
-    line-height: 120%;
+    line-height: 1.2;
+    color: #adadad;
   }
 `;
 
-export const AddTagButton = styled.button`
-  background: ${({ disabled }) => (disabled ? "#ccc" : "#007bff")};
-  color: white;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 0.5rem;
+export const AddTagButton = styled.div`
+  margin-top: 36px;
+  width: 73px;
+  height: 48px;
+  display: flex;
+  border-radius: 16px;
+  justify-content: center;
+  align-items: center;
+  background: ${({ disabled }) => (disabled ? "#F7F6F9" : "#1B1A1F")};
+  color: ${({ disabled }) => (disabled ? "#CBCACD" : "white")};
   cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
-  &:hover {
-    background: ${({ disabled }) => (disabled ? "#ccc" : "#0056b3")};
-  }
 `;

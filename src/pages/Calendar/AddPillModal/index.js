@@ -77,17 +77,17 @@ const AddPillModal = ({ onClose, onSave }) => {
 
   return (
     <ModalBackground onClick={handleBackgroundClick}>
-      <ModalContainer>
-        {selectedPill ? (
-          <TagModal
-            selectedPill={selectedPill}
-            onSave={handleSave}
-            onClose={onClose}
-            onBack={handleBack}
-            customTags={customTags}
-            setCustomTags={setCustomTags}
-          />
-        ) : (
+      {selectedPill ? (
+        <TagModal
+          selectedPill={selectedPill}
+          onSave={handleSave}
+          onClose={onClose}
+          onBack={handleBack}
+          customTags={customTags}
+          setCustomTags={setCustomTags}
+        />
+      ) : (
+        <ModalContainer>
           <SearchModal>
             <SearchBox>
               <input
@@ -108,14 +108,16 @@ const AddPillModal = ({ onClose, onSave }) => {
               ))}
             </ResultList>
           </SearchModal>
-        )}
-        {isCancelConfirmOpen && (
+        </ModalContainer>
+      )}
+      {isCancelConfirmOpen && (
+        <ModalContainer>
           <CancelConfirmModal
             onConfirm={handleCancelConfirm}
             onCancel={() => setIsCancelConfirmOpen(false)}
           />
-        )}
-      </ModalContainer>
+        </ModalContainer>
+      )}
     </ModalBackground>
   );
 };
