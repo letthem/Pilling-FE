@@ -1,41 +1,41 @@
-import { useEffect, useRef, useState } from "react";
-import {
-  ModalBackground,
-  ModalContainer,
-  ResultItem,
-  ResultList,
-  SearchBox,
-} from "./styles";
+import React, { useState, useEffect, useRef } from "react";
+import { ModalBackground, ModalContainer, ResultItem, ResultList, SearchBox } from "./styles";
 import search from "./../../../assets/Calendar/search.svg";
+import TagModal from "./TagModal";
 
 const AddPillModal = ({ onClose, onSave }) => {
   const [inputValue, setInputValue] = useState("");
   const [results, setResults] = useState([]);
+  const [selectedPill, setSelectedPill] = useState(null);
+  const [customTags, setCustomTags] = useState(() => {
+    const savedTags = localStorage.getItem("customTags");
+    return savedTags ? JSON.parse(savedTags) : [];
+  });
+
   const inputRef = useRef(null);
 
-  // 빠른 검색 위해 input 바로 접근
   useEffect(() => {
     if (inputRef.current) {
       inputRef.current.focus();
     }
   }, []);
 
-  // 저장
-  const handleSave = () => {
-    onSave(inputValue);
+  useEffect(() => {
+    localStorage.setItem("customTags", JSON.stringify(customTags));
+  }, [customTags]);
+
+  const handleSave = (pill, tags) => {
+    onSave({ pill, tags });
     onClose();
   };
 
-  // 밖에 누르면 취소
   const handleBackgroundClick = (e) => {
     if (e.target === e.currentTarget) {
       onClose();
     }
   };
 
-  // 약 검색 버튼 혹은 엔터
   const handleSearch = () => {
-    // dummy data
     const pills = [
       "어린이용타이레놀정80mg",
       "타이레놀정160mg",
@@ -51,32 +51,50 @@ const AddPillModal = ({ onClose, onSave }) => {
     setResults(pills.filter((pill) => pill.includes(inputValue)));
   };
 
-  // enter 이벤트
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
       handleSearch();
     }
   };
 
+  const handleBack = () => {
+    setSelectedPill(null);
+  };
+
   return (
     <ModalBackground onClick={handleBackgroundClick}>
       <ModalContainer>
-        <SearchBox>
-          <input
-            ref={inputRef}
-            type="text"
-            value={inputValue}
-            onChange={(e) => setInputValue(e.target.value)}
-            onKeyDown={handleKeyPress}
-            placeholder="약 이름을 검색하세요"
+        {selectedPill ? (
+          <TagModal
+            selectedPill={selectedPill}
+            onSave={handleSave}
+            onClose={onClose}
+            onBack={handleBack}
+            customTags={customTags}
+            setCustomTags={setCustomTags}
           />
-          <img src={search} alt="search" onClick={handleSearch} />
-        </SearchBox>
-        <ResultList>
-          {results.map((result, index) => (
-            <ResultItem key={index}>{result}</ResultItem>
-          ))}
-        </ResultList>
+        ) : (
+          <>
+            <SearchBox>
+              <input
+                ref={inputRef}
+                type="text"
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
+                onKeyDown={handleKeyPress}
+                placeholder="약 이름을 검색하세요"
+              />
+              <img src={search} alt="search" onClick={handleSearch} />
+            </SearchBox>
+            <ResultList>
+              {results.map((result, index) => (
+                <ResultItem key={index} onClick={() => setSelectedPill(result)}>
+                  {result}
+                </ResultItem>
+              ))}
+            </ResultList>
+          </>
+        )}
       </ModalContainer>
     </ModalBackground>
   );

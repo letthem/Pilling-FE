@@ -42,3 +42,75 @@ export const Ment = styled.p`
   font-weight: 400;
   line-height: normal;
 `;
+
+export const ItemList = styled.ul`
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  margin-top: 1rem;
+`;
+
+export const Item = styled.li`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f0f0f0;
+  padding: 0.5rem 1rem;
+  margin-bottom: 0.5rem;
+  border-radius: 0.5rem;
+`;
+
+export const DeleteButton = styled.button`
+  background: red;
+  color: white;
+  border: none;
+  border-radius: 0.25rem;
+  padding: 0.25rem 0.5rem;
+  cursor: pointer;
+`;
+
+// ConfirmModal
+
+export const ModalBackground = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const ModalContainer = styled.div`
+  background: white;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+`;
+
+export const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+`;
+
+export const Button = styled.button`
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  &:hover {
+    background: #0056b3;
+  }
+  &:nth-child(2) {
+    background: red;
+    &:hover {
+      background: darkred;
+    }
+  }
+`;
