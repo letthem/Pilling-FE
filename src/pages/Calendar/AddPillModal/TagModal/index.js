@@ -7,7 +7,6 @@ import {
   Title,
   BackButton,
   TagXBtn,
-  InputBox,
   AddTagButton,
   TagModalWrapper,
   ReasonText,
@@ -19,7 +18,7 @@ import {
   UserAddTagTitle,
 } from "./styles";
 import WarningModal from "../WarningModal";
-import DeleteConfirmModal from "../DeleteConfirmModal"; // 삭제 확인 모달
+import DeleteConfirmModal from "../DeleteConfirmModal";
 import arrowLeft from "./../../../../assets/Calendar/arrow-left.svg";
 import tagXBtn from "./../../../../assets/Calendar/tagXBtn.svg";
 import tagXBtnGray from "./../../../../assets/Calendar/tagXBtnGray.svg";

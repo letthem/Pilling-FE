@@ -14,7 +14,7 @@ import {
 } from "./styles";
 import CalendarBox from "./CalendarBox";
 import AddPillModal from "./AddPillModal";
-import ConfirmModal from "./ConfirmModal.js";
+import ConfirmModal from "./DeletePillModal.js";
 
 const Calendar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
