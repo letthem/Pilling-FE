@@ -91,6 +91,12 @@ export const ModalContainer = styled.div`
   text-align: center;
 `;
 
+export const Message = styled.div`
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  text-align: center;
+`;
+
 export const ButtonContainer = styled.div`
   display: flex;
   justify-content: space-between;

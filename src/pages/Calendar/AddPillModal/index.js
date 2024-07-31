@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { ModalBackground, ModalContainer, ResultItem, ResultList, SearchBox } from "./styles";
 import search from "./../../../assets/Calendar/search.svg";
 import TagModal from "./TagModal";
+import CancelConfirmModal from "../CancelCofirmModal";
 
 const AddPillModal = ({ onClose, onSave }) => {
   const [inputValue, setInputValue] = useState("");
@@ -11,6 +12,7 @@ const AddPillModal = ({ onClose, onSave }) => {
     const savedTags = localStorage.getItem("customTags");
     return savedTags ? JSON.parse(savedTags) : [];
   });
+  const [isCancelConfirmOpen, setIsCancelConfirmOpen] = useState(false);
 
   const inputRef = useRef(null);
 
@@ -31,7 +33,7 @@ const AddPillModal = ({ onClose, onSave }) => {
 
   const handleBackgroundClick = (e) => {
     if (e.target === e.currentTarget) {
-      onClose();
+      setIsCancelConfirmOpen(true);
     }
   };
 
@@ -59,6 +61,11 @@ const AddPillModal = ({ onClose, onSave }) => {
 
   const handleBack = () => {
     setSelectedPill(null);
+  };
+
+  const handleCancelConfirm = () => {
+    setIsCancelConfirmOpen(false);
+    onClose();
   };
 
   return (
@@ -94,6 +101,12 @@ const AddPillModal = ({ onClose, onSave }) => {
               ))}
             </ResultList>
           </>
+        )}
+        {isCancelConfirmOpen && (
+          <CancelConfirmModal
+            onConfirm={handleCancelConfirm}
+            onCancel={() => setIsCancelConfirmOpen(false)}
+          />
         )}
       </ModalContainer>
     </ModalBackground>
