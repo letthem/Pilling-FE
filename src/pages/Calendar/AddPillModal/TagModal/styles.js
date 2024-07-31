@@ -20,7 +20,7 @@ export const TagModalWrapper = styled.div`
 // TopBar
 
 export const TopBar = styled.div`
-  margin: 2.25rem 1.5rem 0;
+  margin: 36px 24px 0;
   width: auto;
   height: 1.25rem;
   display: flex;
@@ -31,7 +31,6 @@ export const TopBar = styled.div`
 export const BackButton = styled.div`
   width: 1.25rem;
   height: 1.25rem;
-  margin-left: 1.75rem;
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -70,7 +69,8 @@ export const TagList = styled.div`
 export const TagItem = styled.div`
   padding: 0 0.75rem;
   height: 2.375rem;
-  border: 0.0313rem solid ${({ selected }) => (selected ? "#C4F261" : "#ADADAD")};
+  border: 0.0313rem solid
+    ${({ selected }) => (selected ? "#C4F261" : "#ADADAD")};
   border-radius: 1.25rem;
   background-color: ${({ selected }) => (selected ? "#C4F261" : "white")};
   cursor: pointer;
@@ -132,16 +132,21 @@ export const UserAddTagModalWrapper = styled.div`
   height: 17.5rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
 `;
 
 export const UserAddTagTopBar = styled.div`
   margin: 2.4375rem 1.75rem 0;
-  width: 100%;
   height: 1.25rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
+`;
+
+export const UserAddContent = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 export const UserAddTagTitle = styled.h2`

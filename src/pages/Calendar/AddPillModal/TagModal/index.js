@@ -16,6 +16,7 @@ import {
   UserAddTagTopBar,
   UserAddTagInputBox,
   UserAddTagTitle,
+  UserAddContent,
 } from "./styles";
 import WarningModal from "../WarningModal";
 import DeleteConfirmModal from "../DeleteConfirmModal";
@@ -121,20 +122,22 @@ const TagModal = ({
                 <img src={arrowLeft} alt="backBtn" />
               </BackButton>
               <UserAddTagTitle>질병 태그 등록</UserAddTagTitle>
-              <div style={{ width: "1.25rem", marginRight: "1.75rem" }} />
+              <div style={{ width: "1.25rem" }} />
             </UserAddTagTopBar>
-            <UserAddTagInputBox
-              type="text"
-              value={newTag}
-              onChange={handleNewTagChange}
-              placeholder="직접 입력(띄어쓰기 없이 6자 이내)"
-            />
-            <AddTagButton
-              onClick={handleAddCustomTag}
-              disabled={!newTag.trim()}
-            >
-              저장
-            </AddTagButton>
+            <UserAddContent>
+              <UserAddTagInputBox
+                type="text"
+                value={newTag}
+                onChange={handleNewTagChange}
+                placeholder="직접 입력(띄어쓰기 없이 6자 이내)"
+              />
+              <AddTagButton
+                onClick={handleAddCustomTag}
+                disabled={!newTag.trim()}
+              >
+                저장
+              </AddTagButton>
+            </UserAddContent>
           </UserAddTagModalWrapper>
         </UserAddTagModalContainer>
       ) : (
