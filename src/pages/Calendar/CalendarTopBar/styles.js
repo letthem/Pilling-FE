@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
-export const CalenderTopBarWrapper = styled.div`
+export const CalendarTopBarWrapper = styled.div`
   background-color: white;
-  margin: 3.75rem 1.5rem 0;
+  margin: 0.8125rem 1.5rem 0;
   width: auto;
   height: 3rem;
   display: flex;
@@ -23,7 +23,13 @@ export const Btn = styled.div`
 `;
 
 export const Title = styled.span`
-  font-family: "SUIT-Semibold";
-  font-size: 1.063rem;
-  line-height: 100%;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+
+  span {
+    font-family: "SUIT-Semibold";
+    font-size: 1.063rem;
+    line-height: 100%;
+  }
 `;

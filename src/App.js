@@ -4,17 +4,17 @@ import Home from "./pages/Home.js";
 import NotFoundPage from "./pages/NotFoundPage.js";
 import AuthKakao from "./pages/AuthKakao.js";
 import Login from "./pages/Login.js";
-import Calender from "./pages/Calender/index.js";
+import Calendar from "./pages/Calendar/index.js";
 
 function App() {
   return (
     <div>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Login />} />
+          <Route path="/" element={<Home />} />
           <Route path="/auth/kakao" element={<AuthKakao />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/calender" element={<Calender />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/calendar" element={<Calendar />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </BrowserRouter>
