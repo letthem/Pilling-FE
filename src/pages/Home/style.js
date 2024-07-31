@@ -1,11 +1,10 @@
 import styled from "styled-components";
+import { Link  } from "react-router-dom";
 
 export const HomeWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: white;
-  width: auto;
-  height: 281.333rem;
+  width: 100%; 
 `;
 
 export const Logo = styled.div`
@@ -43,10 +42,18 @@ export const SearchBarSection = styled.div`
   flex-direction: column;
   align-items: center;
   position: relative;
-  height: 150px;
+
+  
+    margin-bottom: 58px;
+  
+
+  @media (min-width: 500px) {
+    margin-bottom: 130px;
+
+  }
 `;
 
-export const SearchBtn = styled.button`
+export const SearchBtn = styled(Link)`
   z-index: 1;
   display: flex;
   align-items: center;
@@ -59,11 +66,20 @@ export const SearchBtn = styled.button`
   font-size: 14px;
   font-weight: 400;
   font-family: "SUIT-Regular";
+  color: #1B1A1F;
   padding-left: 20px;
   box-shadow:
     inset 0 4.2px 5px -6px #adadad,
     inset -5px 0 5px -8px #adadad,
     inset 5px 0 5px -8px #adadad;
+
+    text-decoration: none;
+    
+  /*클릭시 색깔 변화 
+    &:active {
+    background-color: #C4F261; 
+  }
+    */
 
   img {
     margin-right: 12px;
@@ -73,7 +89,7 @@ export const SearchBtn = styled.button`
 export const MedicineLeft = styled.img`
   position: absolute;
   left: 12px;
-  top: 22.75px;
+  top: 14px;
 `;
 
 /*

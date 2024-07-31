@@ -16,7 +16,7 @@ const Calender = () => {
       <CalenderTopBar />
       <CalenderWrapper>
         <CalenderContainer>
-          <img src={calender} />
+          <img src={calender}  />
         </CalenderContainer>
         <PlusBtn>
           <Add src={add} />

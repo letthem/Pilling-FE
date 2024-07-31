@@ -4,9 +4,14 @@ export const WeeklyCalenderWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 211px;
   margin-bottom: 36px;
-`;
+
+  width: 100%; /* 전체 너비를 100%로 설정 */
+
+  /* 반응형 높이 설정 */
+  height: 211px;
+  
+`
 
 export const CalenderBox = styled.div`
   display: flex;
@@ -20,6 +25,8 @@ export const CalenderBox = styled.div`
   position: relative;
   p {
     width: 91%;
+    font-size: 15px;
+
     font-family: "SUIT-Medium";
     margin: 16px 16px 20px;
   }
@@ -35,16 +42,16 @@ export const WeeklyBox = styled.ul`
   }
 `;
 
+
 export const DayBox = styled.li`
   text-decoration: none;
   font-size: 10px;
-  color: white;
   width: 14%;
   height: 68px;
   text-align: center;
   border-radius: 14px;
-  border: 0.288px solid #1b1a1f;
-  background: #1b1a1f;
+  color : #FFF;
+  background-color: ${props => (props.$isToday ? '#C4F261' : '#1B1A1F')}; // 조건부 배경색
   margin-right: 2px;
  display: flex;
  flex-direction: column;
@@ -54,6 +61,7 @@ export const DayBox = styled.li`
 
 export const DayInBox = styled.span`
   margin-top: 10px; 
+  color: ${props => (props.$isToday ? 'black' : 'white')};
 `
 export const DayNumberInBox = styled.div`
   margin-bottom: 7px;
@@ -77,29 +85,27 @@ export const MediBox = styled.ul`
   background: #FFF;
   display: flex;
   align-items: center;
+  overflow-x: auto;
+  white-space: nowrap;
+
+
+  ::-webkit-scrollbar {
+      width: 10px;  /* 스크롤바의 너비 */
+  }
+
+  ::-webkit-scrollbar-thumb {
+    
+      background: #217af4; /* 스크롤바의 색상 */
+      
+      border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+      background: rgba(33, 122, 244, .1);  /*스크롤바 뒷 배경 색상*/
+  }
+
   li:first-child {
     margin-left: 12px;
   }
-`
-export const UserMedi = styled.li`
-  width: 30%;
-  height: 36px;
-  border-radius: 12px;
-  background: #F7F6F9;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: ${props => (props.isChecked ? '#C4F261' : '#F7F6F9')}; // 조건부 텍스트 색깔
-  margin-right: 8px;
-
-  span{
-    font-size: 12px;
-    margin-top: 2.1px;
-  }
-
-  img {
-    width: 14%;
-    margin-right: 8px;
-  }
   
-`;
+`

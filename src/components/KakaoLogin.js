@@ -14,7 +14,7 @@ const KakaoLogin = () => {
   return (
     <LoginDiv>
       <KakaoBtn onClick={handleLogin}>
-        <img src={KakaoImg} /> <span>카카오톡으로 시작하기</span>
+        <img src={KakaoImg} alt="kakao logo" /> <span>카카오톡으로 시작하기</span>
       </KakaoBtn>
       <TermsDiv>
         <p>개인정보 처리방침</p>

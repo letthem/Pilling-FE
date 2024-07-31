@@ -8,6 +8,8 @@ import StartPage from "./pages/StartPage/StartPage.js";
 import Login from "./pages/Login/index.js";
 import Calender from "./pages/Calender/index.js";
 import Map from '../src/pages/Map'
+import Profile from "./pages/Profile/index.js";
+import Find from '../src/pages/Find/index.js'
 
 function App() {
   return (
@@ -22,8 +24,10 @@ function App() {
           </Route>
           <Route path="/home" element={<Home />} />
           <Route path="/calender" element={<Calender />} />
+          <Route path="/map" element={<Map />} />
+          <Route path="/profile" element ={<Profile />} />
+          <Route path="/find" element={<Find />} />
           <Route path="*" element={<NotFoundPage />} />
-          <Route path="/Map" element={<Map />} />
         </Routes>
       </BrowserRouter>
     </div>

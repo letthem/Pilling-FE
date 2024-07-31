@@ -9,7 +9,8 @@ import {
   MedicineLeft,
 } from "./style";
 import medicineLeft from "../../assets/Home/medicineLeft.svg";
-import searchIcon from "../../assets/Home/search.svg";
+import findhIcon from "../../assets/Home/search.svg";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   // const nickname get요청해서 받아오기
@@ -18,9 +19,9 @@ const Home = () => {
       <HomeWrapper>
         <LogoSection />
         <SearchBarSection>
-          <SearchBtn>
-            <img src={searchIcon} /> 궁금한 약 이름을 검색하세요
-          </SearchBtn>
+              <SearchBtn to="/find">
+                <img src={findhIcon} alt="돋보기"/> 궁금한 약 이름을 검색하세요
+              </SearchBtn>        
           <MedicineLeft src={medicineLeft} />
         </SearchBarSection>
         <CalenderSection />
