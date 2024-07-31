@@ -75,9 +75,9 @@ export const Day = styled(CalendarItem)`
       ? "black"
       : props.$isToday
         ? "#C4F261"
-        : !props.$isCurrentMonth
-          ? "#1b1a1f"
-          : "#CCCCCC"};
+        : props.$isCurrentMonth
+          ? "#CCCCCC"
+          : "#1B1A1F"};
 
   background-color: ${(props) =>
     props.$isClicked
@@ -89,16 +89,19 @@ export const Day = styled(CalendarItem)`
           : "transparent"};
 
   border-radius: 0.75rem;
-  /* width: 2.5rem;
-  height: 2.5rem; */
   display: flex;
+  width: 2.5rem;
+  height: 2.5rem;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  padding: 0.375rem 0.5rem;
+  position: relative;
 
   span {
+    position: absolute;
+    top: 0.375rem;
+    right: 0.5rem;
     text-align: center;
     font-family: ${(props) =>
       props.$isClicked
@@ -108,18 +111,18 @@ export const Day = styled(CalendarItem)`
           : "GS-Regular"};
     font-size: 0.688rem;
     line-height: 0.963rem;
-    margin-left: 0.625rem;
     width: 0.875rem;
   }
 `;
 
 export const Circle = styled.div`
+  position: absolute;
   background-color: #1b1a1f;
   width: 0.375rem;
   height: 0.375rem;
   border-radius: 50%;
-  margin-top: 0.563rem;
-  margin-right: 1.125rem;
+  left: 0.5rem;
+  bottom: 0.25rem;
 `;
 
 export const ChangeButton = styled.div`

@@ -27,15 +27,8 @@ import {
 } from "./styles.js";
 import arrowLeft from "./../../../assets/Calendar/arrow-left-white.svg";
 
-const CalendarBox = () => {
+const CalendarBox = ({ clickedDate, setClickedDate, items = [] }) => {
   const [currentDate, setCurrentDate] = useState(new Date());
-  const [clickedDate, setClickedDate] = useState(null);
-
-  // 처음 마운트될 때 오늘 날짜로 상태 초기화
-  useEffect(() => {
-    const today = format(new Date(), "yyyy-MM-dd");
-    setClickedDate(today);
-  }, []);
 
   const startCurrentMonth = startOfMonth(currentDate);
   const endCurrentMonth = endOfMonth(currentDate);
@@ -53,6 +46,9 @@ const CalendarBox = () => {
     month: format(day, "M"),
     day: format(day, "dd"),
     isToday: isToday(day),
+    hasItems:
+      items.filter((item) => item.date === format(day, "yyyy-MM-dd")).length >
+      0,
   }));
 
   const weeks = ["일", "월", "화", "수", "목", "금", "토"];
@@ -111,7 +107,7 @@ const CalendarBox = () => {
                 onClick={() => setClickedDate(date.date)}
               >
                 <span>{date.day}</span>
-                <Circle></Circle>
+                {date.hasItems && <Circle />}
               </Day>
             ))}
           </DayContainer>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { PLFrame } from "../../components/PLFrame";
 import CalendarTopBar from "./CalendarTopBar";
 import add from "./../../assets/Calendar/add.svg";
@@ -14,13 +14,21 @@ import {
 } from "./styles";
 import CalendarBox from "./CalendarBox";
 import AddPillModal from "./AddPillModal";
-import ConfirmModal from "./DeletePillModal.js";
+import ConfirmModal from "./DeletePillModal";
+import { format } from "date-fns";
 
 const Calendar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [clickedDate, setClickedDate] = useState(null);
   const [items, setItems] = useState([]);
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
   const [deleteIndex, setDeleteIndex] = useState(null);
+
+  // 처음 마운트될 때 오늘 날짜로 상태 초기화
+  useEffect(() => {
+    const today = format(new Date(), "yyyy-MM-dd");
+    setClickedDate(today);
+  }, []);
 
   const handleAddClick = () => {
     setIsModalOpen(true);
@@ -31,7 +39,7 @@ const Calendar = () => {
   };
 
   const handleSaveItem = (item) => {
-    setItems([...items, item]);
+    setItems([...items, { ...item, date: clickedDate }]);
   };
 
   const handleDeleteItem = (index) => {
@@ -50,14 +58,19 @@ const Calendar = () => {
     setDeleteIndex(null);
   };
 
+  const filteredItems = items.filter((item) => item.date === clickedDate);
+
   return (
     <PLFrame>
       <CalendarTopBar />
       <CalendarWrapper>
         <CalendarContainer>
-          <CalendarBox />
+          <CalendarBox
+            clickedDate={clickedDate}
+            setClickedDate={setClickedDate}
+          />
           <ItemList>
-            {items.map((item, index) => (
+            {filteredItems.map((item, index) => (
               <Item key={index}>
                 <div>
                   <div>{item.pill}</div>
