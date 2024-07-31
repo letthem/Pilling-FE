@@ -1,5 +1,9 @@
 import React from "react";
-import { ModalBackground, ModalContainer, Message } from "./styles";
+import {
+  ModalBackground,
+  WarningModalContainer,
+  WarningMessage,
+} from "./styles";
 
 const WarningModal = ({ message, onClose }) => {
   const handleBackgroundClick = (e) => {
@@ -10,9 +14,9 @@ const WarningModal = ({ message, onClose }) => {
 
   return (
     <ModalBackground onClick={handleBackgroundClick}>
-      <ModalContainer>
-        <Message>{message}</Message>
-      </ModalContainer>
+      <WarningModalContainer>
+        <WarningMessage>{message}</WarningMessage>
+      </WarningModalContainer>
     </ModalBackground>
   );
 };

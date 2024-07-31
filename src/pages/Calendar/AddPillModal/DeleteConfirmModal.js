@@ -1,5 +1,5 @@
 import React from "react";
-import { ModalBackground, ModalContainer, Message, ButtonContainer, CancelButton, ConfirmButton } from "./styles";
+import { ModalBackground, ButtonContainer, CancelButton, ConfirmButton, DeleteModalContainer, DeleteMessage } from "./styles";
 
 const DeleteConfirmModal = ({ message, onCancel, onConfirm }) => {
   const handleBackgroundClick = (e) => {
@@ -10,13 +10,13 @@ const DeleteConfirmModal = ({ message, onCancel, onConfirm }) => {
 
   return (
     <ModalBackground onClick={handleBackgroundClick}>
-      <ModalContainer>
-        <Message>{message}</Message>
+      <DeleteModalContainer>
+        <DeleteMessage>{message}</DeleteMessage>
         <ButtonContainer>
           <CancelButton onClick={onCancel}>취소</CancelButton>
           <ConfirmButton onClick={onConfirm}>삭제</ConfirmButton>
         </ButtonContainer>
-      </ModalContainer>
+      </DeleteModalContainer>
     </ModalBackground>
   );
 };

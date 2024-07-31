@@ -104,20 +104,28 @@ export const ResultItem = styled.li`
 // WarningModal
 
 export const WarningModalContainer = styled.div`
+  position: absolute;
+  top: 369px;
   background: white;
-  max-width: 20rem;
-  min-width: 15rem;
-  width: calc(100% - 3rem);
-  padding: 1.5rem;
-  border-radius: 1.875rem;
   display: flex;
   flex-direction: column;
+  border-radius: 1.875rem;
+  width: 263px;
+  height: 72px;
   align-items: center;
 `;
 
-export const WarningMessage = styled.p`
-  font-size: 1rem;
-  margin-bottom: 1rem;
+export const WarningMessage = styled.div`
+  margin-top: 30px;
+  color: #1b1a1f;
+  font-family: "SUIT-Medium";
+  font-size: 16px;
+  line-height: 1;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  width: 203px;
+  height: 12px;
 `;
 
 export const CloseButton = styled.button`
@@ -132,30 +140,56 @@ export const CloseButton = styled.button`
 
 // DeleteConfirmModal
 
+export const DeleteModalContainer = styled.div`
+  position: absolute;
+  top: 349px;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  border-radius: 1.875rem;
+  width: 342px;
+  height: 152px;
+  align-items: center;
+`;
+
+export const DeleteMessage = styled.div`
+  margin-top: 30px;
+  color: #1b1a1f;
+  font-family: "SUIT-Medium";
+  font-size: 16px;
+  line-height: 1;
+  text-align: left;
+  width: 282px;
+  height: 12px;
+`;
+
 export const ButtonContainer = styled.div`
   display: flex;
-  gap: 1rem;
+  gap: 10px;
+  margin-top: 24px;
 `;
 
-export const CancelButton = styled.button`
-  padding: 0.5rem 1rem;
-  background: #ccc;
-  border: none;
-  border-radius: 0.5rem;
+export const CancelButton = styled.div`
+  width: 136px;
+  height: 56px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0.6px solid #d9d9d9;
+  background: white;
+  border-radius: 20px;
+  color: #1b1a1f;
   cursor: pointer;
 `;
 
-export const ConfirmButton = styled.button`
-  padding: 0.5rem 1rem;
-  background: red;
+export const ConfirmButton = styled.div`
+  width: 136px;
+  height: 56px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #1b1a1f;
+  border-radius: 20px;
   color: white;
-  border: none;
-  border-radius: 0.5rem;
   cursor: pointer;
-`;
-
-export const Message = styled.div`
-  font-size: 1rem;
-  margin-bottom: 1rem;
-  color: black;
 `;

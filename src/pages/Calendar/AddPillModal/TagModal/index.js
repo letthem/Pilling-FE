@@ -180,7 +180,7 @@ const TagModal = ({
       )}
       {isWarningModalOpen && (
         <WarningModal
-          message="태그는 3개까지 등록 가능합니다."
+          message="태그는 3개까지 추가 가능합니다"
           onClose={() => setIsWarningModalOpen(false)}
         />
       )}
