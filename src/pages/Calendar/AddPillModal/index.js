@@ -9,7 +9,7 @@ import {
 } from "./styles";
 import search from "./../../../assets/Calendar/search.svg";
 import TagModal from "./TagModal";
-import CancelConfirmModal from "../CancelCofirmModal";
+import CancelConfirmModal from "../CancelConfirmModal";
 
 const AddPillModal = ({ onClose, onSave }) => {
   const [inputValue, setInputValue] = useState("");

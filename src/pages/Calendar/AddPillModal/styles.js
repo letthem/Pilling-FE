@@ -105,7 +105,7 @@ export const ResultItem = styled.li`
 
 export const WarningModalContainer = styled.div`
   position: absolute;
-  top: 369px;
+  top: 322px;
   background: white;
   display: flex;
   flex-direction: column;
@@ -142,7 +142,7 @@ export const CloseButton = styled.button`
 
 export const DeleteModalContainer = styled.div`
   position: absolute;
-  top: 349px;
+  top: 302px;
   background: white;
   display: flex;
   flex-direction: column;
