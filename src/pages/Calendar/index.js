@@ -11,12 +11,18 @@ import {
   ItemList,
   Item,
   DeleteButton,
-  Checkbox,
+  CheckboxContainer,
+  StyledCheckbox,
+  HiddenCheckbox,
+  PillName,
+  TagItemBox,
+  TagListBox,
 } from "./styles";
 import CalendarBox from "./CalendarBox";
 import AddPillModal from "./AddPillModal";
 import ConfirmModal from "./DeletePillModal";
 import { format } from "date-fns";
+import trashBin from "./../../assets/Calendar/trashBin.svg";
 
 const Calendar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -81,24 +87,29 @@ const Calendar = () => {
           <ItemList>
             {filteredItems.map((item, index) => (
               <Item key={index}>
-                <Checkbox
-                  type="checkbox"
-                  checked={item.taken}
-                  onChange={() => handleCheckboxChange(items.indexOf(item))}
-                />
-                <div>
-                  <div>{item.pill}</div>
-                  <div>
-                    {item.tags && item.tags.length > 0
-                      ? item.tags.join(", ")
-                      : "No tags"}
-                  </div>
-                </div>
-
+                <CheckboxContainer onClick={() => handleCheckboxChange(index)}>
+                  <HiddenCheckbox
+                    checked={item.taken}
+                    onChange={() => handleCheckboxChange(index)}
+                  />
+                  <StyledCheckbox checked={item.taken} />
+                </CheckboxContainer>
+                <PillName>{item.pill}</PillName>
+                <TagListBox>
+                  {item.tags && item.tags.length > 0 ? (
+                    item.tags.map((tag, index) => (
+                      <TagItemBox key={index}>
+                        <span>{tag}</span>
+                      </TagItemBox>
+                    ))
+                  ) : (
+                    <div>태그가 없습니다.</div>
+                  )}
+                </TagListBox>
                 <DeleteButton
                   onClick={() => handleDeleteItem(items.indexOf(item))}
                 >
-                  삭제
+                  <img src={trashBin} alt="trashBin" />
                 </DeleteButton>
               </Item>
             ))}

@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import checkboxNo from "./../../assets/Calendar/checkbox-no.svg";
+import checkboxYes from "./../../assets/Calendar/checkbox-yes.svg";
 
 export const CalendarWrapper = styled.div`
   margin: 0 1.5rem;
@@ -10,10 +12,12 @@ export const CalendarWrapper = styled.div`
 
 export const CalendarContainer = styled.div`
   margin-top: 2.5rem;
-  padding: 0.5rem;
   border-radius: 1.875rem;
   background-color: #f7f6f9;
   width: 21.375rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 export const PlusBtn = styled.div`
@@ -43,29 +47,118 @@ export const Ment = styled.p`
   line-height: normal;
 `;
 
+// ItemList
+
 export const ItemList = styled.ul`
   list-style: none;
-  padding: 0;
-  margin: 0;
+  margin-top: 0.75rem;
 `;
 
 export const Item = styled.li`
+  position: relative;
+  width: 19.875rem;
+  height: 5rem;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  background: #f0f0f0;
-  padding: 0.5rem 1rem;
-  margin-bottom: 0.5rem;
-  border-radius: 0.5rem;
+  background: white;
+  margin-bottom: 0.75rem;
+  border-radius: 1.5rem;
 `;
 
-export const DeleteButton = styled.button`
-  background: red;
-  color: white;
-  border: none;
-  border-radius: 0.25rem;
-  padding: 0.25rem 0.5rem;
+// checkBox
+
+export const CheckboxContainer = styled.div`
+  position: absolute;
+  top: 1.625rem;
+  left: 0.875rem;
+  background-color: white;
+  display: inline-block;
+  vertical-align: middle;
+`;
+
+export const HiddenCheckbox = styled.input.attrs({ type: "checkbox" })`
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 0.0625rem;
+  margin: -0.0625rem;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 0.0625rem;
+`;
+
+export const StyledCheckbox = styled.div`
+  display: inline-block;
+  width: 1.625rem;
+  height: 1.625rem;
+  background: url(${(props) => (props.checked ? checkboxYes : checkboxNo)});
+  transition: all 150ms;
+`;
+
+// PillName
+
+export const PillName = styled.p`
+  position: absolute;
+  top: 1.125rem;
+  left: 3.375rem;
+  color: #1b1a1f;
+  font-family: "SUIT-SemiBold";
+  font-size: 0.875rem;
+  line-height: 1;
+`;
+
+// Tag
+
+export const TagListBox = styled.div`
+  display: flex;
+  position: absolute;
+  top: 2.5625rem;
+  left: 3.25rem;
+  overflow-x: auto;
+  white-space: nowrap;
+  max-width: calc(100% - 2.5rem);
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  -ms-overflow-style: none; // IE and Edge
+  scrollbar-width: none; // Firefox
+`;
+
+export const TagItemBox = styled.div`
+  width: auto;
+  height: 1.5625rem;
+  padding: 0 0.75rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #c4f261;
+  border-radius: 1.25rem;
+
+  span {
+    color: #1b1a1f;
+    font-family: SUIT;
+    font-size: 0.6875rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.2;
+  }
+  & + & {
+    margin-left: 0.5rem;
+  }
+`;
+
+// DeleteButton
+
+export const DeleteButton = styled.div`
+  position: absolute;
+  width: 1.125rem;
+  height: 1.125rem;
   cursor: pointer;
+  top: 0.75rem;
+  right: 0.875rem;
 `;
 
 // ConfirmModal
@@ -118,10 +211,4 @@ export const Button = styled.button`
       background: darkred;
     }
   }
-`;
-
-// CheckBox
-
-export const Checkbox = styled.input`
-  margin-right: 0.5rem;
 `;

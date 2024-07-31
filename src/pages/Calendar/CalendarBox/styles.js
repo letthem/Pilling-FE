@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const CalendarBoxLayout = styled.div`
   background-color: #1b1a1f;
   border-radius: 1.5rem;
-  /* padding: 0.5rem; */
+  margin-top: 0.375rem;
 `;
 
 export const CalendarBoxWrapper = styled.div`
@@ -88,7 +88,8 @@ export const Day = styled.div`
           ? "#2b2a2f"
           : "transparent"};
 
-  border: ${(props) => (props.$allItemsChecked ? "0.0625rem solid #C4F261" : "none")};
+  border: ${(props) =>
+    props.$allItemsChecked ? "0.0625rem solid #C4F261" : "none"};
   box-sizing: border-box;
   border-radius: 0.75rem;
   display: flex;
