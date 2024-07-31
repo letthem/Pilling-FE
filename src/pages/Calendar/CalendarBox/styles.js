@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const CalendarBoxLayout = styled.div`
   background-color: #1b1a1f;
   border-radius: 1.5rem;
-  margin-top: 0.375rem;
+  margin: 8px 0;
 `;
 
 export const CalendarBoxWrapper = styled.div`
@@ -34,7 +34,7 @@ export const MonthDisplay = styled.div`
   font-size: 1.5rem;
   font-family: "GS-Medium";
   span {
-    font-size: 1.719rem;
+    font-size: 1.375rem;
   }
 `;
 
