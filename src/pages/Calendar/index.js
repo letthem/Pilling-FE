@@ -68,6 +68,7 @@ const Calendar = () => {
           <CalendarBox
             clickedDate={clickedDate}
             setClickedDate={setClickedDate}
+            items={items}
           />
           <ItemList>
             {filteredItems.map((item, index) => (

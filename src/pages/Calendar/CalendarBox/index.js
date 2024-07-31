@@ -9,7 +9,7 @@ import {
   startOfWeek,
   subMonths,
 } from "date-fns";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   CalendarItem,
   CalendarBoxWrapper,
@@ -105,6 +105,7 @@ const CalendarBox = ({ clickedDate, setClickedDate, items = [] }) => {
                 key={date.date}
                 $isClicked={clickedDate === date.date}
                 onClick={() => setClickedDate(date.date)}
+                $hasItems={date.hasItems}
               >
                 <span>{date.day}</span>
                 {date.hasItems && <Circle />}

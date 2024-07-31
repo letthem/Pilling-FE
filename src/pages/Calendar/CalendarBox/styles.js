@@ -69,7 +69,7 @@ export const DayContainer = styled.div`
   margin: 0rem 0.75rem 1rem;
 `;
 
-export const Day = styled(CalendarItem)`
+export const Day = styled.div`
   color: ${(props) =>
     props.$isClicked
       ? "black"
