@@ -98,7 +98,7 @@ export const Day = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  cursor: pointer;
+  cursor: ${(props) => (props.$isCurrentMonth ? "pointer" : "default")};
   position: relative;
 
   span {

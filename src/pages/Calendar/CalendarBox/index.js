@@ -30,6 +30,9 @@ import arrowLeft from "./../../../assets/Calendar/arrow-left-white.svg";
 const CalendarBox = ({ clickedDate, setClickedDate, items = [] }) => {
   const [currentDate, setCurrentDate] = useState(new Date());
 
+  const formatCurrentMonth = format(currentDate, "M");
+  const formatCurrentYear = format(currentDate, "yyyy");
+
   const startCurrentMonth = startOfMonth(currentDate);
   const endCurrentMonth = endOfMonth(currentDate);
   const startOfFirstWeek = startOfWeek(startCurrentMonth, { weekStartsOn: 0 });
@@ -54,6 +57,7 @@ const CalendarBox = ({ clickedDate, setClickedDate, items = [] }) => {
       isToday: isToday(day),
       hasItems: itemsForDay.length > 0,
       allItemsChecked,
+      isCurrentMonth: formatCurrentMonth === format(day, "M"), // 현재 달인지 확인
     };
   });
 
@@ -68,9 +72,6 @@ const CalendarBox = ({ clickedDate, setClickedDate, items = [] }) => {
   const handleNextMonth = () => {
     setCurrentDate((prevDate) => addMonths(prevDate, 1));
   };
-
-  const formatCurrentMonth = format(currentDate, "M");
-  const formatCurrentYear = format(currentDate, "yyyy");
 
   return (
     <CalendarBoxLayout>
@@ -105,12 +106,12 @@ const CalendarBox = ({ clickedDate, setClickedDate, items = [] }) => {
           <DayContainer>
             {formatDays.map((date) => (
               <Day
-                $isCurrentMonth={formatCurrentMonth === date.month}
+                $isCurrentMonth={date.isCurrentMonth}
                 $isToday={date.isToday}
                 className={date.month}
                 key={date.date}
                 $isClicked={clickedDate === date.date}
-                onClick={() => setClickedDate(date.date)}
+                onClick={() => date.isCurrentMonth && setClickedDate(date.date)}
                 $hasItems={date.hasItems}
                 $allItemsChecked={date.allItemsChecked}
               >
