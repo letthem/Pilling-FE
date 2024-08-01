@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { PLFrame } from "../../components/PLFrame";
-import CalendarTopBar from "./CalendarTopBar";
+import TopBar from "../../components/TobBar";
 import add from "./../../assets/Calendar/add.svg";
 import {
   Add,
@@ -76,7 +76,7 @@ const Calendar = () => {
 
   return (
     <PLFrame>
-      <CalendarTopBar />
+      <TopBar topBarName={"복용일지"} />
       <CalendarWrapper>
         <CalendarContainer>
           <CalendarBox
