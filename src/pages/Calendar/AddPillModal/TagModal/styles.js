@@ -20,7 +20,7 @@ export const TagModalWrapper = styled.div`
 // TopBar
 
 export const TopBar = styled.div`
-  margin: 36px 24px 0;
+  margin: 2.25rem 1.5rem 0;
   width: auto;
   height: 1.25rem;
   display: flex;

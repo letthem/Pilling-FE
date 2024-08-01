@@ -51,7 +51,6 @@ export const Ment = styled.p`
 
 export const ItemList = styled.ul`
   list-style: none;
-  margin-top: 0.75rem;
 `;
 
 export const Item = styled.li`

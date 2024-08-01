@@ -20,7 +20,7 @@ import {
 } from "./styles";
 import WarningModal from "../WarningModal";
 import DeleteConfirmModal from "../DeleteConfirmModal";
-import arrowLeft from "./../../../../assets/Calendar/arrow-left.svg";
+import arrowLeft from "./../../../../assets/arrow-left.svg";
 import tagXBtn from "./../../../../assets/Calendar/tagXBtn.svg";
 import tagXBtnGray from "./../../../../assets/Calendar/tagXBtnGray.svg";
 
