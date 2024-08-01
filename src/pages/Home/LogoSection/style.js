@@ -11,19 +11,36 @@ export const LogoSectionWrapper = styled.div`
   font-size: 20px;
   margin: 15px 0 50px;
   display: grid;
-  grid-template-columns: 1fr auto; /* Adjust layout to have text and image in two columns */
-  gap: 102px; /* Space between text and image */
+  grid-template-columns: 1fr auto; 
+  gap: 102px; 
   align-items: center;
   line-height: 2rem;
   position: relative;
 
   .nickname {
     font-family: "SUIT-Bold";
+    position: relative;
+    display: inline-block;
+    padding: 0 3px 0.8em 3px; 
+    background: #fff; 
+    z-index: 2;
+    
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 15px;
+      left: 0px;
+      width: 100%;
+      height: 0.8em;
+      background: #C4F261;
+      z-index: -1; 
+    }
   }
 `;
 
 export const Intro = styled.div`
-  width: 150px;
+  width: auto;
   margin-left: 39px;
 `;
 

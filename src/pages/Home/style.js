@@ -7,12 +7,7 @@ export const HomeWrapper = styled.div`
   width: 100%; 
 `;
 
-export const Logo = styled.div`
-  font-family: "Super_Plants";
-  font-size: 3.75rem;
-  text-align: left;
-  margin: 42px 140px 0 35px;
-`;
+
 export const LogoSection = styled.div`
   font-family: "SUIT-SemiBold";
   font-size: 20px;
@@ -48,7 +43,7 @@ export const SearchBarSection = styled.div`
   
 
   @media (min-width: 500px) {
-    margin-bottom: 130px;
+    margin-bottom: 100px;
 
   }
 `;
@@ -95,11 +90,10 @@ export const MedicineLeft = styled.img`
 /*
 @media (max-width: 500px) {
     //소형 휴대폰 
-    bottom: 18rem;
+ 
   }
 
   @media (min-width: 500px) and (max-width: 1024px) {
-    margin-top: 3rem;
-    bottom: 9.188rem;
 
+}
     */

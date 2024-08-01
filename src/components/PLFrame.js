@@ -6,7 +6,7 @@ export const PLFrame = styled.div`
   max-width: 32rem;
   min-height: 52.75rem;
   height: auto;
-  margin: auto;
-  display: flex;
+  margin: 0 auto; 
+   display: flex;
   flex-direction: column;
 `;

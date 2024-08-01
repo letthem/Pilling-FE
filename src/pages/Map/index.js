@@ -6,7 +6,7 @@ import nowPlaceImg from '../../assets/Map/NowPlace.svg'
 import Locations from "./Locations";
 import pillImg from '../../assets/Map/pill.svg'
 
-
+// 맵에서 정보 받아올때 로딩 처리 꼭해주기 -> 로딩 페이지를 만들어서 페이지 로딩 표시해주자 ( 조금 오래걸림 )
 
 const Map = () =>
     {
@@ -24,6 +24,7 @@ const Map = () =>
                 };
                 const map = new kakao.maps.Map(container.current, options);//지도 생성 및 객체 리턴
 
+
                 const ps = new kakao.maps.services.Places();
 
                 const psCallback = function(result, status) {
@@ -35,6 +36,10 @@ const Map = () =>
                       for (let i=0; i<result.length; i++) {
                         displayMarker(result[i]);    
                         bounds.extend(new kakao.maps.LatLng(result[i].y, result[i].x));
+                        console.log(result[i].y, result[i].x); // 여기서 나중에 약국 위도 경도 넘겨주는 걸ㅗ
+
+
+                        
                     }       
     
                     map.setBounds(bounds);
@@ -114,55 +119,54 @@ const Map = () =>
 export default Map;
 
 const MapWrapper = styled.div`
-width: 100vw; /* Full viewport width */
-height: 100vh; /* Full viewport height */
-display: flex;
-flex-direction: column;
-justify-content: center;
-margin: 0;
-position: relative; /* Make sure the Navbar can be positioned relative to this container */
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0;
+    position: relative;
 
-
-@media (min-width: 576px) { 
-        width: 100vw; /* Ensure full width on smaller screens */
+    @media (min-width: 36rem) { 
+        width: 100vw; 
     }
 
-    @media (min-width: 768px) { 
-        width: 100vw; /* Ensure full width on tablets */
+    @media (min-width: 48rem) { 
+        width: 100vw; 
     }
 
-    @media (min-width: 992px) { 
-        width: 100vw; /* Ensure full width on desktops */
+    @media (min-width: 62rem) { 
+        width: 100vw; 
     }
 
-    @media (min-width: 1200px) { 
-        width: 100vw; /* Ensure full width on larger desktops */
+    @media (min-width: 75rem) { 
+        width: 100vw; 
     }
+`;
 
-
-`
 const MapHeader = styled.div`
     font-family: 'SUIT-Semibold';
     color: #1B1A1F;
-    font-size: 17px;
-    height: 47px;
-    display:flex;
+    font-size: 1.0625rem;
+    height: 2.9375rem;
+    display: flex;
     justify-content: center;
     align-items: center;
-    `
+`;
 
 const KakaoMap = styled.div`
-    height: calc(100vh - 47px - 50px); /* Full height minus header and navbar heights */
+    height: calc(100vh - 2.9375rem - 3.125rem); 
     width: 100%;
     position: relative;
-`
+`;
+
 const NavBarWrapper = styled.div`
-    position: fixed; /* Fixed position to stay at the same place relative to the viewport */
-    bottom: 14px; /* Distance from the bottom of the viewport */
+    position: fixed; 
+    bottom: 0.875rem;
     left: 0;
-    right: 0; /* Full width to span across the screen */
-    z-index: 1000; /* Ensure it is above the map */
+    right: 0; 
+    z-index: 1000; 
     display: flex;
-    justify-content: center; /* Center align horizontally */
-    padding: 0 20px; /* Optional: add horizontal padding if needed */
-`
+    justify-content: center; 
+    padding: 0 1.25rem; 
+`;

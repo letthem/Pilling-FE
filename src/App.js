@@ -10,6 +10,7 @@ import Calender from "./pages/Calender/index.js";
 import Map from '../src/pages/Map'
 import Profile from "./pages/Profile/index.js";
 import Find from '../src/pages/Find/index.js'
+import FindResultPage from "./pages/Find/FindResultPage/index.js";
 
 function App() {
   return (
@@ -22,11 +23,16 @@ function App() {
             <Route index element={<Join />} />
             <Route path="start" element={<StartPage />} />
           </Route>
-          <Route path="/home" element={<Home />} />
+          <Route path="/home">
+            <Route index element={<Home />} />
+            <Route path="find" > 
+              <Route index element={<Find /> } />
+              <Route path=":itemName" element={<FindResultPage/>} />
+            </Route>  
+          </Route>
           <Route path="/calender" element={<Calender />} />
           <Route path="/map" element={<Map />} />
           <Route path="/profile" element ={<Profile />} />
-          <Route path="/find" element={<Find />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </BrowserRouter>
