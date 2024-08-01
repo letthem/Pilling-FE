@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const CalendarBoxLayout = styled.div`
   background-color: #1b1a1f;
   border-radius: 1.5rem;
-  margin: 8px 0;
+  margin: 0.5rem 0;
 `;
 
 export const CalendarBoxWrapper = styled.div`

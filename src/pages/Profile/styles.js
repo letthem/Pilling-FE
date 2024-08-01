@@ -7,6 +7,15 @@ export const ProfileImg = styled.div`
   height: 5.75rem;
   margin-top: 4.875rem;
   margin-left: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
 `;
 
 export const ProfileInfo = styled.div`

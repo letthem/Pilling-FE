@@ -7,14 +7,12 @@ const TopBar = ({ topBarName }) => {
   const nav = useNavigate();
   return (
     <TopBarWrapper>
-      <Btn>
-        <img
-          src={arrowLeft}
-          alt="arrowLeft"
-          onClick={() => {
-            nav(-1);
-          }}
-        />
+      <Btn
+        onClick={() => {
+          nav(-1);
+        }}
+      >
+        <img src={arrowLeft} alt="arrowLeft" />
       </Btn>
       <Title>
         <span>{topBarName}</span>

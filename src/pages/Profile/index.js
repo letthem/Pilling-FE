@@ -32,12 +32,8 @@ const Profile = () => {
           </span>
           <span className="nickname_tail">&nbsp;님</span>
         </NickName>
-        <SettingImg>
-          <img
-            src={setting}
-            alt="settiingImg"
-            onClick={() => nav("/profile/setting")}
-          />
+        <SettingImg onClick={() => nav("/profile/setting")}>
+          <img src={setting} alt="settiingImg" />
         </SettingImg>
       </ProfileInfo>
       <ProfileContents>
