@@ -40,33 +40,23 @@ const Profile = () => {
         </SettingImg>
       </ProfileInfo>
       <ProfileContents>
-        <NextPageWrapper>
+        <NextPageWrapper onClick={() => nav("/profile/scrap")}>
           <div className="leftPart">
             <div className="greenIcon">
               <img src={scrap} alt="scrap" />
             </div>
             <span>스크랩한 약</span>
           </div>
-          <img
-            className="arrowRight"
-            src={arrowLeft}
-            alt="arrowRight"
-            onClick={() => nav("/profile/scrap")}
-          />
+          <img className="arrowRight" src={arrowLeft} alt="arrowRight" />
         </NextPageWrapper>
-        <NextPageWrapper>
+        <NextPageWrapper onClick={() => nav("/profile/record")}>
           <div className="leftPart">
             <div className="greenIcon">
               <img src={note} alt="note" />
             </div>
             <span>나의 약 복용기록</span>
           </div>
-          <img
-            className="arrowRight"
-            src={arrowLeft}
-            alt="arrowRight"
-            onClick={() => nav("/profile/record")}
-          />
+          <img className="arrowRight" src={arrowLeft} alt="arrowRight" />
         </NextPageWrapper>
       </ProfileContents>
     </PLFrame>

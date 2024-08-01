@@ -84,6 +84,7 @@ export const NextPageWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  cursor: pointer;
 
   .leftPart {
     display: flex;
@@ -114,6 +115,5 @@ export const NextPageWrapper = styled.div`
     height: 1.25rem;
     transform: rotate(180deg);
     margin-right: 1rem;
-    cursor: pointer;
   }
 `;
