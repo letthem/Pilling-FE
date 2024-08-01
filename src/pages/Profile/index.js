@@ -14,8 +14,11 @@ import {
   ProfileInfo,
   SettingImg,
 } from "./styles";
+import { useNavigate } from "react-router";
 
 const Profile = () => {
+  const nav = useNavigate();
+
   return (
     <PLFrame>
       <ProfileImg>
@@ -30,7 +33,11 @@ const Profile = () => {
           <span className="nickname_tail">&nbsp;님</span>
         </NickName>
         <SettingImg>
-          <img src={setting} alt="settiingImg" />
+          <img
+            src={setting}
+            alt="settiingImg"
+            onClick={() => nav("/profile/setting")}
+          />
         </SettingImg>
       </ProfileInfo>
       <ProfileContents>
@@ -41,7 +48,12 @@ const Profile = () => {
             </div>
             <span>스크랩한 약</span>
           </div>
-          <img className="arrowRight" src={arrowLeft} alt="arrowRight" />
+          <img
+            className="arrowRight"
+            src={arrowLeft}
+            alt="arrowRight"
+            onClick={() => nav("/profile/scrap")}
+          />
         </NextPageWrapper>
         <NextPageWrapper>
           <div className="leftPart">
@@ -50,7 +62,12 @@ const Profile = () => {
             </div>
             <span>나의 약 복용기록</span>
           </div>
-          <img className="arrowRight" src={arrowLeft} alt="arrowRight" />
+          <img
+            className="arrowRight"
+            src={arrowLeft}
+            alt="arrowRight"
+            onClick={() => nav("/profile/record")}
+          />
         </NextPageWrapper>
       </ProfileContents>
     </PLFrame>
