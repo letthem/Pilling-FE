@@ -4,10 +4,14 @@ import { useNavigate } from "react-router";
 import { axiosInstance } from "../../api/api";
 import { PLFrame } from "../../components/PLFrame";
 import axios from "axios";
+import { useRecoilState } from "recoil";
+import { nicknameState } from "../../recoil/atoms/atom";
 
 const Join = () => {
   const [name, setName] = useState("");
   const [warn, setWarn] = useState("");
+  const[ userNickname, setUserNickname ] = useRecoilState(nicknameState);
+
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -37,11 +41,17 @@ const Join = () => {
         }
       }
       );
+
+      setUserNickname({
+        ...userNickname,
+        nickname: name,
+      } )
+      
       navigate("start",
-        
         { state: { nickname: name },
       },
     );
+
     } catch (error) {
       setWarn("서버 오류가 발생했습니다. 다시 시도해주세요.");
     }
