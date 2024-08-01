@@ -9,7 +9,7 @@ export const ScrapBg = styled.div`
 // TopBar
 
 export const TopBarWrapper = styled.div`
-  margin: 0.8125rem 1.5rem 0;
+  margin: 1.5625rem 1.5rem 0;
   width: auto;
   height: 3rem;
   display: flex;
@@ -62,25 +62,46 @@ export const TabItem = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: "SUIT-Semibold";
+  font-family: "SUIT-Medium";
   font-size: 0.875rem;
   flex-grow: 1;
   text-align: center;
   padding: 0 0.75rem;
+  color: ${({ isActive }) => (isActive ? "#1b1a1f" : "#7d7c81")};
 
   & + & {
     margin-left: 0.25rem;
   }
 
   &:nth-child(1) {
-    background-color: #c4f261;
+    background-color: ${({ isActive }) => (isActive ? "#c4f261" : "white")};
+    color: ${({ isActive }) => (isActive ? "black" : "#adadad")};
+    cursor: pointer;
   }
 
   &:nth-child(2) {
-    background-color: #d1d3d9;
+    background-color: ${({ isActive }) => (isActive ? "#d1d3d9" : "white")};
+    color: ${({ isActive }) => (isActive ? "black" : "#adadad")};
+    cursor: pointer;
   }
 
   &:nth-child(3) {
-    background-color: #fdcccc;
+    background-color: ${({ isActive }) => (isActive ? "#fdcccc" : "white")};
+    color: ${({ isActive }) => (isActive ? "black" : "#adadad")};
+    cursor: pointer;
   }
+`;
+
+// TapWrapper
+
+export const TapWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+export const TapContainer = styled.div`
+  width: calc(100% - 3rem);
+  height: auto;
+  margin: 1.5rem;
 `;

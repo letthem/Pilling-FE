@@ -26,7 +26,7 @@ export default TopBar;
 
 const TopBarWrapper = styled.div`
   background-color: white;
-  margin: 0.8125rem 1.5rem 0;
+  margin: 1.5625rem 1.5rem 0;
   width: auto;
   height: 3rem;
   display: flex;

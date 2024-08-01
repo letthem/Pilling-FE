@@ -9,7 +9,7 @@ import {
 } from "./styles";
 import search from "./../../../assets/Calendar/search.svg";
 import TagModal from "./TagModal";
-import CancelConfirmModal from "../CancelConfirmModal";
+import CancelConfirmModal from "../../../components/CancelConfirmModal";
 
 const AddPillModal = ({ onClose, onSave }) => {
   const [inputValue, setInputValue] = useState("");
@@ -113,6 +113,7 @@ const AddPillModal = ({ onClose, onSave }) => {
       {isCancelConfirmOpen && (
         <ModalContainer>
           <CancelConfirmModal
+            message={"검색을 취소하시겠습니까?"}
             onConfirm={handleCancelConfirm}
             onCancel={() => setIsCancelConfirmOpen(false)}
           />
