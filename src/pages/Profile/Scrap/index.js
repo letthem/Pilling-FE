@@ -1,7 +1,12 @@
 import { PLFrame } from "../../../components/PLFrame";
+import { ScrapBg } from "./styles";
 
 const Scrap = () => {
-  return <PLFrame>스크랩</PLFrame>;
+  return (
+    <PLFrame>
+      <ScrapBg></ScrapBg>
+    </PLFrame>
+  );
 };
 
 export default Scrap;
