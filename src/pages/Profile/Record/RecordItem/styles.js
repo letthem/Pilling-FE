@@ -2,25 +2,25 @@ import styled from "styled-components";
 
 export const RecordItemWrapper = styled.div`
   width: 100%;
-  height: 80px;
-  border-radius: 20px;
+  height: 5rem;
+  border-radius: 1.25rem;
   background: #f7f6f9;
-  box-shadow: 0px 0px 4px 0px rgba(115, 123, 152, 0.25);
-  margin-bottom: 20px;
+  box-shadow: 0rem 0rem 0.25rem 0rem rgba(115, 123, 152, 0.25);
+  margin-bottom: 1.25rem;
 `;
 
 export const PillName = styled.p`
-  margin: 18px 0 0 20px;
+  margin: 1.125rem 0 0 1.25rem;
   color: #1b1a1f;
   font-family: "SUIT-Medium";
-  font-size: 15px;
+  font-size: 0.9375rem;
   line-height: 1;
 `;
 
 export const TagList = styled.div`
-  margin: 10px 18px 0;
-  width: 324px;
-  height: 25px;
+  margin: 0.625rem 1.125rem 0;
+  width: 20.25rem;
+  height: 1.5625rem;
   display: flex;
 `;
 
@@ -29,18 +29,18 @@ export const TagItem = styled.div`
   justify-content: center;
   align-items: center;
   text-align: center;
-  border-radius: 20px;
+  border-radius: 1.25rem;
   background-color: #c4f261;
-  width: 53px;
-  height: 25px;
+  width: 3.3125rem;
+  height: 1.5625rem;
 
   color: #1b1a1f;
   font-family: "SUIT-Regular";
-  font-size: 11px;
+  font-size: 0.6875rem;
   font-weight: 400;
   line-height: 1.2;
 
   & + & {
-    margin-left: 8px;
+    margin-left: 0.5rem;
   }
 `;
