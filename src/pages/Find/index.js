@@ -13,7 +13,7 @@ const Find = () => {
 	const symptomItems = ['목감기', '중이염', '콧물', '두통', '발열', '소화불량', '비염'];
 	const [value, setValue] = useState('');
 	const navigate = useNavigate();
-    const meidicines = ['어린이용타이레놀', '타이레놀 정', '어린이타이레놀산','놀레놀레'];
+    const meidicines = ['어린이용타이레놀', '타이레놀 정', '어린이타이떵개','놀레놀레'];
 
 
 	

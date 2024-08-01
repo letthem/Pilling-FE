@@ -1,14 +1,21 @@
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import styled from "styled-components";
 import { PLFrame } from "../components/PLFrame";
 import mediImg from "../assets/Home/medicineRight.svg";
+import { useRecoilState } from "recoil";
+import { nicknameState, userInfoState } from "../recoil/atoms/atom";
+import { axiosInstance } from "../api/api";
 
 const AuthKakao = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const [userInfo, setUserInfo] = useRecoilState(nicknameState);
+
+
   const [accessTokenFetching, setAccessTokenFetching] = useState(false);
-  const code = new URL(window.location.href).searchParams.get("code");
+  const code = new URLSearchParams(location.search).get("code");
   console.log("code:", code);
   const headers = {
     "Content-Type": "application/json;charset=utf-8",
@@ -23,28 +30,36 @@ const AuthKakao = () => {
     try {
       setAccessTokenFetching(true);
 
-      const res = await axios.post(
-        "http://52.78.47.226:8000/auth/kakao/login",
+      const res = await axiosInstance.post(
+        `/auth/kakao/login`,
         //`${process.env.REACT_APP_KAKAO_REDIRECT_URI}/?code=${code}`,
         {
           access_code: code,
         },
         {
           headers,
-        }
-      );
-      const accessToken = res.data.accessToken;
+        })
+      const accessToken = res.data.access_token;
       console.log("accessToken:", accessToken);
+
+      localStorage.setItem('access_token', accessToken);
 
       navigate("/Join");
     } catch (e) {
-      console.log("Error:", e);
+      console.error("Error:", e); // console.error로 오류 메시지 출력
+     console.log("code:", code);
+
     } finally {
+      console.log("code:", code);
       setAccessTokenFetching(false);
+
     }
   };
 
+
+
   useEffect(() => {
+    console.log("나는바보")
     if (code) {
       kakoLogin();
     }

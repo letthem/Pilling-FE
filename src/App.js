@@ -21,7 +21,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Login />} />
-          <Route path="/auth/kakao" element={<AuthKakao />} /> // Redirect URL
+          <Route path="/redirect/auth/kakao" element={<AuthKakao />} /> // Redirect URL
           <Route path="/join">
             <Route index element={<Join />} />
             <Route path="start" element={<StartPage />} />

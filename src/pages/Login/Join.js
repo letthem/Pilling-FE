@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import { axiosInstance } from "../../api/api";
 import { PLFrame } from "../../components/PLFrame";
+import axios from "axios";
 
 const Join = () => {
   const [name, setName] = useState("");
@@ -27,8 +28,20 @@ const Join = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axiosInstance.patch("/users", { nickname: name });
-      navigate("/start", { state: { nickname: name } });
+      await axiosInstance.patch(`/users`,
+        { nickname: name },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('access_token')}`
+          
+        }
+      }
+      );
+      navigate("start",
+        
+        { state: { nickname: name },
+      },
+    );
     } catch (error) {
       setWarn("서버 오류가 발생했습니다. 다시 시도해주세요.");
     }
