@@ -212,7 +212,7 @@ export const ScrapItems = styled.div`
 display: flex;
 flex-direction: column;
 margin: 12px;
-gap: 12npmpx;
+gap: 12px;
 
 `
 
