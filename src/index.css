@@ -72,3 +72,9 @@
   font-family: "GS-Semibold";
   src: url("./styles/fonts/GeneralSans-Semibold.ttf");
 }
+
+
+@font-face {
+  font-family: "Super_Plants";
+  src: url("./styles/fonts/Super_Plants.ttf");
+}

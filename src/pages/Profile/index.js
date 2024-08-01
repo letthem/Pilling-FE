@@ -5,6 +5,7 @@ import setting from "../../assets/Profile/setting.svg";
 import scrap from "../../assets/Profile/scrap.svg";
 import note from "../../assets/Profile/note.svg";
 import arrowLeft from "../../assets/arrow-left.svg";
+import Navbar from "../../components/Navbar";
 
 import {
   NextPageWrapper,
@@ -59,6 +60,7 @@ const Profile = () => {
           <img className="arrowRight" src={arrowLeft} alt="arrowRight" />
         </NextPageWrapper>
       </ProfileContents>
+      <Navbar />
     </PLFrame>
   );
 };
