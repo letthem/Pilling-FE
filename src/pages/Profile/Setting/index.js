@@ -20,7 +20,13 @@ const Setting = () => {
   const inputRef = useRef(null);
 
   const handleInputChange = (e) => {
-    setInputValue(e.target.value);
+    const value = e.target.value;
+
+    // 특수문자, 띄어쓰기 제거
+    const filteredValue = value.replace(/[^a-zA-Z0-9가-힣ㄱ-ㅎㅏ-ㅣ]/g, "");
+    if (filteredValue.length <= 5) {
+      setInputValue(filteredValue);
+    }
   };
 
   const handleEditClick = () => {
@@ -28,12 +34,14 @@ const Setting = () => {
   };
 
   const handleConfirmClick = () => {
-    setNickname(inputValue);
-    setIsEditing(false);
+    if (inputValue.trim() !== "") {
+      setNickname(inputValue);
+      setIsEditing(false);
+    }
   };
 
   const handleKeyPress = (e) => {
-    if (e.key === "Enter") {
+    if (e.key === "Enter" && inputValue.trim() !== "") {
       handleConfirmClick();
     }
   };
@@ -60,7 +68,7 @@ const Setting = () => {
             readOnly={!isEditing}
             onKeyDown={handleKeyPress}
           />
-          <EditBtn>
+          <EditBtn disabled={inputValue.trim() === ""}>
             {isEditing ? (
               <span onClick={handleConfirmClick}>확인</span>
             ) : (

@@ -61,11 +61,16 @@ export const EditBtn = styled.div`
   top: 50%;
   transform: translateY(-50%);
 
+  img {
+    cursor: pointer;
+  }
+
   span {
     color: #adadad;
     font-family: "SUIT-Regular";
     font-size: 0.75rem;
     line-height: 1.2;
+    color: ${({ disabled }) => (disabled ? "#adadad" : "#adadad")};
+    cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
   }
-  cursor: pointer;
 `;
