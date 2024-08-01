@@ -6,11 +6,14 @@ import AuthKakao from "./pages/AuthKakao.js";
 import Join from "./pages/Login/Join.js";
 import StartPage from "./pages/StartPage/StartPage.js";
 import Login from "./pages/Login/index.js";
-import Calender from "./pages/Calender/index.js";
 import Map from '../src/pages/Map'
-import Profile from "./pages/Profile/index.js";
 import Find from '../src/pages/Find/index.js'
 import FindResultPage from "./pages/Find/FindResultPage/index.js";
+import Setting from "./pages/Profile/Setting/index.js";
+import Scrap from "./pages/Profile/Scrap/index.js";
+import Record from "./pages/Profile/Record/index.js";
+import Calendar from "./pages/Calendar/index.js";
+import Profile from "./pages/Profile/index.js"
 
 function App() {
   return (
@@ -22,17 +25,22 @@ function App() {
           <Route path="/join">
             <Route index element={<Join />} />
             <Route path="start" element={<StartPage />} />
+          </Route>       
+          <Route path="/calendar" element={<Calendar />} />
+          <Route path="/profile">
+            <Route index element={<Profile />} />
+            <Route path="setting" element={<Setting />} />
+            <Route path="scrap" element={<Scrap />} />
+            <Route path="record" element={<Record />} />
           </Route>
-          <Route path="/home">
-            <Route index element={<Home />} />
-            <Route path="find" > 
-              <Route index element={<Find /> } />
-              <Route path=":itemName" element={<FindResultPage/>} />
-            </Route>  
-          </Route>
-          <Route path="/calender" element={<Calender />} />
+            <Route path="/home">
+              <Route index element={<Home />} />
+              <Route path="find" > 
+                <Route index element={<Find /> } />
+                <Route path=":itemName" element={<FindResultPage/>} />
+              </Route>  
+            </Route>
           <Route path="/map" element={<Map />} />
-          <Route path="/profile" element ={<Profile />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </BrowserRouter>

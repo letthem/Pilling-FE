@@ -22,7 +22,7 @@ const Navbar = () => {
           </StyledNavLink>
         </MeunItem>  
         <MeunItem>
-          <StyledNavLink to="/calender"
+          <StyledNavLink to="/calendar"
             ><Icon src={CalLogo} />
           </StyledNavLink>                    
         </MeunItem>
