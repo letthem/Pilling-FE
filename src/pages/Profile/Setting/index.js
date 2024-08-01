@@ -5,29 +5,36 @@ import profile from "../../../assets/Profile/profileImg.svg";
 import pencil from "../../../assets/Profile/pencil.svg";
 import {
   EditBtn,
-  EditButton,
   InputContainer,
   NickNameInput,
   NickNameWrapper,
   ProfileImg,
 } from "./styles";
+import { useRecoilState } from "recoil";
+import { nicknameState } from "../../../recoil/atoms/atom";
 
 const Setting = () => {
-  const [inputValue, setInputValue] = useState("나는사자");
+  const [nickname, setNickname] = useRecoilState(nicknameState);
+  const [inputValue, setInputValue] = useState(nickname);
   const [isEditing, setIsEditing] = useState(false);
   const inputRef = useRef(null);
 
-  const handleInputChange = (event) => {
-    setInputValue(event.target.value);
+  const handleInputChange = (e) => {
+    setInputValue(e.target.value);
   };
 
   const handleEditClick = () => {
     setIsEditing(!isEditing);
   };
 
-  const handleKeyPress = (event) => {
-    if (event.key === "Enter") {
-      setIsEditing(false);
+  const handleConfirmClick = () => {
+    setNickname(inputValue);
+    setIsEditing(false);
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      handleConfirmClick();
     }
   };
 
@@ -53,8 +60,12 @@ const Setting = () => {
             readOnly={!isEditing}
             onKeyDown={handleKeyPress}
           />
-          <EditBtn onClick={handleEditClick}>
-            {isEditing ? <span>확인</span> : <img src={pencil} alt="" />}
+          <EditBtn>
+            {isEditing ? (
+              <span onClick={handleConfirmClick}>확인</span>
+            ) : (
+              <img onClick={handleEditClick} src={pencil} alt="" />
+            )}
           </EditBtn>
         </InputContainer>
       </NickNameWrapper>

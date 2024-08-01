@@ -15,9 +15,12 @@ import {
   SettingImg,
 } from "./styles";
 import { useNavigate } from "react-router";
+import { useRecoilValue } from "recoil";
+import { nicknameState } from "../../recoil/atoms/atom";
 
 const Profile = () => {
   const nav = useNavigate();
+  const nickname = useRecoilValue(nicknameState);
 
   return (
     <PLFrame>
@@ -27,7 +30,7 @@ const Profile = () => {
       <ProfileInfo>
         <NickName>
           <span className="nickname">
-            나는사자
+            {nickname}
             <div className="nickname_underline" />
           </span>
           <span className="nickname_tail">&nbsp;님</span>
