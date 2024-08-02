@@ -3,20 +3,19 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import { axiosInstance } from "../../api/api";
 import { PLFrame } from "../../components/PLFrame";
-import axios from "axios";
-import { useRecoilState } from "recoil";
+import { useSetRecoilState } from "recoil";
 import { nicknameState } from "../../recoil/atoms/atom";
 
 const Join = () => {
   const [name, setName] = useState("");
   const [warn, setWarn] = useState("");
-  const[ userNickname, setUserNickname ] = useRecoilState(nicknameState);
+  const setUserNickname = useSetRecoilState(nicknameState);
 
   const navigate = useNavigate();
 
   const handleChange = (e) => {
     const nickname = e.target.value;
-    const regExp = /[ \{\}\[\]\?.,;:|\)*~!^\-_+<>@\#$%&\'\"\\\(\=]/gi;
+    const regExp = /[ {}[\]?.,;:|)*~!^\-_+<>@#$%&'"\\(=]/gi;
 
     if (nickname.length > 5) {
       setWarn("5글자 이내로 설정해야 해요");
@@ -32,25 +31,21 @@ const Join = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axiosInstance.patch(`/users`,
+      await axiosInstance.patch(
+        `/users`,
         { nickname: name },
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('access_token')}`
-          
+          }
         }
-      }
       );
 
-      setUserNickname({
-        ...userNickname,
-        nickname: name,
-      } )
+      setUserNickname(name);
       
-      navigate("start",
-        { state: { nickname: name },
-      },
-    );
+      navigate("start", {
+        state: { nickname: name },
+      });
 
     } catch (error) {
       setWarn("서버 오류가 발생했습니다. 다시 시도해주세요.");
@@ -96,14 +91,6 @@ const Join = () => {
 };
 
 export default Join;
-
-const JoinWrapper = styled.div`
-  max-width: 512px;
-  min-height: 844px;
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-`;
 
 const JoinBox = styled.div`
   position: absolute;

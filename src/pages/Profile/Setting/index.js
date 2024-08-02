@@ -14,8 +14,8 @@ import { useRecoilState } from "recoil";
 import { nicknameState } from "../../../recoil/atoms/atom";
 
 const Setting = () => {
-  const [nickname, setNickname] = useRecoilState(nicknameState);
-  const [inputValue, setInputValue] = useState(nickname);
+  const [userNickname, setUserNickname] = useRecoilState(nicknameState);
+  const [inputValue, setInputValue] = useState(userNickname);
   const [isEditing, setIsEditing] = useState(false);
   const inputRef = useRef(null);
 
@@ -35,7 +35,7 @@ const Setting = () => {
 
   const handleConfirmClick = () => {
     if (inputValue.trim() !== "") {
-      setNickname(inputValue);
+      setUserNickname(inputValue);
       setIsEditing(false);
     }
   };
@@ -72,7 +72,7 @@ const Setting = () => {
             {isEditing ? (
               <span onClick={handleConfirmClick}>확인</span>
             ) : (
-              <img onClick={handleEditClick} src={pencil} alt="" />
+              <img onClick={handleEditClick} src={pencil} alt="pencil" />
             )}
           </EditBtn>
         </InputContainer>

@@ -21,7 +21,7 @@ import { nicknameState } from "../../recoil/atoms/atom";
 
 const Profile = () => {
   const nav = useNavigate();
-  const nickname = useRecoilValue(nicknameState);
+  const userNickname = useRecoilValue(nicknameState);
 
   return (
     <PLFrame>
@@ -31,13 +31,13 @@ const Profile = () => {
       <ProfileInfo>
         <NickName>
           <span className="nickname">
-            {nickname}
+            {userNickname}
             <div className="nickname_underline" />
           </span>
           <span className="nickname_tail">&nbsp;님</span>
         </NickName>
         <SettingImg onClick={() => nav("/profile/setting")}>
-          <img src={setting} alt="settiingImg" />
+          <img src={setting} alt="settingImg" />
         </SettingImg>
       </ProfileInfo>
       <ProfileContents>
