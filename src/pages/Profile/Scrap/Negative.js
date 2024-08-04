@@ -7,6 +7,7 @@ const Negative = ({ pills, onDelete }) => {
       {pills.map((pill) => (
         <PillItem
           key={pill.id}
+          id={pill.id}
           pillName={pill.name}
           bgColor="#D1D3D9"
           onDelete={onDelete}

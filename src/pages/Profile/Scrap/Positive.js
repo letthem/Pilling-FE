@@ -7,6 +7,7 @@ const Positive = ({ pills, onDelete }) => {
       {pills.map((pill) => (
         <PillItem
           key={pill.id}
+          id={pill.id}
           pillName={pill.name}
           bgColor="#FDCCCC"
           onDelete={onDelete}

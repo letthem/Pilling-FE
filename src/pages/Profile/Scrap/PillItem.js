@@ -20,7 +20,7 @@ const PillItem = ({ pillName, bgColor, onDelete, id }) => {
           Authorization: `Bearer ${localStorage.getItem('access_token')}`
         }
       });
-      onDelete(pillName);
+      onDelete(id);
     } catch (error) {
       console.error("Error deleting pill:", error);
     } finally {

@@ -31,10 +31,9 @@ const Scrap = () => {
           Authorization: `Bearer ${localStorage.getItem("access_token")}`,
         },
       });
-      console.log(`Response data for ${category}:`, response.data); // 데이터 구조 확인용 콘솔 출력
       setState(
         response.data.map((item) => ({
-          id: item.scrap_id,
+          id: item.id,
           name: item.medicine_name,
           image: item.medicine_image,
         }))
@@ -50,29 +49,19 @@ const Scrap = () => {
     fetchData("G", setPositivePills);
   }, []);
 
-  const handleDeletePill = async (tab, pillId) => {
-    try {
-      await axiosInstance.delete(`/scraps/${pillId}/delete`, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
-        },
-      });
-
-      if (tab === "기본") {
-        setBasicPills((prevPills) =>
-          prevPills.filter((pill) => pill.id !== pillId)
-        );
-      } else if (tab === "부작용 있는") {
-        setNegativePills((prevPills) =>
-          prevPills.filter((pill) => pill.id !== pillId)
-        );
-      } else if (tab === "효과 좋은") {
-        setPositivePills((prevPills) =>
-          prevPills.filter((pill) => pill.id !== pillId)
-        );
-      }
-    } catch (error) {
-      console.error(`Error deleting pill with id ${pillId}:`, error);
+  const handleDeletePill = (tab, pillId) => {
+    if (tab === "기본") {
+      setBasicPills((prevPills) =>
+        prevPills.filter((pill) => pill.id !== pillId)
+      );
+    } else if (tab === "부작용 있는") {
+      setNegativePills((prevPills) =>
+        prevPills.filter((pill) => pill.id !== pillId)
+      );
+    } else if (tab === "효과 좋은") {
+      setPositivePills((prevPills) =>
+        prevPills.filter((pill) => pill.id !== pillId)
+      );
     }
   };
 
