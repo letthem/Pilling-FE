@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   TopBar,
   TagList,
@@ -39,6 +39,13 @@ const TagModal = ({
   const [isDeleteConfirmModalOpen, setIsDeleteConfirmModalOpen] =
     useState(false);
   const [tagToDelete, setTagToDelete] = useState(null);
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    if (isAddingTag && inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [isAddingTag]);
 
   const tags = [
     "감기",
@@ -107,6 +114,12 @@ const TagModal = ({
     }
   };
 
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      handleAddCustomTag();
+    }
+  };
+
   const handleBackFromAddTag = () => {
     setIsAddingTag(false);
     setNewTag(""); // 입력 값 초기화
@@ -126,9 +139,11 @@ const TagModal = ({
             </UserAddTagTopBar>
             <UserAddContent>
               <UserAddTagInputBox
+                ref={inputRef}
                 type="text"
                 value={newTag}
                 onChange={handleNewTagChange}
+                onKeyDown={handleKeyPress}
                 placeholder="직접 입력(띄어쓰기 없이 6자 이내)"
               />
               <AddTagButton
