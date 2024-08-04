@@ -32,17 +32,16 @@ const TagModal = ({
   onBack,
   customTags,
   setCustomTags,
-  clickedDate, // 추가된 부분: 선택된 날짜를 받아옴
+  clickedDate,
 }) => {
   const [selectedTags, setSelectedTags] = useState([]);
   const [isAddingTag, setIsAddingTag] = useState(false);
   const [newTag, setNewTag] = useState("");
   const [isWarningModalOpen, setIsWarningModalOpen] = useState(false);
-  const [isDeleteConfirmModalOpen, setIsDeleteConfirmModalOpen] =
-    useState(false);
+  const [isDeleteConfirmModalOpen, setIsDeleteConfirmModalOpen] = useState(false);
   const [tagToDelete, setTagToDelete] = useState(null);
   const inputRef = useRef(null);
-  const [tags, setTags] = useState([]); // 기본 태그 상태 추가
+  const [tags, setTags] = useState([]);
 
   useEffect(() => {
     if (isAddingTag && inputRef.current) {
@@ -53,7 +52,6 @@ const TagModal = ({
   const fetchTags = useCallback(async () => {
     try {
       const response = await axiosInstance.get("/tags", {
-        params: { "medicine-name": selectedPill },
         headers: {
           Authorization: `Bearer ${localStorage.getItem("access_token")}`,
         },
@@ -66,11 +64,11 @@ const TagModal = ({
     } catch (error) {
       console.error("Error fetching tags:", error);
     }
-  }, [selectedPill, setCustomTags]);
+  }, [setCustomTags]);
 
   useEffect(() => {
     fetchTags();
-  }, [selectedPill, fetchTags]);
+  }, [fetchTags]);
 
   const handleTagClick = (tag) => {
     setSelectedTags((prevTags) =>
@@ -97,8 +95,8 @@ const TagModal = ({
         }
       );
       onSave(selectedPill, selectedTags);
-      await fetchTags(); // 태그 목록을 새로 고침
-      onClose(); // 이전 모달로 돌아가기
+      await fetchTags();
+      onClose();
     } catch (error) {
       console.error("Error saving schedule:", error);
     }
@@ -111,7 +109,6 @@ const TagModal = ({
           const response = await axiosInstance.post(
             `/tags`,
             {
-              medicine_name: selectedPill,
               content: newTag,
             },
             {
@@ -122,12 +119,11 @@ const TagModal = ({
           );
 
           if (response.status === 200) {
-            // 새 태그를 업데이트하고 상태를 다시 가져옵니다.
             const updatedCustomTags = [...customTags, { content: newTag }];
             setCustomTags(updatedCustomTags);
             setIsAddingTag(false);
             setNewTag("");
-            await fetchTags(); // 새 태그를 가져옴
+            await fetchTags();
           }
         } catch (error) {
           console.error("Error adding custom tag:", error);
@@ -143,7 +139,6 @@ const TagModal = ({
       const response = await axiosInstance.delete(`/tags`, {
         params: {
           content: tagToDelete,
-          "medicine-name": selectedPill,
         },
         headers: {
           Authorization: `Bearer ${localStorage.getItem("access_token")}`,
@@ -151,7 +146,7 @@ const TagModal = ({
       });
 
       if (response.status === 200) {
-        await fetchTags(); // 태그 목록을 새로 고침
+        await fetchTags();
         setIsDeleteConfirmModalOpen(false);
         setTagToDelete(null);
       }
@@ -161,7 +156,7 @@ const TagModal = ({
   };
 
   const handleDeleteButtonClick = (e, tag) => {
-    e.stopPropagation(); // 이벤트 전파 중단
+    e.stopPropagation();
     setTagToDelete(tag.content);
     setIsDeleteConfirmModalOpen(true);
   };
@@ -181,11 +176,11 @@ const TagModal = ({
 
   const handleBackFromAddTag = () => {
     setIsAddingTag(false);
-    setNewTag(""); // 입력 값 초기화
+    setNewTag("");
   };
 
   const truncateName = (name) => {
-    if (!name) return ""; // name이 undefined 또는 null인 경우 빈 문자열 반환
+    if (!name) return "";
     return name.length > 16 ? `${name.substring(0, 16)}...` : name;
   };
 
@@ -240,10 +235,9 @@ const TagModal = ({
                   <span>{tag.content}</span>
                 </TagItem>
               ))}
-              {/* 사용자 등록 태그 */}
               {customTags.map((tag, index) => (
                 <TagItem
-                  key={index + tags.length} // Ensure unique keys
+                  key={index + tags.length}
                   selected={selectedTags.includes(tag.content)}
                   onClick={() => handleTagClick(tag.content)}
                 >
@@ -291,7 +285,7 @@ const TagModal = ({
           onCancel={async () => {
             await fetchTags();
             setIsDeleteConfirmModalOpen(false);
-            setTagToDelete(null); // 삭제 태그 초기화
+            setTagToDelete(null);
           }}
           onConfirm={handleDeleteCustomTag}
         />

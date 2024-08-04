@@ -124,9 +124,9 @@ const Calendar = () => {
   const filteredItems = items.filter((item) => item.date === clickedDate);
 
   // 이름 줄이는 함수
-  const truncateName = (name) => {
-    return name.length > 14 ? `${name.substring(0, 14)}...` : name;
-  };
+  // const truncateName = (name) => {
+  //   return name.length > 14 ? `${name.substring(0, 14)}...` : name;
+  // };
 
   return (
     <PLFrame>
@@ -148,17 +148,16 @@ const Calendar = () => {
                   />
                   <StyledCheckbox checked={item.completed} />
                 </CheckboxContainer>
-                <PillName>{truncateName(item.medicine_name)}</PillName>
+                <PillName>
+                  {/* {truncateName(item.medicine_name)} */}
+                  {item.medicine_name}
+                </PillName>
                 <TagListBox>
-                  {item.tags && item.tags.length > 0 ? (
-                    item.tags.map((tag, tagIndex) => (
-                      <TagItemBox key={tagIndex}>
-                        <span>{tag.content}</span>
-                      </TagItemBox>
-                    ))
-                  ) : (
-                    <div>태그가 없습니다.</div>
-                  )}
+                  {item.tags.map((tag, tagIndex) => (
+                    <TagItemBox key={tagIndex}>
+                      <span>{tag.content}</span>
+                    </TagItemBox>
+                  ))}
                 </TagListBox>
                 <DeleteButton onClick={() => handleDeleteItem(index)}>
                   <img src={trashBin} alt="trashBin" />
