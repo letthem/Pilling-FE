@@ -4,11 +4,16 @@ import TopBar from "../../../components/TobBar";
 import profile from "../../../assets/Profile/profileImg.svg";
 import pencil from "../../../assets/Profile/pencil.svg";
 import {
+  BottomBox,
+  BottomLine,
+  BottomWrapper,
   EditBtn,
   InputContainer,
   NickNameInput,
   NickNameWrapper,
   ProfileImg,
+  SecessionBox,
+  SettingWrapper,
 } from "./styles";
 import { useRecoilState } from "recoil";
 import { nicknameState } from "../../../recoil/atoms/atom";
@@ -54,29 +59,36 @@ const Setting = () => {
 
   return (
     <PLFrame>
-      <TopBar topBarName={"나의 프로필"} />
-      <ProfileImg>
-        <img src={profile} alt="profileImg" />
-      </ProfileImg>
-      <NickNameWrapper>
-        <InputContainer>
-          <NickNameInput
-            ref={inputRef}
-            value={inputValue}
-            placeholder="닉네임을 입력하세요"
-            onChange={handleInputChange}
-            readOnly={!isEditing}
-            onKeyDown={handleKeyPress}
-          />
-          <EditBtn disabled={inputValue.trim() === ""}>
-            {isEditing ? (
-              <span onClick={handleConfirmClick}>확인</span>
-            ) : (
-              <img onClick={handleEditClick} src={pencil} alt="pencil" />
-            )}
-          </EditBtn>
-        </InputContainer>
-      </NickNameWrapper>
+      <SettingWrapper>
+        <TopBar topBarName={"나의 프로필"} />
+        <ProfileImg>
+          <img src={profile} alt="profileImg" />
+        </ProfileImg>
+        <NickNameWrapper>
+          <InputContainer>
+            <NickNameInput
+              ref={inputRef}
+              value={inputValue}
+              placeholder="닉네임을 입력하세요"
+              onChange={handleInputChange}
+              readOnly={!isEditing}
+              onKeyDown={handleKeyPress}
+            />
+            <EditBtn disabled={inputValue.trim() === ""}>
+              {isEditing ? (
+                <span onClick={handleConfirmClick}>확인</span>
+              ) : (
+                <img onClick={handleEditClick} src={pencil} alt="pencil" />
+              )}
+            </EditBtn>
+          </InputContainer>
+        </NickNameWrapper>
+        <BottomWrapper>
+          <BottomBox>탈퇴</BottomBox>
+          <BottomLine>|</BottomLine>
+          <BottomBox>로그아웃</BottomBox>
+        </BottomWrapper>
+      </SettingWrapper>
     </PLFrame>
   );
 };

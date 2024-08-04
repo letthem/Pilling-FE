@@ -74,3 +74,31 @@ export const EditBtn = styled.div`
     cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
   }
 `;
+
+export const SettingWrapper = styled.div`
+  width: 100%;
+  height: 100vh;
+  position: relative;
+`;
+export const BottomWrapper = styled.div`
+  width: 100%;
+  position: absolute;
+  bottom: 0.875rem;
+  display: flex;
+  justify-content: space-evenly;
+`;
+
+export const BottomBox = styled.span`
+  color: #adadad;
+  font-family: "SUIT-Medium";
+  font-size: 0.75rem;
+  line-height: 1;
+  text-decoration-line: underline;
+  cursor: pointer;
+`;
+
+export const BottomLine = styled.span`
+  color: #adadad;
+  font-size: 0.75rem;
+  width: 0.0625rem;
+`;
