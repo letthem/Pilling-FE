@@ -72,10 +72,20 @@ const Calendar = () => {
     setIsConfirmModalOpen(true);
   };
 
-  const confirmDeleteItem = () => {
-    setItems(items.filter((_, i) => i !== deleteIndex));
-    setIsConfirmModalOpen(false);
-    setDeleteIndex(null);
+  const confirmDeleteItem = async () => {
+    const itemToDelete = items[deleteIndex];
+    try {
+      await axiosInstance.delete(`/schedules/${itemToDelete.schedule_id}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+        },
+      });
+      setItems(items.filter((_, i) => i !== deleteIndex));
+      setIsConfirmModalOpen(false);
+      setDeleteIndex(null);
+    } catch (error) {
+      console.error("Error deleting schedule:", error);
+    }
   };
 
   const cancelDeleteItem = () => {
