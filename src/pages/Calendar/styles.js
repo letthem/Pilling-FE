@@ -121,7 +121,8 @@ export const TagListBox = styled.div`
   left: 3.25rem;
   overflow-x: auto;
   white-space: nowrap;
-  max-width: calc(100% - 2.5rem);
+  max-width: calc(100% - 4.0625rem);
+  border-radius: 0.625rem;
 
   &::-webkit-scrollbar {
     display: none;

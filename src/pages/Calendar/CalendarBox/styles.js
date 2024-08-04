@@ -93,9 +93,10 @@ export const Day = styled.div`
     props.$allItemsChecked ? "0.0625rem solid #C4F261" : "none"};
   box-sizing: border-box;
   border-radius: 0.75rem;
-  display: flex;
+  display: inline-block;
   width: 100%;
-  padding-bottom: 100%;
+  padding-bottom: ${(props) =>
+    props.$allItemsChecked ? "calc(100% - 0.125rem)" : "100%"};
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -121,13 +122,14 @@ export const Day = styled.div`
 
   p {
     position: absolute;
-    left: ${(props) => (props.$allItemsChecked ? "0.4375rem" : "0.5rem")};
-    bottom: ${(props) => (props.$allItemsChecked ? "0.1875rem" : "0.25rem")};
+    left: ${(props) => (props.$allItemsChecked ? "7px" : "8px")};
+    bottom: ${(props) => (props.$allItemsChecked ? "3px" : "4px")};
   }
 `;
 
 export const Circle = styled.div`
   background-color: ${(props) => (props.$isClicked ? "#1b1a1f" : "#C4F261")};
+
   width: 0.3125rem;
   height: 0.3125rem;
   border-radius: 50%;
