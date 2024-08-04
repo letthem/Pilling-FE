@@ -4,17 +4,28 @@ import pill from "../../../assets/Profile/pillItem.svg";
 import trash from "../../../assets/Profile/trash.svg";
 import arrowRightGray from "../../../assets/Profile/arrow-right-gray.svg";
 import CancelConfirmModal from "../../../components/CancelConfirmModal";
+import { axiosInstance } from "../../../api/api";
 
-const PillItem = ({ pillName, bgColor, onDelete }) => {
+const PillItem = ({ pillName, bgColor, onDelete, id }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleDeleteClick = () => {
     setIsModalOpen(true);
   };
 
-  const handleConfirmDelete = () => {
-    onDelete(pillName);
-    setIsModalOpen(false);
+  const handleConfirmDelete = async () => {
+    try {
+      await axiosInstance.delete(`/scraps/${id}/delete`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('access_token')}`
+        }
+      });
+      onDelete(pillName);
+    } catch (error) {
+      console.error("Error deleting pill:", error);
+    } finally {
+      setIsModalOpen(false);
+    }
   };
 
   const handleCancelDelete = () => {
