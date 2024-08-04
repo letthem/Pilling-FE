@@ -59,8 +59,8 @@ const Profile = () => {
           </div>
           <img className="arrowRight" src={arrowLeft} alt="arrowRight" />
         </NextPageWrapper>
+        <Navbar />
       </ProfileContents>
-      <Navbar />
     </PLFrame>
   );
 };

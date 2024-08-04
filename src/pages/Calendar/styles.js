@@ -174,6 +174,7 @@ export const ModalBackground = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 10;
 `;
 
 export const ModalContainer = styled.div`
@@ -194,22 +195,4 @@ export const ButtonContainer = styled.div`
   display: flex;
   justify-content: space-between;
   margin-top: 1rem;
-`;
-
-export const Button = styled.button`
-  background: #007bff;
-  color: white;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 0.5rem;
-  cursor: pointer;
-  &:hover {
-    background: #0056b3;
-  }
-  &:nth-child(2) {
-    background: red;
-    &:hover {
-      background: darkred;
-    }
-  }
 `;

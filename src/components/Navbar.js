@@ -1,4 +1,4 @@
-import {  NavLink } from 'react-router-dom';
+import {  NavLink, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import CalLogo from '../assets/Nav/CalLogo.svg'
 import HomeLogo from '../assets/Nav/HomeLogo.svg'
@@ -7,10 +7,12 @@ import Profile from '../assets/Nav/Profile.svg'
  
 
 const Navbar = () => {
+  const location = useLocation();
+  const isProfilePage = location.pathname === "/profile";
   
   return (
     <NavContainer>
-      <Container>
+      <Container isProfilePage={isProfilePage}>
         <MeunItem>
           <StyledNavLink to="/home">
             <Icon src={HomeLogo} />
@@ -45,6 +47,7 @@ const NavContainer = styled.div`
   align-items: center;
   height: 102px;
   box-sizing: border-box; /* Include padding in the total width calculation */
+  z-index: 1;
   `
 
 const Container = styled.ul`
@@ -57,7 +60,7 @@ const Container = styled.ul`
   width: 90%;
   height: 56px;
   border-radius: 40px;
-  background: #F7F6F9;
+  background: ${({ isProfilePage }) => (isProfilePage ? "#ffffff" : "#f7f6f9")};
   box-shadow: 0px 0px 4px 0px rgba(115, 123, 152, 0.25);
   position: fixed;
   bottom: 14px;

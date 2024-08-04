@@ -129,7 +129,7 @@ export const Day = styled.div`
 `;
 
 export const Circle = styled.div`
-  background-color: #1b1a1f;
+  background-color: ${(props) => (props.$isClicked ? "#1b1a1f" : "#C4F261")};
   width: 0.375rem;
   height: 0.375rem;
   border-radius: 50%;
