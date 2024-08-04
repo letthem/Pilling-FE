@@ -34,13 +34,17 @@ const Scrap = () => {
       setState(
         response.data.map((item) => ({
           id: item.id,
-          name: item.medicine_name,
+          name: truncateName(item.medicine_name),
           image: item.medicine_image,
         }))
       );
     } catch (error) {
       console.error(`Error fetching ${category} data:`, error);
     }
+  };
+
+  const truncateName = (name) => {
+    return name.length > 15 ? `${name.substring(0, 15)}...` : name;
   };
 
   useEffect(() => {
