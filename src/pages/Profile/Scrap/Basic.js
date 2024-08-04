@@ -6,7 +6,7 @@ const Basic = ({ pills, onDelete }) => {
     <div>
       {pills.map((pill) => (
         <PillItem
-          key={pill.name}
+          key={pill.id}
           pillName={pill.name}
           bgColor="#c4f261"
           onDelete={onDelete}

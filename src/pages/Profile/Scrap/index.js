@@ -20,7 +20,6 @@ import { axiosInstance } from "../../../api/api";
 const Scrap = () => {
   const nav = useNavigate();
   const [activeTab, setActiveTab] = useState("기본");
-
   const [basicPills, setBasicPills] = useState([]);
   const [negativePills, setNegativePills] = useState([]);
   const [positivePills, setPositivePills] = useState([]);
@@ -29,13 +28,17 @@ const Scrap = () => {
     try {
       const response = await axiosInstance.get(`/scraps?category=${category}`, {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem('access_token')}`
-        }
+          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+        },
       });
-      setState(response.data.map(item => ({
-        name: item.medicine_name,
-        image: item.medicine_image,
-      })));
+      console.log(`Response data for ${category}:`, response.data); // 데이터 구조 확인용 콘솔 출력
+      setState(
+        response.data.map((item) => ({
+          id: item.scrap_id,
+          name: item.medicine_name,
+          image: item.medicine_image,
+        }))
+      );
     } catch (error) {
       console.error(`Error fetching ${category} data:`, error);
     }
@@ -47,24 +50,55 @@ const Scrap = () => {
     fetchData("G", setPositivePills);
   }, []);
 
-  const handleDeletePill = (tab, pillName) => {
-    if (tab === "기본") {
-      setBasicPills((prevPills) => prevPills.filter((pill) => pill.name !== pillName));
-    } else if (tab === "부작용 있는") {
-      setNegativePills((prevPills) => prevPills.filter((pill) => pill.name !== pillName));
-    } else if (tab === "효과 좋은") {
-      setPositivePills((prevPills) => prevPills.filter((pill) => pill.name !== pillName));
+  const handleDeletePill = async (tab, pillId) => {
+    try {
+      await axiosInstance.delete(`/scraps/${pillId}/delete`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+        },
+      });
+
+      if (tab === "기본") {
+        setBasicPills((prevPills) =>
+          prevPills.filter((pill) => pill.id !== pillId)
+        );
+      } else if (tab === "부작용 있는") {
+        setNegativePills((prevPills) =>
+          prevPills.filter((pill) => pill.id !== pillId)
+        );
+      } else if (tab === "효과 좋은") {
+        setPositivePills((prevPills) =>
+          prevPills.filter((pill) => pill.id !== pillId)
+        );
+      }
+    } catch (error) {
+      console.error(`Error deleting pill with id ${pillId}:`, error);
     }
   };
 
   const renderContent = () => {
     switch (activeTab) {
       case "기본":
-        return <Basic pills={basicPills} onDelete={(pillName) => handleDeletePill("기본", pillName)} />;
+        return (
+          <Basic
+            pills={basicPills}
+            onDelete={(pillId) => handleDeletePill("기본", pillId)}
+          />
+        );
       case "부작용 있는":
-        return <Negative pills={negativePills} onDelete={(pillName) => handleDeletePill("부작용 있는", pillName)} />;
+        return (
+          <Negative
+            pills={negativePills}
+            onDelete={(pillId) => handleDeletePill("부작용 있는", pillId)}
+          />
+        );
       case "효과 좋은":
-        return <Positive pills={positivePills} onDelete={(pillName) => handleDeletePill("효과 좋은", pillName)} />;
+        return (
+          <Positive
+            pills={positivePills}
+            onDelete={(pillId) => handleDeletePill("효과 좋은", pillId)}
+          />
+        );
       default:
         return null;
     }
