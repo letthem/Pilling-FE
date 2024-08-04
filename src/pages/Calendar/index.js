@@ -31,7 +31,7 @@ const Calendar = () => {
   const [clickedDate, setClickedDate] = useState(null);
   const [items, setItems] = useState([]);
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
-  const [deleteIndex, setDeleteIndex] = useState(null);
+  const [deleteScheduleId, setDeleteScheduleId] = useState(null);
 
   // 처음 마운트될 때 오늘 날짜로 상태 초기화
   useEffect(() => {
@@ -67,22 +67,21 @@ const Calendar = () => {
     fetchSchedules(); // 데이터를 새로고침
   };
 
-  const handleDeleteItem = (index) => {
-    setDeleteIndex(index);
+  const handleDeleteItem = (scheduleId) => {
+    setDeleteScheduleId(scheduleId);
     setIsConfirmModalOpen(true);
   };
 
   const confirmDeleteItem = async () => {
-    const itemToDelete = items[deleteIndex];
     try {
-      await axiosInstance.delete(`/schedules/${itemToDelete.schedule_id}`, {
+      await axiosInstance.delete(`/schedules/${deleteScheduleId}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("access_token")}`,
         },
       });
-      setItems(items.filter((_, i) => i !== deleteIndex));
+      setItems(items.filter((item) => item.schedule_id !== deleteScheduleId));
       setIsConfirmModalOpen(false);
-      setDeleteIndex(null);
+      setDeleteScheduleId(null);
     } catch (error) {
       console.error("Error deleting schedule:", error);
     }
@@ -90,7 +89,7 @@ const Calendar = () => {
 
   const cancelDeleteItem = () => {
     setIsConfirmModalOpen(false);
-    setDeleteIndex(null);
+    setDeleteScheduleId(null);
   };
 
   const handleCheckboxChange = async (item) => {
@@ -139,8 +138,8 @@ const Calendar = () => {
             items={items}
           />
           <ItemList>
-            {filteredItems.map((item, index) => (
-              <Item key={index}>
+            {filteredItems.map((item) => (
+              <Item key={item.schedule_id}>
                 <CheckboxContainer onClick={() => handleCheckboxChange(item)}>
                   <HiddenCheckbox
                     checked={item.completed}
@@ -159,7 +158,7 @@ const Calendar = () => {
                     </TagItemBox>
                   ))}
                 </TagListBox>
-                <DeleteButton onClick={() => handleDeleteItem(index)}>
+                <DeleteButton onClick={() => handleDeleteItem(item.schedule_id)}>
                   <img src={trashBin} alt="trashBin" />
                 </DeleteButton>
               </Item>
