@@ -19,9 +19,17 @@ export const PillName = styled.p`
 
 export const TagList = styled.div`
   margin: 0.625rem 1.125rem 0;
-  width: 20.25rem;
   height: 1.5625rem;
   display: flex;
+  border-radius: 10px;
+  overflow-x: scroll;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  -ms-overflow-style: none; // IE and Edge
+  scrollbar-width: none; // Firefox
 `;
 
 export const TagItem = styled.div`
@@ -31,8 +39,10 @@ export const TagItem = styled.div`
   text-align: center;
   border-radius: 1.25rem;
   background-color: #c4f261;
-  width: 3.3125rem;
+  /* width: 3.3125rem; */
   height: 1.5625rem;
+  padding: 0 12px;
+  white-space: nowrap;
 
   color: #1b1a1f;
   font-family: "SUIT-Regular";
