@@ -184,6 +184,11 @@ const TagModal = ({
     setNewTag(""); // 입력 값 초기화
   };
 
+  const truncateName = (name) => {
+    if (!name) return ""; // name이 undefined 또는 null인 경우 빈 문자열 반환
+    return name.length > 16 ? `${name.substring(0, 16)}...` : name;
+  };
+
   return (
     <>
       {isAddingTag ? (
@@ -221,7 +226,7 @@ const TagModal = ({
               <BackButton onClick={onBack}>
                 <img src={arrowLeft} alt="backBtn" />
               </BackButton>
-              <Title>{selectedPill}</Title>
+              <Title>{truncateName(selectedPill)}</Title>
               <div style={{ width: "1.25rem" }} />
             </TopBar>
             <ReasonText>복용사유를 선택하세요</ReasonText>
