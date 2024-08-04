@@ -59,7 +59,7 @@ const AuthKakao = () => {
 
 
   useEffect(() => {
-    console.log("나는바보")
+    console.log("")
     if (code) {
       kakoLogin();
     }

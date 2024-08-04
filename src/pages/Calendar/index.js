@@ -23,6 +23,7 @@ import AddPillModal from "./AddPillModal";
 import ConfirmModal from "./DeletePillModal";
 import { format } from "date-fns";
 import trashBin from "./../../assets/Calendar/trashBin.svg";
+import Navbar from "./../../components/Navbar";
 
 const Calendar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -128,6 +129,7 @@ const Calendar = () => {
           />
         )}
       </CalendarWrapper>
+      <Navbar />
     </PLFrame>
   );
 };

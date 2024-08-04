@@ -67,7 +67,7 @@ export const TagList = styled.div`
 `;
 
 export const TagItem = styled.div`
-  padding: 0 0.75rem;
+  padding: 0 0.97rem;
   height: 2.375rem;
   border: 0.0313rem solid
     ${({ selected }) => (selected ? "#C4F261" : "#ADADAD")};

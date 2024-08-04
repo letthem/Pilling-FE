@@ -4,6 +4,7 @@ import checkboxYes from "./../../assets/Calendar/checkbox-yes.svg";
 
 export const CalendarWrapper = styled.div`
   margin: 0 1.5rem;
+  width: calc(100% - 3rem);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -14,7 +15,8 @@ export const CalendarContainer = styled.div`
   margin-top: 2.5rem;
   border-radius: 1.875rem;
   background-color: #f7f6f9;
-  width: 21.375rem;
+  /* width: 21.375rem; */
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;

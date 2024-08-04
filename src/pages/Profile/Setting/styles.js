@@ -66,11 +66,10 @@ export const EditBtn = styled.div`
   }
 
   span {
-    color: #adadad;
     font-family: "SUIT-Regular";
-    font-size: 0.75rem;
+    font-size: 0.875rem;
     line-height: 1.2;
-    color: ${({ disabled }) => (disabled ? "#adadad" : "#adadad")};
+    color: ${({ disabled }) => (disabled ? "#adadad" : "black")};
     cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
   }
 `;

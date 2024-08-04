@@ -3,7 +3,8 @@ import styled from "styled-components";
 export const CalendarBoxLayout = styled.div`
   background-color: #1b1a1f;
   border-radius: 1.5rem;
-  margin: 0.5rem 0;
+  margin: 0.5rem;
+  width: calc(100% - 1rem);
 `;
 
 export const CalendarBoxWrapper = styled.div`
@@ -93,8 +94,10 @@ export const Day = styled.div`
   box-sizing: border-box;
   border-radius: 0.75rem;
   display: flex;
-  width: 2.5rem;
-  height: 2.5rem;
+  /* width: 2.5rem; */
+  width: 100%;
+  /* height: 2.5rem; */
+  padding-bottom: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
