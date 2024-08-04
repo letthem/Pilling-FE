@@ -53,12 +53,15 @@ export const Ment = styled.p`
 
 export const ItemList = styled.ul`
   list-style: none;
+  width: 100%;
+  margin-top: 0.25rem;
 `;
 
 export const Item = styled.li`
   position: relative;
-  width: 19.875rem;
-  height: 5rem;
+  margin: 0 0.75rem;
+  width: calc(100% - 1.5rem);
+  height: 5.25rem;
   display: flex;
   align-items: center;
   background: white;
@@ -70,7 +73,7 @@ export const Item = styled.li`
 
 export const CheckboxContainer = styled.div`
   position: absolute;
-  top: 1.625rem;
+  top: 1.8125rem;
   left: 0.875rem;
   background-color: white;
   display: inline-block;
@@ -101,7 +104,7 @@ export const StyledCheckbox = styled.div`
 
 export const PillName = styled.p`
   position: absolute;
-  top: 1.125rem;
+  top: 1.1875rem;
   left: 3.375rem;
   color: #1b1a1f;
   font-family: "SUIT-SemiBold";
@@ -114,7 +117,7 @@ export const PillName = styled.p`
 export const TagListBox = styled.div`
   display: flex;
   position: absolute;
-  top: 2.5625rem;
+  top: 2.8125rem;
   left: 3.25rem;
   overflow-x: auto;
   white-space: nowrap;
@@ -147,7 +150,7 @@ export const TagItemBox = styled.div`
     line-height: 1.2;
   }
   & + & {
-    margin-left: 0.5rem;
+    margin-left: 0.375rem;
   }
 `;
 
@@ -158,7 +161,7 @@ export const DeleteButton = styled.div`
   width: 1.125rem;
   height: 1.125rem;
   cursor: pointer;
-  top: 0.75rem;
+  top: 0.875rem;
   right: 0.875rem;
 `;
 

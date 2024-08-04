@@ -94,9 +94,7 @@ export const Day = styled.div`
   box-sizing: border-box;
   border-radius: 0.75rem;
   display: flex;
-  /* width: 2.5rem; */
   width: 100%;
-  /* height: 2.5rem; */
   padding-bottom: 100%;
   flex-direction: column;
   justify-content: center;
@@ -130,8 +128,8 @@ export const Day = styled.div`
 
 export const Circle = styled.div`
   background-color: ${(props) => (props.$isClicked ? "#1b1a1f" : "#C4F261")};
-  width: 0.375rem;
-  height: 0.375rem;
+  width: 0.3125rem;
+  height: 0.3125rem;
   border-radius: 50%;
 `;
 
