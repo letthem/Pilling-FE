@@ -18,14 +18,34 @@ import { useRecoilState } from "recoil";
 import { nicknameState } from "../../../recoil/atoms/atom";
 import { useNavigate } from "react-router";
 import CancelConfirmModal from "../../../components/CancelConfirmModal";
+import { axiosInstance } from "../../../api/api";
 
 const Setting = () => {
   const [userNickname, setUserNickname] = useRecoilState(nicknameState);
-  const [inputValue, setInputValue] = useState(userNickname);
+  const [inputValue, setInputValue] = useState("");
   const [isEditing, setIsEditing] = useState(false);
   const [isLogoutConfirmOpen, setIsLogoutConfirmOpen] = useState(false);
   const inputRef = useRef(null);
   const nav = useNavigate();
+
+  useEffect(() => {
+    const fetchNickname = async () => {
+      try {
+        const response = await axiosInstance.get("/users/me", {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+          },
+        });
+        const nickname = response.data.nickname;
+        setUserNickname(nickname);
+        setInputValue(nickname);
+      } catch (error) {
+        console.error("Error fetching nickname:", error);
+      }
+    };
+
+    fetchNickname();
+  }, [setUserNickname]);
 
   const handleInputChange = (e) => {
     const value = e.target.value;
@@ -41,10 +61,23 @@ const Setting = () => {
     setIsEditing(!isEditing);
   };
 
-  const handleConfirmClick = () => {
+  const handleConfirmClick = async () => {
     if (inputValue.trim() !== "") {
-      setUserNickname(inputValue);
-      setIsEditing(false);
+      try {
+        await axiosInstance.patch(
+          "/users",
+          { nickname: inputValue },
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+            },
+          }
+        );
+        setUserNickname(inputValue);
+        setIsEditing(false);
+      } catch (error) {
+        console.error("Error updating nickname:", error);
+      }
     }
   };
 

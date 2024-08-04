@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { PLFrame } from "../../components/PLFrame";
 import profile from "../../assets/Profile/profileImg.svg";
 import setting from "../../assets/Profile/setting.svg";
@@ -6,7 +6,6 @@ import scrap from "../../assets/Profile/scrap.svg";
 import note from "../../assets/Profile/note.svg";
 import arrowLeft from "../../assets/arrow-left.svg";
 import Navbar from "../../components/Navbar";
-
 import {
   NextPageWrapper,
   NickName,
@@ -16,12 +15,28 @@ import {
   SettingImg,
 } from "./styles";
 import { useNavigate } from "react-router";
-import { useRecoilValue } from "recoil";
-import { nicknameState } from "../../recoil/atoms/atom";
+import { axiosInstance } from "../../api/api";
 
 const Profile = () => {
   const nav = useNavigate();
-  const userNickname = useRecoilValue(nicknameState);
+  const [userNickname, setUserNickname] = useState("");
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const response = await axiosInstance.get("/users/me", {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+          },
+        });
+        setUserNickname(response.data.nickname);
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    };
+
+    fetchUserData();
+  }, []);
 
   return (
     <PLFrame>
