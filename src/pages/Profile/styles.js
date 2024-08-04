@@ -78,13 +78,17 @@ export const ProfileContents = styled.div`
 export const NextPageWrapper = styled.div`
   width: calc(100% - 3rem);
   height: 4.5rem;
-  margin: 1.3125rem 1.5rem 1rem;
+  margin: 21px 1.5rem 0;
   background-color: white;
   border-radius: 1.25rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
+
+  & + & {
+    margin-top: 16px;
+  }
 
   .leftPart {
     display: flex;

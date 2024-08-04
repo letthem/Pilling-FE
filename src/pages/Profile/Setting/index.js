@@ -17,11 +17,13 @@ import {
 import { useRecoilState } from "recoil";
 import { nicknameState } from "../../../recoil/atoms/atom";
 import { useNavigate } from "react-router";
+import CancelConfirmModal from "../../../components/CancelConfirmModal";
 
 const Setting = () => {
   const [userNickname, setUserNickname] = useRecoilState(nicknameState);
   const [inputValue, setInputValue] = useState(userNickname);
   const [isEditing, setIsEditing] = useState(false);
+  const [isLogoutConfirmOpen, setIsLogoutConfirmOpen] = useState(false);
   const inputRef = useRef(null);
   const nav = useNavigate();
 
@@ -63,6 +65,19 @@ const Setting = () => {
     nav("/"); // 로그인 페이지로 리다이렉트
   };
 
+  const handleLogoutClick = () => {
+    setIsLogoutConfirmOpen(true);
+  };
+
+  const handleLogoutConfirm = () => {
+    setIsLogoutConfirmOpen(false);
+    handleLogout();
+  };
+
+  const handleLogoutCancel = () => {
+    setIsLogoutConfirmOpen(false);
+  };
+
   return (
     <PLFrame>
       <SettingWrapper>
@@ -92,8 +107,15 @@ const Setting = () => {
         <BottomWrapper>
           <BottomBox>탈퇴</BottomBox>
           <BottomLine>|</BottomLine>
-          <BottomBox onClick={handleLogout}>로그아웃</BottomBox>
+          <BottomBox onClick={handleLogoutClick}>로그아웃</BottomBox>
         </BottomWrapper>
+        {isLogoutConfirmOpen && (
+          <CancelConfirmModal
+            message={"정말 로그아웃 하시겠습니까?"}
+            onConfirm={handleLogoutConfirm}
+            onCancel={handleLogoutCancel}
+          />
+        )}
       </SettingWrapper>
     </PLFrame>
   );
