@@ -24,6 +24,7 @@ import ConfirmModal from "./DeletePillModal";
 import { format } from "date-fns";
 import trashBin from "./../../assets/Calendar/trashBin.svg";
 import Navbar from "./../../components/Navbar";
+import { axiosInstance } from "../../api/api";
 
 const Calendar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -36,7 +37,22 @@ const Calendar = () => {
   useEffect(() => {
     const today = format(new Date(), "yyyy-MM-dd");
     setClickedDate(today);
+    fetchSchedules();
   }, []);
+
+  // /schedules 엔드포인트에서 데이터를 가져오는 함수
+  const fetchSchedules = async () => {
+    try {
+      const response = await axiosInstance.get("/schedules", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+        },
+      });
+      setItems(response.data);
+    } catch (error) {
+      console.error("Error fetching schedules:", error);
+    }
+  };
 
   const handleAddClick = () => {
     setIsModalOpen(true);
@@ -48,6 +64,7 @@ const Calendar = () => {
 
   const handleSaveItem = (item) => {
     setItems([...items, { ...item, date: clickedDate, taken: false }]);
+    fetchSchedules(); // 데이터를 새로고침
   };
 
   const handleDeleteItem = (index) => {
@@ -95,12 +112,12 @@ const Calendar = () => {
                   />
                   <StyledCheckbox checked={item.taken} />
                 </CheckboxContainer>
-                <PillName>{item.pill}</PillName>
+                <PillName>{item.medicine_name}</PillName>
                 <TagListBox>
                   {item.tags && item.tags.length > 0 ? (
                     item.tags.map((tag, tagIndex) => (
                       <TagItemBox key={tagIndex}>
-                        <span>{tag}</span>
+                        <span>{tag.content}</span>
                       </TagItemBox>
                     ))
                   ) : (
