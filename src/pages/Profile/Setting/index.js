@@ -12,17 +12,18 @@ import {
   NickNameInput,
   NickNameWrapper,
   ProfileImg,
-  SecessionBox,
   SettingWrapper,
 } from "./styles";
 import { useRecoilState } from "recoil";
 import { nicknameState } from "../../../recoil/atoms/atom";
+import { useNavigate } from "react-router";
 
 const Setting = () => {
   const [userNickname, setUserNickname] = useRecoilState(nicknameState);
   const [inputValue, setInputValue] = useState(userNickname);
   const [isEditing, setIsEditing] = useState(false);
   const inputRef = useRef(null);
+  const nav = useNavigate();
 
   const handleInputChange = (e) => {
     const value = e.target.value;
@@ -57,6 +58,11 @@ const Setting = () => {
     }
   }, [isEditing]);
 
+  const handleLogout = () => {
+    localStorage.removeItem("access_token"); // 로컬 스토리지에서 액세스 토큰 제거
+    nav("/"); // 로그인 페이지로 리다이렉트
+  };
+
   return (
     <PLFrame>
       <SettingWrapper>
@@ -86,7 +92,7 @@ const Setting = () => {
         <BottomWrapper>
           <BottomBox>탈퇴</BottomBox>
           <BottomLine>|</BottomLine>
-          <BottomBox>로그아웃</BottomBox>
+          <BottomBox onClick={handleLogout}>로그아웃</BottomBox>
         </BottomWrapper>
       </SettingWrapper>
     </PLFrame>

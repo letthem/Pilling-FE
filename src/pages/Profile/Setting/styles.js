@@ -80,6 +80,7 @@ export const SettingWrapper = styled.div`
   height: 100vh;
   position: relative;
 `;
+
 export const BottomWrapper = styled.div`
   width: 100%;
   position: absolute;
