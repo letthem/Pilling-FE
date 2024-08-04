@@ -32,6 +32,7 @@ const TagModal = ({
   onBack,
   customTags,
   setCustomTags,
+  clickedDate, // 추가된 부분: 선택된 날짜를 받아옴
 }) => {
   const [selectedTags, setSelectedTags] = useState([]);
   const [isAddingTag, setIsAddingTag] = useState(false);
@@ -80,9 +81,27 @@ const TagModal = ({
   };
 
   const handleSave = async () => {
-    onSave(selectedPill, selectedTags);
-    await fetchTags(); // 태그 목록을 새로 고침
-    onClose(); // 이전 모달로 돌아가기
+    const tagObjects = selectedTags.map((tag) => ({ content: tag }));
+    try {
+      await axiosInstance.post(
+        "/schedules",
+        {
+          medicine_name: selectedPill,
+          date: clickedDate,
+          tags: tagObjects,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+          },
+        }
+      );
+      onSave(selectedPill, selectedTags);
+      await fetchTags(); // 태그 목록을 새로 고침
+      onClose(); // 이전 모달로 돌아가기
+    } catch (error) {
+      console.error("Error saving schedule:", error);
+    }
   };
 
   const handleAddCustomTag = async () => {

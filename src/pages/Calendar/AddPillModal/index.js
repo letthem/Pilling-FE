@@ -11,8 +11,9 @@ import {
 import search from "./../../../assets/Calendar/search.svg";
 import TagModal from "./TagModal";
 import CancelConfirmModal from "../../../components/CancelConfirmModal";
+import WarningModal from "./WarningModal";
 
-const AddPillModal = ({ onClose, onSave }) => {
+const AddPillModal = ({ onClose, onSave, clickedDate }) => { 
   const [inputValue, setInputValue] = useState("");
   const [results, setResults] = useState([]);
   const [selectedPill, setSelectedPill] = useState(null);
@@ -21,7 +22,7 @@ const AddPillModal = ({ onClose, onSave }) => {
     return savedTags ? JSON.parse(savedTags) : [];
   });
   const [isCancelConfirmOpen, setIsCancelConfirmOpen] = useState(false);
-
+  const [isNoneModalOpen, setIsNoneModalOpen] = useState(false);
   const inputRef = useRef(null);
 
   useEffect(() => {
@@ -49,12 +50,15 @@ const AddPillModal = ({ onClose, onSave }) => {
     try {
       const response = await axiosInstance.get(`/register`, {
         params: { itemName: encodeURIComponent(inputValue) },
-
         headers: {
           Authorization: `Bearer ${localStorage.getItem("access_token")}`,
         },
       });
-      setResults(response.data);
+      if (response.data.length === 0) {
+        setIsNoneModalOpen(true); // 검색 결과 없을 때 모달 열기
+      } else {
+        setResults(response.data);
+      }
     } catch (error) {
       console.error("Error fetching search results:", error);
     }
@@ -105,6 +109,7 @@ const AddPillModal = ({ onClose, onSave }) => {
           onBack={handleBack}
           customTags={customTags}
           setCustomTags={setCustomTags}
+          clickedDate={clickedDate}
         />
       ) : (
         <ModalContainer>
@@ -141,6 +146,12 @@ const AddPillModal = ({ onClose, onSave }) => {
             onCancel={() => setIsCancelConfirmOpen(false)}
           />
         </ModalContainer>
+      )}
+      {isNoneModalOpen && (
+        <WarningModal
+          message="검색 결과가 존재하지 않습니다"
+          onClose={() => setIsNoneModalOpen(false)}
+        />
       )}
     </ModalBackground>
   );

@@ -119,7 +119,7 @@ const Calendar = () => {
         </PlusBtn>
         <Ment>복용 약을 기록해보세요!</Ment>
         {isModalOpen && (
-          <AddPillModal onClose={handleCloseModal} onSave={handleSaveItem} />
+          <AddPillModal onClose={handleCloseModal} onSave={handleSaveItem} clickedDate={clickedDate} />
         )}
         {isConfirmModalOpen && (
           <ConfirmModal
