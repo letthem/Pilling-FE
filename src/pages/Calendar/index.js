@@ -83,11 +83,32 @@ const Calendar = () => {
     setDeleteIndex(null);
   };
 
-  const handleCheckboxChange = (item) => {
-    const newItems = items.map((i) =>
-      i === item ? { ...i, taken: !i.taken } : i
-    );
-    setItems(newItems);
+  const handleCheckboxChange = async (item) => {
+    const updatedItem = { ...item, completed: !item.completed };
+    try {
+      await axiosInstance.patch(
+        `/schedules/${item.schedule_id}/complete`,
+        {
+          schedule_id: item.schedule_id,
+          pilling_user_id: item.pilling_user_id,
+          medicine_name: item.medicine_name,
+          datetime: item.datetime,
+          tags: item.tags,
+          completed: updatedItem.completed,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+          },
+        }
+      );
+      const newItems = items.map((i) =>
+        i.schedule_id === item.schedule_id ? updatedItem : i
+      );
+      setItems(newItems);
+    } catch (error) {
+      console.error("Error updating schedule:", error);
+    }
   };
 
   const filteredItems = items.filter((item) => item.date === clickedDate);
@@ -112,10 +133,10 @@ const Calendar = () => {
               <Item key={index}>
                 <CheckboxContainer onClick={() => handleCheckboxChange(item)}>
                   <HiddenCheckbox
-                    checked={item.taken}
+                    checked={item.completed}
                     onChange={() => handleCheckboxChange(item)}
                   />
-                  <StyledCheckbox checked={item.taken} />
+                  <StyledCheckbox checked={item.completed} />
                 </CheckboxContainer>
                 <PillName>{truncateName(item.medicine_name)}</PillName>
                 <TagListBox>
@@ -141,7 +162,11 @@ const Calendar = () => {
         </PlusBtn>
         <Ment>복용 약을 기록해보세요!</Ment>
         {isModalOpen && (
-          <AddPillModal onClose={handleCloseModal} onSave={handleSaveItem} clickedDate={clickedDate} />
+          <AddPillModal
+            onClose={handleCloseModal}
+            onSave={handleSaveItem}
+            clickedDate={clickedDate}
+          />
         )}
         {isConfirmModalOpen && (
           <ConfirmModal
