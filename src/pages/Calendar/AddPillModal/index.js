@@ -49,6 +49,10 @@ const AddPillModal = ({ onClose, onSave }) => {
     try {
       const response = await axiosInstance.get(`/register`, {
         params: { itemName: encodeURIComponent(inputValue) },
+
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+        },
       });
       setResults(response.data);
     } catch (error) {
@@ -75,7 +79,7 @@ const AddPillModal = ({ onClose, onSave }) => {
     <ModalBackground onClick={handleBackgroundClick}>
       {selectedPill ? (
         <TagModal
-          selectedPill={selectedPill}
+          selectedPill={selectedPill.name}
           onSave={handleSave}
           onClose={onClose}
           onBack={handleBack}
@@ -99,7 +103,7 @@ const AddPillModal = ({ onClose, onSave }) => {
             <ResultList>
               {results.map((result, index) => (
                 <ResultItem key={index} onClick={() => setSelectedPill(result)}>
-                  {result}
+                  {result.name} 
                 </ResultItem>
               ))}
             </ResultList>
