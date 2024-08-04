@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { PLFrame } from "../../../components/PLFrame";
 import {
   Btn,
@@ -15,24 +15,37 @@ import { useNavigate } from "react-router";
 import Basic from "./Basic";
 import Negative from "./Negative";
 import Positive from "./Positive";
+import { axiosInstance } from "../../../api/api";
 
 const Scrap = () => {
   const nav = useNavigate();
   const [activeTab, setActiveTab] = useState("기본");
 
-  const [basicPills, setBasicPills] = useState([
-    { name: "위스콘 더블액션 현탁액" },
-    { name: "타이레놀" },
-    { name: "애드빌" },
-  ]);
-  const [negativePills, setNegativePills] = useState([
-    { name: "네거티브약1" },
-    { name: "네거티브약2" },
-  ]);
-  const [positivePills, setPositivePills] = useState([
-    { name: "포지티브약1" },
-    { name: "포지티브약2" },
-  ]);
+  const [basicPills, setBasicPills] = useState([]);
+  const [negativePills, setNegativePills] = useState([]);
+  const [positivePills, setPositivePills] = useState([]);
+
+  const fetchData = async (category, setState) => {
+    try {
+      const response = await axiosInstance.get(`/scraps?category=${category}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('access_token')}`
+        }
+      });
+      setState(response.data.map(item => ({
+        name: item.medicine_name,
+        image: item.medicine_image,
+      })));
+    } catch (error) {
+      console.error(`Error fetching ${category} data:`, error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData("기본", setBasicPills);
+    fetchData("부작용 있는", setNegativePills);
+    fetchData("효과 좋은", setPositivePills);
+  }, []);
 
   const handleDeletePill = (tab, pillName) => {
     if (tab === "기본") {
