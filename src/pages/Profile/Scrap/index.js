@@ -44,6 +44,7 @@ const Scrap = () => {
   };
 
   const truncateName = (name) => {
+    if (!name) return "";
     return name.length > 15 ? `${name.substring(0, 15)}...` : name;
   };
 

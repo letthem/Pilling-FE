@@ -2,6 +2,7 @@ import { PillName, RecordItemWrapper, TagItem, TagList } from "./styles";
 
 const RecordItem = ({ pillName, tags }) => {
   const truncateName = (name) => {
+    if (!name) return "";
     return name.length > 20 ? `${name.substring(0, 20)}...` : name;
   };
 

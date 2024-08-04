@@ -123,9 +123,11 @@ const Calendar = () => {
   const filteredItems = items.filter((item) => item.date === clickedDate);
 
   // 이름 줄이는 함수
-  // const truncateName = (name) => {
-  //   return name.length > 14 ? `${name.substring(0, 14)}...` : name;
-  // };
+  const truncateName = (name) => {
+    if (!name) return ''; // name이 undefined이거나 null일 경우 빈 문자열 반환
+    return name.length > 14 ? `${name.substring(0, 14)}...` : name;
+  };
+  
 
   return (
     <PLFrame>
@@ -148,8 +150,8 @@ const Calendar = () => {
                   <StyledCheckbox checked={item.completed} />
                 </CheckboxContainer>
                 <PillName>
-                  {/* {truncateName(item.medicine_name)} */}
-                  {item.medicine_name}
+                  {truncateName(item.medicine_name)}
+                  {/* {item.medicine_name} */}
                 </PillName>
                 <TagListBox>
                   {item.tags.map((tag, tagIndex) => (
@@ -158,7 +160,9 @@ const Calendar = () => {
                     </TagItemBox>
                   ))}
                 </TagListBox>
-                <DeleteButton onClick={() => handleDeleteItem(item.schedule_id)}>
+                <DeleteButton
+                  onClick={() => handleDeleteItem(item.schedule_id)}
+                >
                   <img src={trashBin} alt="trashBin" />
                 </DeleteButton>
               </Item>
