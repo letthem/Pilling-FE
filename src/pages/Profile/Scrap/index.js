@@ -42,9 +42,9 @@ const Scrap = () => {
   };
 
   useEffect(() => {
-    fetchData("기본", setBasicPills);
-    fetchData("부작용 있는", setNegativePills);
-    fetchData("효과 좋은", setPositivePills);
+    fetchData("F", setBasicPills);
+    fetchData("B", setNegativePills);
+    fetchData("G", setPositivePills);
   }, []);
 
   const handleDeletePill = (tab, pillName) => {

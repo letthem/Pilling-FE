@@ -11,10 +11,14 @@ const Record = () => {
   useEffect(() => {
     const fetchRecords = async () => {
       try {
-        const response = await axiosInstance.get("/schedules");
+        const response = await axiosInstance.get("/schedules", {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+          },
+        });
         const data = response.data;
         const formattedRecords = data.map((record) => ({
-          pillName: record.medicine_id,
+          pillName: record.medicine_name,
           tags: record.tags.map((tag) => tag.content),
         }));
         setRecords(formattedRecords);
