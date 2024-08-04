@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
+import { axiosInstance } from "../../../../api/api";
 import {
   TopBar,
   TagList,
@@ -40,6 +41,7 @@ const TagModal = ({
     useState(false);
   const [tagToDelete, setTagToDelete] = useState(null);
   const inputRef = useRef(null);
+  const [tags, setTags] = useState([]); // 기본 태그 상태 추가
 
   useEffect(() => {
     if (isAddingTag && inputRef.current) {
@@ -47,27 +49,27 @@ const TagModal = ({
     }
   }, [isAddingTag]);
 
-  const tags = [
-    "감기",
-    "복통",
-    "소화불량",
-    "두통",
-    "발열",
-    "알러지",
-    "여드름",
-    "항생제",
-    "내과",
-    "치과",
-    "정신과",
-    "안과",
-    "한의원",
-    "피부과",
-    "정형외과",
-    "성형외과",
-    "산부인과",
-    "비뇨기과",
-    "신경외과",
-  ];
+  const fetchTags = useCallback(async () => {
+    try {
+      const response = await axiosInstance.get("/tags", {
+        params: { "medicine-name": selectedPill },
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+        },
+      });
+
+      const basicTags = response.data.slice(0, 17); // 기본 태그 17개
+      const userTags = response.data.slice(17); // 사용자 지정 태그
+      setTags(basicTags);
+      setCustomTags(userTags);
+    } catch (error) {
+      console.error("Error fetching tags:", error);
+    }
+  }, [selectedPill, setCustomTags]);
+
+  useEffect(() => {
+    fetchTags();
+  }, [selectedPill, fetchTags]);
 
   const handleTagClick = (tag) => {
     setSelectedTags((prevTags) =>
@@ -77,33 +79,71 @@ const TagModal = ({
     );
   };
 
-  const handleSave = () => {
+  const handleSave = async () => {
     onSave(selectedPill, selectedTags);
-    onClose();
+    await fetchTags(); // 태그 목록을 새로 고침
+    onClose(); // 이전 모달로 돌아가기
   };
 
-  const handleAddCustomTag = () => {
+  const handleAddCustomTag = async () => {
     if (newTag.trim() && newTag.length <= 6 && !/\s/.test(newTag)) {
       if (customTags.length < 3) {
-        setCustomTags((prevTags) => [...prevTags, newTag]);
-        setIsAddingTag(false);
-        setNewTag("");
+        try {
+          const response = await axiosInstance.post(
+            `/tags`,
+            {
+              medicine_name: selectedPill,
+              content: newTag,
+            },
+            {
+              headers: {
+                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+              },
+            }
+          );
+
+          if (response.status === 200) {
+            // 새 태그를 업데이트하고 상태를 다시 가져옵니다.
+            const updatedCustomTags = [...customTags, { content: newTag }];
+            setCustomTags(updatedCustomTags);
+            setIsAddingTag(false);
+            setNewTag("");
+            await fetchTags(); // 새 태그를 가져옴
+          }
+        } catch (error) {
+          console.error("Error adding custom tag:", error);
+        }
       } else {
         setIsWarningModalOpen(true);
       }
     }
   };
 
-  const handleDeleteCustomTag = () => {
-    setCustomTags((prevTags) => prevTags.filter((t) => t !== tagToDelete));
-    setSelectedTags((prevTags) => prevTags.filter((t) => t !== tagToDelete));
-    setIsDeleteConfirmModalOpen(false);
-    setTagToDelete(null);
+  const handleDeleteCustomTag = async () => {
+    try {
+      const response = await axiosInstance.delete(`/tags`, {
+        params: {
+          content: tagToDelete,
+          "medicine-name": selectedPill,
+        },
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+        },
+      });
+
+      if (response.status === 200) {
+        await fetchTags(); // 태그 목록을 새로 고침
+        setIsDeleteConfirmModalOpen(false);
+        setTagToDelete(null);
+      }
+    } catch (error) {
+      console.error("Error deleting custom tag:", error);
+    }
   };
 
   const handleDeleteButtonClick = (e, tag) => {
     e.stopPropagation(); // 이벤트 전파 중단
-    setTagToDelete(tag);
+    setTagToDelete(tag.content);
     setIsDeleteConfirmModalOpen(true);
   };
 
@@ -170,23 +210,27 @@ const TagModal = ({
               {tags.map((tag, index) => (
                 <TagItem
                   key={index}
-                  selected={selectedTags.includes(tag)}
-                  onClick={() => handleTagClick(tag)}
+                  selected={selectedTags.includes(tag.content)}
+                  onClick={() => handleTagClick(tag.content)}
                 >
-                  <span>{tag}</span>
+                  <span>{tag.content}</span>
                 </TagItem>
               ))}
               {/* 사용자 등록 태그 */}
               {customTags.map((tag, index) => (
                 <TagItem
-                  key={index + tags.length}
-                  selected={selectedTags.includes(tag)}
-                  onClick={() => handleTagClick(tag)}
+                  key={index + tags.length} // Ensure unique keys
+                  selected={selectedTags.includes(tag.content)}
+                  onClick={() => handleTagClick(tag.content)}
                 >
-                  <span>{tag}</span>
+                  <span>{tag.content}</span>
                   <TagXBtn onClick={(e) => handleDeleteButtonClick(e, tag)}>
                     <img
-                      src={selectedTags.includes(tag) ? tagXBtn : tagXBtnGray}
+                      src={
+                        selectedTags.includes(tag.content)
+                          ? tagXBtn
+                          : tagXBtnGray
+                      }
                       alt="tagXBtn"
                     />
                   </TagXBtn>
@@ -220,7 +264,8 @@ const TagModal = ({
       {isDeleteConfirmModalOpen && (
         <DeleteConfirmModal
           message="해당 태그를 삭제하시겠습니까?"
-          onCancel={() => {
+          onCancel={async () => {
+            await fetchTags();
             setIsDeleteConfirmModalOpen(false);
             setTagToDelete(null); // 삭제 태그 초기화
           }}

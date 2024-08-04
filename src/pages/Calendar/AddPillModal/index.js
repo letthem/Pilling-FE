@@ -75,11 +75,31 @@ const AddPillModal = ({ onClose, onSave }) => {
     onClose();
   };
 
+  const handlePostPillName = async (result) => {
+    try {
+      const response = await axiosInstance.post(
+        `/medicines`,
+        { name: result.itemName },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+          },
+        }
+      );
+
+      if (response.status === 201) {
+        setSelectedPill(result);
+      }
+    } catch (error) {
+      console.error("Error posting pill name:", error);
+    }
+  };
+
   return (
     <ModalBackground onClick={handleBackgroundClick}>
       {selectedPill ? (
         <TagModal
-          selectedPill={selectedPill.name}
+          selectedPill={selectedPill.itemName}
           onSave={handleSave}
           onClose={onClose}
           onBack={handleBack}
@@ -102,8 +122,11 @@ const AddPillModal = ({ onClose, onSave }) => {
             </SearchBox>
             <ResultList>
               {results.map((result, index) => (
-                <ResultItem key={index} onClick={() => setSelectedPill(result)}>
-                  {result.name} 
+                <ResultItem
+                  key={index}
+                  onClick={() => handlePostPillName(result)}
+                >
+                  {result.itemName}
                 </ResultItem>
               ))}
             </ResultList>
