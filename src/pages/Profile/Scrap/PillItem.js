@@ -5,9 +5,11 @@ import trash from "../../../assets/Profile/trash.svg";
 import arrowRightGray from "../../../assets/Profile/arrow-right-gray.svg";
 import CancelConfirmModal from "../../../components/CancelConfirmModal";
 import { axiosInstance } from "../../../api/api";
+import { useNavigate } from "react-router";
 
 const PillItem = ({ pillName, bgColor, onDelete, id }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const nav = useNavigate();
 
   const handleDeleteClick = () => {
     setIsModalOpen(true);
@@ -17,8 +19,8 @@ const PillItem = ({ pillName, bgColor, onDelete, id }) => {
     try {
       await axiosInstance.delete(`/scraps/${id}/delete`, {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem('access_token')}`
-        }
+          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+        },
       });
       onDelete(id);
     } catch (error) {
@@ -32,6 +34,10 @@ const PillItem = ({ pillName, bgColor, onDelete, id }) => {
     setIsModalOpen(false);
   };
 
+  const handleDetailClick = () => {
+    nav(`/home/find/${pillName}`);
+  };
+
   return (
     <>
       <PillItemWrapper>
@@ -41,7 +47,7 @@ const PillItem = ({ pillName, bgColor, onDelete, id }) => {
         <PillBox>
           <PillInfo>
             <PillName>{pillName}</PillName>
-            <DetailBtn>
+            <DetailBtn onClick={handleDetailClick}>
               <span>약 정보</span>
               <img src={arrowRightGray} alt="arrowRightGray" />
             </DetailBtn>

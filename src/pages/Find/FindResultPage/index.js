@@ -56,7 +56,7 @@ const FindResultPage = () => {
     };
 
     const goBack = () => {
-        navigate("/home/find")
+        navigate(-1)
     }
   
     /* onClick => 스크랩 담기 post 
