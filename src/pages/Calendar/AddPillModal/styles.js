@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 // AddPillModal
-
 export const ModalBackground = styled.div`
   position: fixed;
   top: 0;
@@ -32,13 +31,14 @@ export const SearchModal = styled.div`
 `;
 
 export const SearchBox = styled.div`
+  position: relative;
   height: 3.25rem;
   margin: 1.5rem 1.5rem 0.25rem 1.5rem;
   background-color: #f7f6f9;
   border: 0.063rem solid #fff;
   border-radius: 1.875rem;
   display: flex;
-  justify-content: space-between;
+  align-items: center;
 
   input {
     flex-grow: 1;
@@ -60,7 +60,8 @@ export const SearchBox = styled.div`
   }
 
   img {
-    margin-right: 1.25rem;
+    position: absolute;
+    right: 1.25rem;
     width: 1.25rem;
     cursor: pointer;
   }
