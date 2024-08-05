@@ -74,14 +74,6 @@ export const TagItem = styled.div`
   border-radius: 1.25rem;
   background-color: ${({ selected }) => (selected ? "#C4F261" : "white")};
   cursor: pointer;
-  
-  &:hover {
-    background-color: ${({ selected }) => (selected ? "#C4F261" : "#f0f0f0")};
-  }
-
-  &:not(:hover) {
-    background-color: ${({ selected }) => (selected ? "#C4F261" : "white")};
-  }
 
   display: flex;
   align-items: center;
