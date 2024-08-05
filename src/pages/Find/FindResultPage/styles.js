@@ -27,13 +27,15 @@ export const ResultBody = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 0 1.5rem;
+  /* margin: 0 1.5rem; */
 `;
 
 export const NoImgContainer = styled.div`
-  width: 100%;
-  height: 100%;
-  max-width: 29rem;
+  width: calc(100% - 3rem);
+  margin: 0 1.5rem;
+  min-width: 20.4375rem;
+  /* height: 100%; */
+  /* max-width: 29rem; */
   border-radius: 1rem;
   background: #dcdee5;
   height: 11.625rem;
@@ -52,13 +54,16 @@ export const NoImgContainer = styled.div`
 `;
 
 export const ItemImg = styled.img`
-  width: 100%;
+  width: calc(100% - 3rem);
+  margin: 0 1.5rem;
+  min-width: 20.4375rem;
   max-width: 29rem;
   border-radius: 1rem;
 `;
 
 export const ItemName = styled.div`
-  width: 100%;
+  width: calc(100% - 3rem);
+  min-width: 20.4375rem;
   margin: 1rem 0 1.5rem 0.25rem;
   color: #1b1a1f;
   font-family: "SUIT-Medium";
@@ -67,7 +72,9 @@ export const ItemName = styled.div`
 `;
 
 export const ItemEat = styled.div`
-  width: 100%;
+  width: calc(100% - 3rem);
+  margin: 0 1.5rem;
+  min-width: 20.4375rem;
   height: auto;
   border-radius: 1.25rem;
   background: #f7f6f9;
@@ -97,6 +104,9 @@ export const ItemEatContent = styled.div`
 `;
 
 export const ItemEffect = styled.div`
+  width: calc(100% - 3rem);
+  margin: 0 1.5rem;
+  min-width: 20.4375rem;
   height: auto;
   border-radius: 1.25rem;
   background: #f7f6f9;
@@ -125,7 +135,9 @@ export const ItemEffectContent = styled.div`
 `;
 
 export const CantEatWith = styled.div`
-  width: 100%;
+  width: calc(100% - 3rem);
+  margin: 0 1.5rem;
+  min-width: 20.4375rem;
   height: auto;
   border-radius: 1.25rem;
   background: #f7f6f9;
@@ -155,6 +167,9 @@ export const CantEatWithContent = styled.div`
 `;
 
 export const SideEffect = styled.div`
+  width: calc(100% - 3rem);
+  margin: 0 1.5rem;
+  min-width: 20.4375rem;
   height: auto;
   border-radius: 1.25rem;
   background: #f7f6f9;
@@ -184,6 +199,9 @@ export const SideEffectContent = styled.div`
 `;
 
 export const WhoCant = styled.div`
+  width: calc(100% - 3rem);
+  margin: 0 1.5rem;
+  min-width: 20.4375rem;
   height: auto;
   border-radius: 1.25rem;
   background: #f7f6f9;
@@ -248,7 +266,8 @@ export const ScrapItem = styled.div`
 `;
 
 export const SearchLoadingBox = styled.div`
-  width: calc(100%-3rem);
+  width: calc(100% - 3rem);
+  min-width: 20.4375rem;
   margin: 18.8125rem 1.5rem 0;
   display: flex;
   flex-direction: column;
@@ -262,6 +281,10 @@ export const SearchLoadingBox = styled.div`
   img {
     margin-top: 1.375rem;
   }
+
+  @media (max-width: 25rem){
+    margin: 13.125rem 1.5rem 0;
+
+  }
 `;
 
-export const searchLoading = styled.div``;

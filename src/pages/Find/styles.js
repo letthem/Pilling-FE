@@ -9,6 +9,7 @@ export const FindHeader = styled.div`
   display: flex;
   align-items: center;
   position: relative;
+  width: calc(100%-48px);
   margin: 1.438rem 1.5rem 2.063rem;
   height: 3rem;
 `;
@@ -82,21 +83,21 @@ export const SymptomList = styled.div`
 export const Symptoms = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between; 
+  justify-content: space-between;
   margin: 0 2.25rem;
 
-  @media (max-width: 25rem){
-      gap: 1.75rem 1.875rem;
+  @media (max-width: 25rem) {
+    gap: 1.75rem 1.875rem;
   }
 
-  @media (min-width: 25rem){
+  @media (min-width: 25rem) {
     gap: 1.75rem 3.5rem;
   }
 `;
 
 export const Symptom = styled.p`
   min-width: 4.25rem;
-  box-sizing: border-box; 
+  box-sizing: border-box;
   display: flex;
   justify-content: space-between;
   color: #5f5f5f;
@@ -108,7 +109,7 @@ export const Symptom = styled.p`
     width: 1rem;
   }
 
-  @media (max-width: 25rem){
+  @media (max-width: 25rem) {
     width: calc((100% - 3.75rem) / 3); /* Adjust for the gap and padding */
   }
 
@@ -135,4 +136,20 @@ export const FindBody = styled.div`
     font-family: "GS-SemiBold";
     font-size: 1.0625rem;
   }
+`;
+
+export const FindInputLoadingBox = styled.div`
+  min-height: 40.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #000;
+  font-family: "SUIT-SemiBold";
+  font-size: 1rem;
+  line-height: 1.2;
+`;
+
+export const FindInputLoading = styled.div`
+  margin-bottom: 1.375rem;
 `;

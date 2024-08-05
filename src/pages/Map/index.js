@@ -19,9 +19,9 @@ const Map = () => {
   const [selectedMarker, setSelectedMarker] = useState(null);
   const [markerPosition, setMarkerPosition] = useState({});
   const [bakcMarkerImg, setBackMarkerImg] = useState(null);
-  const [mapLevel, setMapLevel] = useState(3);
+  const [isLoading, setIsLoading] = useState(true);
 
-  // 정보를 받아오는 함수
+  // 정보를 get 해오는 함수
   const fetchPlacesInfo = async (position, map) => {
     const ps = new kakao.maps.services.Places();
 
@@ -154,7 +154,9 @@ const Map = () => {
 
   useEffect(() => {
     if (kakao) {
+      setIsLoading(true);
       kakao.maps.load(() => initMap());
+      setIsLoading(false);
     } else {
       console.error("Kakao Maps API 로드 실패");
     }
@@ -186,36 +188,44 @@ const Map = () => {
     <PLFrame>
       <MapWrapper>
         <MapHeader>약국지도</MapHeader>
-        <KakaoMap id="map" ref={container}></KakaoMap>
-        <NavBarWrapper>
-          {info.name && (
-            <>
-              <NowDistance>
-                <p>
-                  현위치에서 <span>{info.distance}m</span>
-                </p>
-              </NowDistance>
-              <PmInfotmation>
-                <Delete src={deleteBtn} onClick={deleteInfo} />
-                <PmName>{info.name}</PmName>
-                <PmTime>
-                  <p>
-                    영업시간<span>{info.time}</span>
-                  </p>
-                </PmTime>
-                <PmNumberBox>
-                  <img src={phonecall} alt="전화 아이콘" />
-                  <PmNumber>{info.phone}</PmNumber>
-                </PmNumberBox>
-                <PmPositionShowBox>
-                  <img src={positionNow} alt="위치 아이콘" />
-                  <PmPositionShow>{info.addr}</PmPositionShow>
-                </PmPositionShowBox>
-              </PmInfotmation>
-            </>
-          )}
-          <Navbar />
-        </NavBarWrapper>
+        {isLoading ? (
+          <>
+            <LoadingBox>여보세요</LoadingBox>
+          </>
+        ) : (
+          <>
+            <KakaoMap id="map" ref={container}></KakaoMap>
+            <NavBarWrapper>
+              {info.name && (
+                <>
+                  <NowDistance>
+                    <p>
+                      현위치에서 <span>{info.distance}m</span>
+                    </p>
+                  </NowDistance>
+                  <PmInfotmation>
+                    <Delete src={deleteBtn} onClick={deleteInfo} />
+                    <PmName>{info.name}</PmName>
+                    <PmTime>
+                      <p>
+                        영업시간<span>{info.time}</span>
+                      </p>
+                    </PmTime>
+                    <PmNumberBox>
+                      <img src={phonecall} alt="전화 아이콘" />
+                      <PmNumber>{info.phone}</PmNumber>
+                    </PmNumberBox>
+                    <PmPositionShowBox>
+                      <img src={positionNow} alt="위치 아이콘" />
+                      <PmPositionShow>{info.addr}</PmPositionShow>
+                    </PmPositionShowBox>
+                  </PmInfotmation>
+                </>
+              )}
+              <Navbar />
+            </NavBarWrapper>
+          </>
+        )}
       </MapWrapper>
     </PLFrame>
   );
@@ -261,6 +271,7 @@ const NowDistance = styled.div`
 const PmInfotmation = styled.div`
   z-index: 100;
   width: calc(100% - 2.75rem);
+  max-width: 32rem;
   margin: 0 1.375rem;
   height: 12.5625rem;
   position: absolute;
@@ -360,4 +371,26 @@ const NavBarWrapper = styled.div`
   z-index: 1000;
   display: flex;
   justify-content: center;
+`;
+
+export const LoadingBox = styled.div`
+  width: calc(100% - 3rem);
+  min-width: 20.4375rem;
+  margin: 18.8125rem 1.5rem 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #000;
+  font-family: "SUIT-SemiBold";
+  font-size: 1rem;
+  line-height: 1.2%;
+
+  img {
+    margin-top: 1.375rem;
+  }
+
+  @media (max-width: 25rem) {
+    margin: 13.125rem 1.5rem 0;
+  }
 `;

@@ -42,8 +42,8 @@ import grayIcon from "../../../assets/Home/Find/grayicon.svg";
 import { useNavigate, useParams } from "react-router";
 import { axiosInstance } from "../../../api/api";
 import noImg from "../../../assets/Home/Find/RectangleRow.png";
-import noImgEnd from '../../../assets/Home/Find/noimageEnd.svg'
-import loadingImg from '../../../assets/login/greenIcon.svg'
+import noImgEnd from "../../../assets/Home/Find/noimageEnd.svg";
+import loadingImg from "../../../assets/login/greenIcon.svg";
 
 const FindResultPage = () => {
   const { itemName } = useParams();
@@ -51,10 +51,22 @@ const FindResultPage = () => {
 
   const [modal, setModal] = useState(false);
   const [isScrap, setIsScrap] = useState(false);
+  const [scrapId, setScapId] = useState(null);
   const navigate = useNavigate();
 
-  const toggleModal = () => {
-    setModal((prevModal) => !prevModal);
+  const toggleModal = async () => {
+    if (!isScrap) {
+      setModal((prevModal) => !prevModal);
+    } else {
+      await axiosInstance.delete(`/scraps/${scrapId}/delete`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+        },
+      });
+      console.log("스크랮 삭제 ㅅㄱ");
+      setIsScrap(false);
+      setScapId(null);
+    }
   };
 
   const goBack = () => {
@@ -63,32 +75,26 @@ const FindResultPage = () => {
 
   const ScrapCart = async (category) => {
     try {
-      setIsScrap(true);
-      setModal(false);
-
+      //스크랩 없음
       const scrapData = {
-        medicine: {
-          name: itemDetails.name,
-          efcy: itemDetails.efcy,
-          image: itemDetails.image || "",
-          usemethod: itemDetails.usemethod,
-          atpn: itemDetails.atpn,
-          intrc: itemDetails.intrc,
-          seQ: itemDetails.seQ,
-        },
+        medicine_name: itemDetails.itemName,
         category: category,
       };
+      console.log(scrapData);
 
-      await axiosInstance.post("/scraps/new", scrapData, {
+      const res = await axiosInstance.post(`/scraps/new`, scrapData, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("access_token")}`,
-          "Content-Type": "application/json",
         },
       });
 
+      setIsScrap(true);
+      setScapId(res.data.id);
+      setModal(false);
       console.log("스크랩 성공");
+      setModal(false);
     } catch (error) {
-      console.error("스크랩 실패:", error.message);
+      console.log(error.message);
     }
   };
 
@@ -116,8 +122,8 @@ const FindResultPage = () => {
     <PLFrame>
       <FindResultWrapper>
         <ResultHeader>
-          <ArrowDiv>
-            <ArrowIcon src={arrowIcon} alt="arrow" onClick={goBack} />
+          <ArrowDiv onClick={goBack}>
+            <ArrowIcon src={arrowIcon} alt="arrow" />
           </ArrowDiv>
           <HeaderTitle>약 검색 결과 </HeaderTitle>
           <ScrapBox
@@ -179,14 +185,12 @@ const FindResultPage = () => {
               <WhoCantContent>{itemDetails.seQ}</WhoCantContent>
             </WhoCant>
           </ResultBody>
-        ) : (
+         ) :  (
           <SearchLoadingBox>
-            검색 중이요 ㅋ
+            검색 정보를 불러오고 있어요!
             <img src={loadingImg} alt="loading" />
           </SearchLoadingBox>
-          
-        )}
-
+        ) }
         <Navbar />
       </FindResultWrapper>
     </PLFrame>

@@ -8,6 +8,8 @@ const FindInputTag = ({ value, setValue, setMedicines }) => {
   const handleDelete = () => {
     setValue("");
     setMedicines([]);
+    localStorage.setItem("searchValue", "");
+    localStorage.removeItem("medicines");
   };
 
   const handleChange = (e) => {
@@ -31,10 +33,7 @@ const FindInputTag = ({ value, setValue, setMedicines }) => {
           },
         });
         setMedicines(res.data);
-        localStorage.setItem(
-          "medicines",
-          JSON.stringify(res.data)
-        )
+        localStorage.setItem("medicines", JSON.stringify(res.data));
       } catch (e) {
         console.log(e.message);
       }

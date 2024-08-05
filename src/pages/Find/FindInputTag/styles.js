@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const FileInputWrapper = styled.div`
-  width: calc(100% - 3.5625rem);
+  width: calc(100% - 57px);
   position: relative;
   .search {
     position: absolute;
