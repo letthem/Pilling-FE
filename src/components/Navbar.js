@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import CalLogo from "../assets/Nav/CalLogo.svg";
 import HomeLogo from "../assets/Nav/HomeLogo.svg";
@@ -6,6 +6,8 @@ import MapLogo from "../assets/Nav/MapLogo.svg";
 import Profile from "../assets/Nav/Profile.svg";
 
 const Navbar = () => {
+  const location = useLocation();
+  const isProfilePage = location.pathname === "/profile";
   const removeData = () => {
     localStorage.setItem("searchValue", "");
     localStorage.removeItem("medicines");
@@ -13,7 +15,7 @@ const Navbar = () => {
 
   return (
     <NavContainer>
-      <Container>
+      <Container $isProfilePage={isProfilePage}>
         <MeunItem>
           <StyledNavLink to="/home">
             <Icon src={HomeLogo} onClick={removeData} />
@@ -46,26 +48,26 @@ const NavContainer = styled.div`
   justify-content: center;
   width: 100%;
   align-items: center;
-  height: 6.375rem;
   box-sizing: border-box; /* Include padding in the total width calculation */
+  z-index: 100;
 `;
 
 const Container = styled.ul`
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
   align-items: center;
   list-style: none;
-  max-width: 28.8rem;
+  max-width: 27.625rem;
   min-width: 20.3125rem;
-  width: 90%;
-  height: 3.5rem;
+  width: calc(100% - 4.375rem);
+  height: 3rem;
   border-radius: 2.5rem;
-  background: #f7f6f9;
+  background: ${({ $isProfilePage }) => ($isProfilePage ? "#ffffff" : "#f7f6f9")};
   box-shadow: 0rem 0rem 0.25rem 0rem rgba(115, 123, 152, 0.25);
   position: fixed;
   bottom: 0.875rem;
-  padding: 0 1.5rem; /* Add padding to both sides */
-  box-sizing: border-box; /* Ensure padding is included in width calculation */
+  margin: 0 1.5rem;
+  padding: 0 0.6875rem;
 `;
 
 const MeunItem = styled.li`
@@ -79,9 +81,8 @@ const StyledNavLink = styled(NavLink)`
   color: #000;
   display: flex;
   justify-content: center;
-  width: 3.125rem;
-  height: 100%;
-  padding: 0.625rem;
+  width: 3.75rem;
+  height: 2rem;
   border-radius: 1.25rem;
 
   &.active {

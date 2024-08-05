@@ -269,13 +269,13 @@ const NowDistance = styled.div`
 `;
 
 const PmInfotmation = styled.div`
-  z-index: 100;
+  z-index: 50;
   width: calc(100% - 2.75rem);
   max-width: 32rem;
   margin: 0 1.375rem;
   height: 12.5625rem;
   position: absolute;
-  top: -10.5rem;
+  bottom: 60px;
   border-radius: 1.875rem;
   background: #fff;
   box-shadow: 0rem 0rem 0.25rem 0rem #d1d3d9;
@@ -368,7 +368,7 @@ const NavBarWrapper = styled.div`
   bottom: 0.875rem;
   left: 0;
   right: 0;
-  z-index: 1000;
+  z-index: 50;
   display: flex;
   justify-content: center;
 `;

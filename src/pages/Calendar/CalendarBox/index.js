@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import {
   addMonths,
   eachDayOfInterval,
@@ -9,7 +10,6 @@ import {
   startOfWeek,
   subMonths,
 } from "date-fns";
-import { useState } from "react";
 import {
   CalendarItem,
   CalendarBoxWrapper,
@@ -24,7 +24,7 @@ import {
   DateBox,
   CalendarBoxLayout,
   Circle,
-} from "./styles.js";
+} from "./styles";
 import arrowLeft from "./../../../assets/Calendar/arrow-left-white.svg";
 
 const CalendarBox = ({ clickedDate, setClickedDate, items = [] }) => {
@@ -47,7 +47,7 @@ const CalendarBox = ({ clickedDate, setClickedDate, items = [] }) => {
     const date = format(day, "yyyy-MM-dd");
     const itemsForDay = items.filter((item) => item.date === date);
     const allItemsChecked =
-      itemsForDay.length > 0 && itemsForDay.every((item) => item.taken);
+      itemsForDay.length > 0 && itemsForDay.every((item) => item.completed);
 
     return {
       date,
@@ -118,7 +118,7 @@ const CalendarBox = ({ clickedDate, setClickedDate, items = [] }) => {
                 <span>{date.day}</span>
                 {date.hasItems && (
                   <p>
-                    <Circle />
+                    <Circle $isClicked={clickedDate === date.date} />
                   </p>
                 )}
               </Day>

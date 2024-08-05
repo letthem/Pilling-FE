@@ -23,19 +23,36 @@ import AddPillModal from "./AddPillModal";
 import ConfirmModal from "./DeletePillModal";
 import { format } from "date-fns";
 import trashBin from "./../../assets/Calendar/trashBin.svg";
+import Navbar from "./../../components/Navbar";
+import { axiosInstance } from "../../api/api";
 
 const Calendar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [clickedDate, setClickedDate] = useState(null);
   const [items, setItems] = useState([]);
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
-  const [deleteIndex, setDeleteIndex] = useState(null);
+  const [deleteScheduleId, setDeleteScheduleId] = useState(null);
 
   // 처음 마운트될 때 오늘 날짜로 상태 초기화
   useEffect(() => {
     const today = format(new Date(), "yyyy-MM-dd");
     setClickedDate(today);
+    fetchSchedules();
   }, []);
+
+  // /schedules 엔드포인트에서 데이터를 가져오는 함수
+  const fetchSchedules = async () => {
+    try {
+      const response = await axiosInstance.get("/schedules", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+        },
+      });
+      setItems(response.data);
+    } catch (error) {
+      console.error("Error fetching schedules:", error);
+    }
+  };
 
   const handleAddClick = () => {
     setIsModalOpen(true);
@@ -47,32 +64,70 @@ const Calendar = () => {
 
   const handleSaveItem = (item) => {
     setItems([...items, { ...item, date: clickedDate, taken: false }]);
+    fetchSchedules(); // 데이터를 새로고침
   };
 
-  const handleDeleteItem = (index) => {
-    setDeleteIndex(index);
+  const handleDeleteItem = (scheduleId) => {
+    setDeleteScheduleId(scheduleId);
     setIsConfirmModalOpen(true);
   };
 
-  const confirmDeleteItem = () => {
-    setItems(items.filter((_, i) => i !== deleteIndex));
-    setIsConfirmModalOpen(false);
-    setDeleteIndex(null);
+  const confirmDeleteItem = async () => {
+    try {
+      await axiosInstance.delete(`/schedules/${deleteScheduleId}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+        },
+      });
+      setItems(items.filter((item) => item.schedule_id !== deleteScheduleId));
+      setIsConfirmModalOpen(false);
+      setDeleteScheduleId(null);
+    } catch (error) {
+      console.error("Error deleting schedule:", error);
+    }
   };
 
   const cancelDeleteItem = () => {
     setIsConfirmModalOpen(false);
-    setDeleteIndex(null);
+    setDeleteScheduleId(null);
   };
 
-  const handleCheckboxChange = (item) => {
-    const newItems = items.map((i) =>
-      i === item ? { ...i, taken: !i.taken } : i
-    );
-    setItems(newItems);
+  const handleCheckboxChange = async (item) => {
+    const updatedItem = { ...item, completed: !item.completed };
+    try {
+      await axiosInstance.patch(
+        `/schedules/${item.schedule_id}/complete`,
+        {
+          schedule_id: item.schedule_id,
+          pilling_user_id: item.pilling_user_id,
+          medicine_name: item.medicine_name,
+          datetime: item.datetime,
+          tags: item.tags,
+          completed: updatedItem.completed,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+          },
+        }
+      );
+      const newItems = items.map((i) =>
+        i.schedule_id === item.schedule_id ? updatedItem : i
+      );
+      setItems(newItems);
+    } catch (error) {
+      console.error("Error updating schedule:", error);
+    }
   };
 
   const filteredItems = items.filter((item) => item.date === clickedDate);
+
+  // 이름 줄이는 함수
+  const truncateName = (name) => {
+    if (!name) return ''; // name이 undefined이거나 null일 경우 빈 문자열 반환
+    return name.length > 14 ? `${name.substring(0, 14)}...` : name;
+  };
+  
 
   return (
     <PLFrame>
@@ -85,28 +140,29 @@ const Calendar = () => {
             items={items}
           />
           <ItemList>
-            {filteredItems.map((item, index) => (
-              <Item key={index}>
+            {filteredItems.map((item) => (
+              <Item key={item.schedule_id}>
                 <CheckboxContainer onClick={() => handleCheckboxChange(item)}>
                   <HiddenCheckbox
-                    checked={item.taken}
+                    checked={item.completed}
                     onChange={() => handleCheckboxChange(item)}
                   />
-                  <StyledCheckbox checked={item.taken} />
+                  <StyledCheckbox checked={item.completed} />
                 </CheckboxContainer>
-                <PillName>{item.pill}</PillName>
+                <PillName>
+                  {truncateName(item.medicine_name)}
+                  {/* {item.medicine_name} */}
+                </PillName>
                 <TagListBox>
-                  {item.tags && item.tags.length > 0 ? (
-                    item.tags.map((tag, tagIndex) => (
-                      <TagItemBox key={tagIndex}>
-                        <span>{tag}</span>
-                      </TagItemBox>
-                    ))
-                  ) : (
-                    <div>태그가 없습니다.</div>
-                  )}
+                  {item.tags.map((tag, tagIndex) => (
+                    <TagItemBox key={tagIndex}>
+                      <span>{tag.content}</span>
+                    </TagItemBox>
+                  ))}
                 </TagListBox>
-                <DeleteButton onClick={() => handleDeleteItem(index)}>
+                <DeleteButton
+                  onClick={() => handleDeleteItem(item.schedule_id)}
+                >
                   <img src={trashBin} alt="trashBin" />
                 </DeleteButton>
               </Item>
@@ -118,7 +174,11 @@ const Calendar = () => {
         </PlusBtn>
         <Ment>복용 약을 기록해보세요!</Ment>
         {isModalOpen && (
-          <AddPillModal onClose={handleCloseModal} onSave={handleSaveItem} />
+          <AddPillModal
+            onClose={handleCloseModal}
+            onSave={handleSaveItem}
+            clickedDate={clickedDate}
+          />
         )}
         {isConfirmModalOpen && (
           <ConfirmModal
@@ -128,6 +188,7 @@ const Calendar = () => {
           />
         )}
       </CalendarWrapper>
+      <Navbar />
     </PLFrame>
   );
 };

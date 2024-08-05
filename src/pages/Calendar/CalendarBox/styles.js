@@ -3,7 +3,8 @@ import styled from "styled-components";
 export const CalendarBoxLayout = styled.div`
   background-color: #1b1a1f;
   border-radius: 1.5rem;
-  margin: 0.5rem 0;
+  margin: 0.5rem;
+  width: calc(100% - 1rem);
 `;
 
 export const CalendarBoxWrapper = styled.div`
@@ -92,9 +93,10 @@ export const Day = styled.div`
     props.$allItemsChecked ? "0.0625rem solid #C4F261" : "none"};
   box-sizing: border-box;
   border-radius: 0.75rem;
-  display: flex;
-  width: 2.5rem;
-  height: 2.5rem;
+  display: inline-block;
+  width: 100%;
+  padding-bottom: ${(props) =>
+    props.$allItemsChecked ? "calc(100% - 0.125rem)" : "100%"};
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -126,9 +128,10 @@ export const Day = styled.div`
 `;
 
 export const Circle = styled.div`
-  background-color: #1b1a1f;
-  width: 0.375rem;
-  height: 0.375rem;
+  background-color: ${(props) => (props.$isClicked ? "#1b1a1f" : "#C4F261")};
+
+  width: 0.3125rem;
+  height: 0.3125rem;
   border-radius: 50%;
 `;
 

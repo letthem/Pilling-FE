@@ -159,7 +159,7 @@ const Gobutton = styled.button`
   color: #fff;
   text-align: center;
   font-family: "SUIT-SemiBold";
-  font-size: 18px;
+  font-size: 1.125rem;
   line-height: 100%;
   .link {
     color: white;

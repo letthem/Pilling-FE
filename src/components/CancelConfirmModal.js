@@ -26,6 +26,7 @@ const ModalBackground = styled.div`
   background: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
+  z-index: 1000;
 `;
 
 const ModalContainer = styled.div`

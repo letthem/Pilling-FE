@@ -1,17 +1,20 @@
 import styled from "styled-components";
 
 export const ProfileImg = styled.div`
-  width: 6.5rem;
-  height: 6.5rem;
+  width: 6.25rem;
+  height: 6.25rem;
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 2rem auto 0;
+  border-radius: 50%;
+  overflow: hidden;
 
   img {
     width: 100%;
-    height: 100%;
-    overflow: hidden;
+    object-fit: contain;
+    object-position: center;
+    border-radius: inherit;
   }
 `;
 
@@ -66,11 +69,39 @@ export const EditBtn = styled.div`
   }
 
   span {
-    color: #adadad;
     font-family: "SUIT-Regular";
-    font-size: 0.75rem;
+    font-size: 0.875rem;
     line-height: 1.2;
-    color: ${({ disabled }) => (disabled ? "#adadad" : "#adadad")};
+    color: ${({ disabled }) => (disabled ? "#adadad" : "black")};
     cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
   }
+`;
+
+export const SettingWrapper = styled.div`
+  width: 100%;
+  height: 100vh;
+  position: relative;
+`;
+
+export const BottomWrapper = styled.div`
+  width: 100%;
+  position: absolute;
+  bottom: 0.875rem;
+  display: flex;
+  justify-content: space-evenly;
+`;
+
+export const BottomBox = styled.span`
+  color: #adadad;
+  font-family: "SUIT-Medium";
+  font-size: 0.75rem;
+  line-height: 1;
+  text-decoration-line: underline;
+  cursor: pointer;
+`;
+
+export const BottomLine = styled.span`
+  color: #adadad;
+  font-size: 0.75rem;
+  width: 0.0625rem;
 `;

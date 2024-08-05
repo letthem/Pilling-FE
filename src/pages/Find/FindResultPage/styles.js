@@ -69,6 +69,7 @@ export const ItemName = styled.div`
   font-family: "SUIT-Medium";
   font-size: 1.5rem;
   text-align: left;
+  line-height: 1.3;
 `;
 
 export const ItemEat = styled.div`
@@ -205,7 +206,7 @@ export const WhoCant = styled.div`
   height: auto;
   border-radius: 1.25rem;
   background: #f7f6f9;
-  margin-bottom: 1.5625rem;
+  margin-bottom: 5rem;
 `;
 
 export const WhoCantTitle = styled.div`

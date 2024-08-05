@@ -3,18 +3,21 @@ import styled from "styled-components";
 // ProfileTop
 
 export const ProfileImg = styled.div`
-  width: 5.75rem;
-  height: 5.75rem;
-  margin-top: 4.875rem;
-  margin-left: 1.5rem;
+  width: 6.25rem;
+  height: 6.25rem;
+  margin-top: 4.5rem;
+  margin-left: 1.875rem;
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 50%;
+  overflow: hidden;
 
   img {
     width: 100%;
-    height: 100%;
-    overflow: hidden;
+    object-fit: contain;
+    object-position: center;
+    border-radius: inherit;
   }
 `;
 
@@ -78,13 +81,17 @@ export const ProfileContents = styled.div`
 export const NextPageWrapper = styled.div`
   width: calc(100% - 3rem);
   height: 4.5rem;
-  margin: 1.3125rem 1.5rem 1rem;
+  margin: 1.3125rem 1.5rem 0;
   background-color: white;
   border-radius: 1.25rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
+
+  & + & {
+    margin-top: 1rem;
+  }
 
   .leftPart {
     display: flex;

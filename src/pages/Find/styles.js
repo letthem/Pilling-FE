@@ -119,7 +119,7 @@ export const Symptom = styled.p`
 `;
 
 export const FindBody = styled.div`
-  margin: 0 1.5rem;
+  margin: 0 1.5rem 5rem;
 
   .searchResultNum {
     color: #1b1a1f;

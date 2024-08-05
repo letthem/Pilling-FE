@@ -1,20 +1,35 @@
+import React, { useEffect, useState } from "react";
 import { PLFrame } from "../../../components/PLFrame";
 import TopBar from "../../../components/TobBar";
 import RecordItem from "./RecordItem";
 import { RecordWrapper } from "./styles";
-
-const records = [
-  {
-    pillName: "위스콘 더블액션 현탁액",
-    tags: ["속쓰림", "감기"],
-  },
-  {
-    pillName: "타이레놀",
-    tags: ["두통", "발열"],
-  },
-];
+import { axiosInstance } from "../../../api/api";
 
 const Record = () => {
+  const [records, setRecords] = useState([]);
+
+  useEffect(() => {
+    const fetchRecords = async () => {
+      try {
+        const response = await axiosInstance.get("/schedules", {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+          },
+        });
+        const data = response.data;
+        const formattedRecords = data.map((record) => ({
+          pillName: record.medicine_name,
+          tags: record.tags.map((tag) => tag.content),
+        }));
+        setRecords(formattedRecords);
+      } catch (error) {
+        console.error("Error fetching records:", error);
+      }
+    };
+
+    fetchRecords();
+  }, []);
+
   return (
     <PLFrame>
       <TopBar topBarName={"나의 복용기록"} />

@@ -4,33 +4,55 @@ import pill from "../../../assets/Profile/pillItem.svg";
 import trash from "../../../assets/Profile/trash.svg";
 import arrowRightGray from "../../../assets/Profile/arrow-right-gray.svg";
 import CancelConfirmModal from "../../../components/CancelConfirmModal";
+import { axiosInstance } from "../../../api/api";
+import { useNavigate } from "react-router";
 
-const PillItem = ({ pillName, bgColor, onDelete }) => {
+const PillItem = ({ pillName, bgColor, onDelete, id }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const nav = useNavigate();
 
   const handleDeleteClick = () => {
     setIsModalOpen(true);
   };
 
-  const handleConfirmDelete = () => {
-    onDelete(pillName);
-    setIsModalOpen(false);
+  const handleConfirmDelete = async () => {
+    try {
+      await axiosInstance.delete(`/scraps/${id}/delete`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+        },
+      });
+      onDelete(id);
+    } catch (error) {
+      console.error("Error deleting pill:", error);
+    } finally {
+      setIsModalOpen(false);
+    }
   };
 
   const handleCancelDelete = () => {
     setIsModalOpen(false);
   };
 
+  const handleDetailClick = () => {
+    nav(`/home/find/${pillName}`);
+  };
+
+  const truncateName = (name) => {
+    if (!name) return "";
+    return name.length > 15 ? `${name.substring(0, 15)}...` : name;
+  };
+
   return (
     <>
       <PillItemWrapper>
-        <PillImg bgColor={bgColor}>
+        <PillImg $bgColor={bgColor}>
           <img src={pill} alt="pill" />
         </PillImg>
         <PillBox>
           <PillInfo>
-            <PillName>{pillName}</PillName>
-            <DetailBtn>
+            <PillName>{truncateName(pillName)}</PillName>
+            <DetailBtn onClick={handleDetailClick}>
               <span>약 정보</span>
               <img src={arrowRightGray} alt="arrowRightGray" />
             </DetailBtn>
@@ -64,7 +86,7 @@ const PillItemWrapper = styled.div`
 const PillImg = styled.div`
   width: 2.5rem;
   height: 2.5rem;
-  background-color: ${(props) => props.bgColor || "#c4f261"};
+  background-color: ${(props) => props.$bgColor || "#c4f261"};
   border-radius: 50%;
   display: flex;
   justify-content: center;

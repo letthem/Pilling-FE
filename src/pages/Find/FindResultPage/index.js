@@ -118,7 +118,7 @@ const FindResultPage = () => {
     fetchItemDetail();
   }, [itemName]);
 
-  return (
+  return ( 
     <PLFrame>
       <FindResultWrapper>
         <ResultHeader>
