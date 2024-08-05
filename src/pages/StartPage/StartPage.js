@@ -40,7 +40,10 @@ const StartPage = () => {
 export default StartPage;
 
 const StartWrapper = styled.div`
-  height: 100%;
+  min-height: 667px;
+  height: 100%;;
+  display: flex;
+  flex-direction: column;
 `;
 
 
@@ -53,10 +56,17 @@ const PhoneImg = styled.img`
   /* top: 4.375rem; */
   /* bottom: 0.9375rem; */
   /* left: 4.6875rem; */
-  scale: 120%;
-  bottom: -30%;
-  left: 70%;
-  transform: translate(-50%, -50%);`;
+  scale: 130%;
+  bottom: -5px;
+  left: 20%;
+  /* transform: translate(-50%, -50%); */
+
+  @media (min-width: 760px){
+    left: 35%;
+  }
+
+
+  `;
 
   const Intro = styled.div`
     display: flex;
@@ -69,12 +79,22 @@ const PhoneImg = styled.img`
   
 const IntroBox = styled.div`
   z-index: 5;
+  position: fixed;
+  /* top: 4.375rem; */
+  /* height: 3rem;
+  width: 100%; */
+  bottom: 500px;
   display: flex;
   text-align: center;
   line-height: 120%;
   font-size: 1rem;
+
+
+  
   @media (max-width: 24.375rem){
     font-size: 0.8125rem;
+    bottom: 440px;
+
   }
 
   span {
@@ -83,9 +103,9 @@ const IntroBox = styled.div`
 `;
 
 const FirstBox = styled.div`
-  width: calc(100%-4rem);
+  width: calc(100%-64px);
   min-width: 14.375rem;
-  margin: 0 1.375rem 0 2.625rem;
+  margin: 0 22px 0 42px;
   padding: 0.9375rem 1.5rem;
   /* padding: 0.969rem 1.5rem; */
   border-radius: 3.75rem;
@@ -100,7 +120,7 @@ const SecondBox = styled.div`
   position: absolute;
   width: calc(100%-4rem);
   margin: 0 1.375rem 0 2.625rem;
-  top: 6.25rem;
+  top: 130px;
   padding: 0.969rem 1.5rem;
   border-radius: 3.75rem;
   background: radial-gradient(
@@ -113,7 +133,7 @@ const SecondBox = styled.div`
 
 const ThirdBox = styled.div`
   position: absolute;
-  top: 12.188rem;
+  top: 230px;
   left: 3.125rem;
   padding: 0.969rem 1.5rem;
   border-radius: 3.75rem;
