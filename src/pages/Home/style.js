@@ -5,6 +5,7 @@ export const HomeWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+  min-height: 41.6875rem;
   position: relative;
 `;
 
@@ -15,7 +16,7 @@ export const Wrapper = styled.div`
 export const LogoSection = styled.div`
   font-family: "SUIT-SemiBold";
   font-size: 1.25rem;
-  margin-top: 0.9375rem;
+  /* margin-top: 12px; */
   display: grid;
   grid-template-columns: 1fr auto;
   gap: 6.375rem;
