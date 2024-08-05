@@ -49,5 +49,5 @@ export const Intro = styled.div`
 export const Image = styled.img`
   position: absolute;
   right: 0.5938rem;
-  top: 0px;
+  top: 0rem;
 `;
