@@ -1,10 +1,30 @@
+import { useEffect, useState } from "react";
 import styled from "styled-components";
+import { axiosInstance } from "../../api/api";
 
-const Hello = ({ nickname }) => {
+const Hello = () => {
+  const [helloMyNmae, setHelloMyName] = useState("");
+
+  const getMyName = async () => {
+    try {
+      const res = await axiosInstance.get("/users/me", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+        },
+      });
+      setHelloMyName(res.data.nickname);
+    } catch (e) {
+      console.log(e.message);
+    }
+  };
+
+  useEffect(() => {
+    getMyName();
+  }, [helloMyNmae]);
   return (
     <HelloDiv>
       <p>
-        <span className="highlight">{nickname}</span>
+        <span className="highlight">{helloMyNmae}</span>
         <span>님</span>
       </p>
       <p>필링에 오신걸 환영해요!</p>
@@ -23,11 +43,12 @@ const HelloDiv = styled.div`
   font-family: "SUIT-Bold";
   font-size: 1.5rem;
   line-height: 2.125rem;
-  margin: 6.625rem 0 2.5rem;
+  margin: 3.6875rem 0 2.5rem;
 
   p {
     position: relative;
     z-index: 1;
+    margin-bottom: 0.313rem;
   }
   .highlight {
     position: relative;
@@ -40,7 +61,7 @@ const HelloDiv = styled.div`
       bottom: 0;
       width: 100%;
       height: 0.8em;
-      background: #d4f120;
+      background: #c4f261;
       z-index: -1;
     }
   }

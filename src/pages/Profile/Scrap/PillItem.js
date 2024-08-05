@@ -38,6 +38,11 @@ const PillItem = ({ pillName, bgColor, onDelete, id }) => {
     nav(`/home/find/${pillName}`);
   };
 
+  const truncateName = (name) => {
+    if (!name) return "";
+    return name.length > 15 ? `${name.substring(0, 15)}...` : name;
+  };
+
   return (
     <>
       <PillItemWrapper>
@@ -46,7 +51,7 @@ const PillItem = ({ pillName, bgColor, onDelete, id }) => {
         </PillImg>
         <PillBox>
           <PillInfo>
-            <PillName>{pillName}</PillName>
+            <PillName>{truncateName(pillName)}</PillName>
             <DetailBtn onClick={handleDetailClick}>
               <span>약 정보</span>
               <img src={arrowRightGray} alt="arrowRightGray" />

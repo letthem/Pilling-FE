@@ -1,31 +1,26 @@
-import styled from "styled-components"
-
-
-
+import styled from "styled-components";
 
 export const ItemList = styled.div`
-display: flex;
-flex-wrap: wrap;
-gap: 1.125rem;
-
-`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9.375rem, 1fr));
+  gap: 1.125rem;
+`;
 
 export const Item = styled.div`
-  flex: 1 1 calc(50% - 1.125rem); /* 두 개의 아이템이 한 줄에 배치되도록 설정합니다 */
-  box-sizing: border-box; /* 패딩과 보더를 포함하여 너비 계산 */
-  cursor: pointer; /* 클릭 가능성을 표시합니다 */
+  flex: 1 1 calc(50% - 1.125rem);
+  box-sizing: border-box;
+  cursor: pointer;
   display: flex;
   flex-direction: column;
+  justify-content: center;
 
-  
-
-  div{
-    width: 100%; /* 아이템 너비에 맞게 설정 */
-    padding-top: 100%; /* 비율을 유지하며 높이를 너비의 100%로 설정하여 정사각형으로 만듭니다 */
+  div {
+    width: 100%;
+    padding-top: 100%; /* 비율을 유지하며 높이를 너비의 100%로 설정하여 정사각형으로 만듦 */
     position: relative;
-    overflow: hidden; /* 컨테이너를 넘어가는 이미지 부분을 숨깁니다 */ 
-}
-  
+    overflow: hidden;
+  }
+
   img {
     z-index: 1;
     position: absolute;
@@ -34,29 +29,47 @@ export const Item = styled.div`
     width: 100%;
     height: 100%;
     border-radius: 1rem;
-    object-fit: cover; /* 이미지를 컨테이너에 맞게 자르고 비율을 유지하며 조정합니다 */
+    object-fit: cover;
   }
 
- 
-`
+  .inside {
+    position: absolute;
+    top: 30%;
+    left: 30%;
+    width: 38%;
+    height: 38%;
+  }
+`;
 export const ItemTitle = styled.p`
-    color: black;
-    text-align: center;
-    border-radius: 1rem;
-    background: #C4F261;
-    padding: 0.625rem 0.875rem;
-    margin-top: 0.25rem;
-    
-`
-
+  color: black;
+  text-align: center;
+  border-radius: 1rem;
+  background: #c4f261;
+  padding: 0.625rem 0.875rem;
+  margin-top: 0.5rem;
+  font-family: "SUIT-Medium";
+  font-size: 0.8125rem;
+  line-height: 1.2;
+`;
 
 export const DetailContent = styled.p`
-    position: absolute;
-    z-index: 10;
-    top: 1.25rem;
-    left: 1.25rem;
-  p{
-    margin-top: 1.25rem;
+  position: absolute;
+  z-index: 10;
+  top: 1.25rem;
+  left: 1.25rem;
+
+  p {
+    margin-bottom: 0.75rem;
+    line-height: 1.5;
+    font-family: "SUIT-Medium";
+    margin-right: 1.25rem;
+    font-size: 0.875rem;
   }
- 
-`
+`;
+
+export const ImgContainer = styled.div`
+  width: 100%;
+  padding-top: 100%; /* 비율을 유지하며 높이를 너비의 100%로 설정하여 정사각형으로 만듦 */
+  position: relative;
+  overflow: hidden;
+`;

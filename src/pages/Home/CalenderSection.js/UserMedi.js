@@ -1,41 +1,38 @@
-import React from 'react';
-import styled from 'styled-components';
-import checkImg from '../../../assets/Home/checkImg.svg';
-import nocheckImg from '../../../assets/Home/nocheckbox.svg';
+import React from "react";
+import styled from "styled-components";
+import checkImg from "../../../assets/Home/checkImg.svg";
+import nocheckImg from "../../../assets/Home/nocheckbox.svg";
 
 const UserMediWrapper = styled.li`
-  padding: 0 1.265rem;
+  padding: 0 1.265rem 0 0;
   height: 2.25rem;
-  border-radius: 0.75rem;
-  background-color: ${props => (props.$isChecked ? '#C4F261' : '#F7F6F9')};
+  border-radius: 0.875rem;
+  background-color: ${(props) => (props.$isChecked ? "#C4F261" : "#F7F6F9")};
   display: flex;
   justify-content: center;
   align-items: center;
   margin-right: 0.5rem;
 
-  span {
+  h6 {
     font-size: 0.75rem;
-    margin-top: 0.131rem;
   }
 
   img {
-    width: 14%;
-    max-width: 0.75rem;
-    margin-right: 0.5rem;
-  }
-
-  @media (min-width: 31.25rem) {
-    padding: 0;
-    width: 24.375rem;
-    margin: 0 1.25rem 0.625rem;
+    margin-left: 0.625rem;
+    margin-right: 0.625rem;
+    width: 1rem;
+    height: 1rem;
   }
 `;
 
 const UserMedi = ({ isChecked, children, ...rest }) => {
   return (
     <UserMediWrapper $isChecked={isChecked} {...rest}>
-      <img src={isChecked ? checkImg : nocheckImg} alt={isChecked ? "Checked" : "Unchecked"} />
-      <span>{children}</span>
+      <img
+        src={isChecked ? checkImg : nocheckImg}
+        alt={isChecked ? "Checked" : "Unchecked"}
+      />
+      <h6 className="pillSmName">{children}</h6>
     </UserMediWrapper>
   );
 };

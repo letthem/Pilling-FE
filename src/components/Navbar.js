@@ -8,28 +8,32 @@ import Profile from "../assets/Nav/Profile.svg";
 const Navbar = () => {
   const location = useLocation();
   const isProfilePage = location.pathname === "/profile";
+  const removeData = () => {
+    localStorage.setItem("searchValue", "");
+    localStorage.removeItem("medicines");
+  };
 
   return (
     <NavContainer>
       <Container isProfilePage={isProfilePage}>
         <MeunItem>
           <StyledNavLink to="/home">
-            <Icon src={HomeLogo} />
+            <Icon src={HomeLogo} onClick={removeData} />
           </StyledNavLink>
         </MeunItem>
         <MeunItem>
           <StyledNavLink to="/map">
-            <Icon src={MapLogo} />
+            <Icon src={MapLogo} onClick={removeData} />
           </StyledNavLink>
         </MeunItem>
         <MeunItem>
           <StyledNavLink to="/calendar">
-            <Icon src={CalLogo} />
+            <Icon src={CalLogo} onClick={removeData} />
           </StyledNavLink>
         </MeunItem>
         <MeunItem>
           <StyledNavLink to="/profile">
-            <Icon src={Profile} />
+            <Icon src={Profile} onClick={removeData} />
           </StyledNavLink>
         </MeunItem>
       </Container>
@@ -45,7 +49,7 @@ const NavContainer = styled.div`
   width: 100%;
   align-items: center;
   box-sizing: border-box; /* Include padding in the total width calculation */
-  z-index: 1;
+  z-index: 100;
 `;
 
 const Container = styled.ul`

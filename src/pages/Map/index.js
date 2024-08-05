@@ -1,17 +1,84 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { PLFrame } from "../../components/PLFrame";
 import Navbar from "../../components/Navbar";
 import nowPlaceImg from "../../assets/Map/NowPlace.svg";
 import Locations from "./Locations";
-import pillImg from "../../assets/Map/pill.svg";
-
-// 맵에서 정보 받아올때 로딩 처리 꼭해주기 -> 로딩 페이지를 만들어서 페이지 로딩 표시해주자 ( 조금 오래걸림 )
+import { axiosInstance } from "../../api/api";
+import pmMarker from "../../assets/Map/pmMarker1.svg";
+import locationImg from "../../assets/Map/location.svg";
+import phonecall from "../../assets/Map/phonecall.svg";
+import positionNow from "../../assets/Map/positionwhere.svg";
+import deleteBtn from "../../assets/Map/deleteB.svg";
 
 const Map = () => {
   const { kakao } = window;
   const location = Locations();
   const container = useRef(null);
+  const [info, setInfo] = useState({});
+  const [selectedMarker, setSelectedMarker] = useState(null);
+  const [markerPosition, setMarkerPosition] = useState({});
+  const [bakcMarkerImg, setBackMarkerImg] = useState(null);
+  const [mapLevel, setMapLevel] = useState(3);
+
+  // 정보를 받아오는 함수
+  const fetchPlacesInfo = async (position, map) => {
+    const ps = new kakao.maps.services.Places();
+
+    const psCallback = async function (result, status) {
+      if (status === kakao.maps.services.Status.OK) {
+        let bounds = new kakao.maps.LatLngBounds();
+
+        for (let i = 0; i < result.length; i++) {
+          const place = result[i];
+          const phoneCallNumberByKakao = place.phone;
+
+          try {
+            const res = await axiosInstance.post(
+              `/pharm`,
+              {
+                lat: parseFloat(place.y),
+                lon: parseFloat(place.x),
+              },
+              {
+                headers: {
+                  Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+                },
+              }
+            );
+
+            const timePm = res.data.timeFri;
+            const formatMinutes = (minutes) =>
+              minutes === "00" ? "00" : minutes;
+            const openhours = timePm.slice(0, 2);
+            const openminutes = timePm.slice(2, 4);
+            const closehours = timePm.slice(5, 7);
+            const closeminutes = timePm.slice(7, 9);
+            const timeRun = `${parseInt(openhours, 10)}:${formatMinutes(openminutes)} ~ ${parseInt(closehours, 10)}:${formatMinutes(closeminutes)}`;
+
+            const PmInfoByDB = {
+              name: res.data.name,
+              time: timeRun,
+              addr: res.data.addr,
+              distance: place.distance,
+              phone: phoneCallNumberByKakao,
+            };
+
+            // Display the marker with business hours
+            displayMarker(place, timeRun, PmInfoByDB, map, i);
+          } catch (error) {
+            if (error.response && error.response.status === 400) {
+              displayMarker(place, " - ", map);
+            } else {
+              console.error("서버 요청 실패:", error.message);
+            }
+          }
+        }
+      }
+    };
+
+    ps.categorySearch("PM9", psCallback, { location: position });
+  };
 
   const initMap = () => {
     if (location) {
@@ -20,56 +87,15 @@ const Map = () => {
         location.longitude
       );
       const options = {
-        center: position, //지도 중심좌표
-        level: 4, // 지도의 확대 레벨
-      };
-      const map = new kakao.maps.Map(container.current, options); //지도 생성 및 객체 리턴
-
-      const ps = new kakao.maps.services.Places();
-
-      const psCallback = function (result, status) {
-        if (status === kakao.maps.services.Status.OK) {
-          console.log(result);
-
-          let bounds = new kakao.maps.LatLngBounds();
-
-          for (let i = 0; i < result.length; i++) {
-            displayMarker(result[i]);
-            bounds.extend(new kakao.maps.LatLng(result[i].y, result[i].x));
-            console.log(result[i].y, result[i].x); // 여기서 나중에 약국 위도 경도 넘겨주는 걸ㅗ
-          }
-
-          map.setBounds(bounds);
-        }
+        center: position,
+        level: 4,
       };
 
-      function displayMarker(place) {
-        const pillImgSrc = pillImg;
-        const pillImgSize = new kakao.maps.Size(30, 30);
-        const pillImgOption = { offset: new kakao.maps.Point(40, 40) };
+      const map = new kakao.maps.Map(container.current, options);
 
-        const pillMarkerImg = new kakao.maps.MarkerImage(
-          pillImgSrc,
-          pillImgSize,
-          pillImgOption
-        );
-
-        let PmMarker = new kakao.maps.Marker({
-          map: map,
-          position: new kakao.maps.LatLng(place.y, place.x),
-          image: pillMarkerImg,
-        });
-      }
-
-      // 약국 코드 검색
-      ps.categorySearch("PM9", psCallback, {
-        location: position,
-      });
-
-      //마커 커스텀
       const imageSrc = nowPlaceImg;
-      const imageSize = new kakao.maps.Size(64, 69);
-      const imageOption = { offset: new kakao.maps.Point(40, 40) }; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+      const imageSize = new kakao.maps.Size(30, 69);
+      const imageOption = { offset: new kakao.maps.Point(32, 69) };
 
       const markerImage = new kakao.maps.MarkerImage(
         imageSrc,
@@ -79,20 +105,52 @@ const Map = () => {
       const marker = new kakao.maps.Marker({
         position,
         image: markerImage,
+        clickable: true,
       });
-      const content = `
-                <div>
-                <span></span>
-                </div>`;
 
-      new kakao.maps.CustomOverlay({
-        map,
-        position,
-        content,
-      });
       marker.setMap(map);
+
+      fetchPlacesInfo(position, map);
     }
   };
+
+  // 마커를 화면에 표시하고 클릭 이벤트를 설정하는 함수
+  function displayMarker(place, time, PmInfo, map, index) {
+    const pillImgSrc = pmMarker;
+    const pillImgSize = new kakao.maps.Size(30, 30);
+    const pillImgOption = { offset: new kakao.maps.Point(15, 30) };
+
+    const pillMarkerImg = new kakao.maps.MarkerImage(
+      pillImgSrc,
+      pillImgSize,
+      pillImgOption
+    );
+    const PmPosition = new kakao.maps.LatLng(place.y, place.x);
+    setBackMarkerImg(pillMarkerImg);
+
+    const PmMarker = new kakao.maps.Marker({
+      map: map,
+      position: PmPosition,
+      image: pillMarkerImg,
+      id: index,
+      clickable: true,
+    });
+
+    const newsize = new kakao.maps.Size(30, 40);
+    const newMarkerImg = new kakao.maps.MarkerImage(
+      locationImg,
+      newsize,
+      pillImgOption
+    );
+
+    kakao.maps.event.addListener(PmMarker, "click", function () {
+      const setPosition = PmMarker.getPosition();
+      PmMarker.setImage(newMarkerImg);
+      setMarkerPosition(PmPosition);
+      setInfo(PmInfo);
+      setSelectedMarker(PmMarker);
+    });
+  }
 
   useEffect(() => {
     if (kakao) {
@@ -100,59 +158,196 @@ const Map = () => {
     } else {
       console.error("Kakao Maps API 로드 실패");
     }
+
+    return () => {
+      if (selectedMarker) {
+        selectedMarker.setImage(null);
+      }
+    };
   }, [location]);
 
+  // Delete button handler
+  const deleteInfo = () => {
+    setInfo({});
+    if (selectedMarker) {
+      setSelectedMarker(null);
+    }
+  };
+
+  useEffect(() => {
+    return () => {
+      if (selectedMarker && bakcMarkerImg) {
+        selectedMarker.setImage(bakcMarkerImg);
+      }
+    };
+  }, [selectedMarker]);
+
   return (
-    <MapWrapper>
-      <MapHeader>약국지도</MapHeader>
-      <KakaoMap id="map" ref={container}>
+    <PLFrame>
+      <MapWrapper>
+        <MapHeader>약국지도</MapHeader>
+        <KakaoMap id="map" ref={container}></KakaoMap>
         <NavBarWrapper>
+          {info.name && (
+            <>
+              <NowDistance>
+                <p>
+                  현위치에서 <span>{info.distance}m</span>
+                </p>
+              </NowDistance>
+              <PmInfotmation>
+                <Delete src={deleteBtn} onClick={deleteInfo} />
+                <PmName>{info.name}</PmName>
+                <PmTime>
+                  <p>
+                    영업시간<span>{info.time}</span>
+                  </p>
+                </PmTime>
+                <PmNumberBox>
+                  <img src={phonecall} alt="전화 아이콘" />
+                  <PmNumber>{info.phone}</PmNumber>
+                </PmNumberBox>
+                <PmPositionShowBox>
+                  <img src={positionNow} alt="위치 아이콘" />
+                  <PmPositionShow>{info.addr}</PmPositionShow>
+                </PmPositionShowBox>
+              </PmInfotmation>
+            </>
+          )}
           <Navbar />
         </NavBarWrapper>
-      </KakaoMap>
-    </MapWrapper>
+      </MapWrapper>
+    </PLFrame>
   );
 };
+
 export default Map;
 
+const Delete = styled.img`
+  cursor: pointer;
+  position: absolute;
+  top: 1.9375rem;
+  right: 1.5625rem;
+  color: #adadad;
+`;
+
+const NowDistance = styled.div`
+  position: fixed;
+  top: 4.3125rem;
+  color: #fff;
+  width: 9.375rem;
+  height: 2.625rem;
+  flex-shrink: 0;
+  border-radius: 1.875rem;
+  background: #2b2a2f;
+  box-shadow: 0rem 0rem 0.25rem 0rem #d1d3d9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  p {
+    color: #fff;
+    font-family: "SUIT-SemiBold";
+    font-size: 0.875rem;
+    line-height: 1.3;
+  }
+
+  span {
+    font-family: "SUIT-ExtraBold";
+    margin-left: 0.1875rem;
+  }
+`;
+
+const PmInfotmation = styled.div`
+  z-index: 50;
+  width: calc(100% - 2.75rem);
+  margin: 0 1.375rem;
+  height: 12.5625rem;
+  position: absolute;
+  bottom: 60px;
+  border-radius: 1.875rem;
+  background: #fff;
+  box-shadow: 0rem 0rem 0.25rem 0rem #d1d3d9;
+`;
+
+const PmName = styled.div`
+  color: #1b1a1f;
+  font-family: "SUIT-Medium";
+  font-size: 1.375rem;
+  line-height: 1;
+  margin: 1.625rem 0 0.9375rem 1.75rem;
+`;
+
+const PmNumberBox = styled.div`
+  margin: 1rem 0 0 1.9375rem;
+  display: flex;
+  align-items: center;
+`;
+
+const PmNumber = styled.div`
+  color: #1b1a1f;
+  font-family: "SUIT-Medium";
+  font-size: 0.8125rem;
+  line-height: 130%;
+  margin-left: 1.0625rem;
+`;
+
+const PmPositionShowBox = styled.div`
+  margin: 0.9375rem 2.3125rem 0 1.9206rem;
+  display: flex;
+  align-items: center;
+  height: 1.875rem;
+`;
+
+const PmPositionShow = styled.div`
+  color: #1b1a1f;
+  font-family: "SUIT-Regular";
+  font-size: 0.8125rem;
+  line-height: 140%;
+  margin-left: 1.0625rem;
+`;
+
+const PmTime = styled.div`
+  width: 9.8125rem;
+  height: 2rem;
+  flex-shrink: 0;
+  border-radius: 2.5rem;
+  background: #2b2a2f;
+  margin-left: 1.5rem;
+  color: #fff;
+  font-family: "SUIT-SemiBold";
+  font-size: 0.75rem;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  span {
+    margin-left: 0.5rem;
+  }
+`;
+
 const MapWrapper = styled.div`
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   margin: 0;
   position: relative;
-
-  @media (min-width: 36rem) {
-    width: 100vw;
-  }
-
-  @media (min-width: 48rem) {
-    width: 100vw;
-  }
-
-  @media (min-width: 62rem) {
-    width: 100vw;
-  }
-
-  @media (min-width: 75rem) {
-    width: 100vw;
-  }
 `;
 
 const MapHeader = styled.div`
-  font-family: "SUIT-Semibold";
+  font-family: "SUIT-SemiBold";
   color: #1b1a1f;
   font-size: 1.0625rem;
-  height: 2.9375rem;
+  height: 3.5625rem;
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 
 const KakaoMap = styled.div`
-  height: calc(100vh - 2.9375rem - 3.125rem);
+  height: calc(100vh - 3.5625rem);
   width: 100%;
   position: relative;
 `;
@@ -162,8 +357,7 @@ const NavBarWrapper = styled.div`
   bottom: 0.875rem;
   left: 0;
   right: 0;
-  z-index: 1000;
+  z-index: 50;
   display: flex;
   justify-content: center;
-  padding: 0 1.25rem;
 `;

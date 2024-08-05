@@ -42,7 +42,7 @@ const Join = () => {
       );
 
       setUserNickname(name);
-      
+      console.log("로그인 성공");
       navigate("start", {
         state: { nickname: name },
       });
@@ -92,17 +92,26 @@ const Join = () => {
 
 export default Join;
 
+  const Formtag = styled.form`
+    position: relative;
+    min-height: 41.5rem;
+    margin: 0 1.5rem;
+  `;
+
 const JoinBox = styled.div`
   position: absolute;
   width: 100%;
-  top: 8rem;
+  top: 5.063rem;
   p {
     color: #1b1a1f;
     font-family: "SUIT-Bold";
     font-size: 1.5rem;
     font-style: normal;
     line-height: normal;
+    margin-bottom: 0.313rem;
   }
+
+
 `;
 
 const JoinInput = styled.input`
@@ -115,7 +124,10 @@ const JoinInput = styled.input`
   box-sizing: border-box;
   outline: 0.063rem solid ${(props) => (props.warn ? "#ff3434" : "#adadad")};
   text-align: left;
-
+  font-family: 'SUIT-Medium';
+  font-size: 0.938rem;
+  line-height: 100%; 
+  color: ${(props) => (props.warn ? "#ff3434" : "#1B1A1F")};
   &:focus {
     outline: 0.063rem solid ${(props) => (props.warn ? "#ff3434" : "#C4F261")};
   }
@@ -123,7 +135,7 @@ const JoinInput = styled.input`
 
 const JoinCheckBox = styled.button`
   position: absolute;
-  bottom: 9.188rem;
+  bottom: 0.875rem;
   width: 100%;
   height: 3.75rem;
   color: ${(props) => (props.valid ? "white" : "rgba(27, 26, 31, 0.2)")};
@@ -132,20 +144,23 @@ const JoinCheckBox = styled.button`
   border: none;
   border-radius: 1.25rem;
   cursor: ${(props) => (props.valid ? "pointer" : "not-allowed")};
+  font-family: "SUIT-Medium";
+  font-size: 1.125rem;
+  line-height: 100%;
 `;
 
 const MessageWrapper = styled.div`
   height: 4.375rem;
-  margin-top: 0.9375rem;
+  margin-top: 0.938rem;
 
   .instruction,
   .warning {
-    color: #adadad;
     font-family: "SUIT-Medium";
     font-size: 0.875rem;
     font-style: normal;
     line-height: 140%;
     letter-spacing: -0.009rem;
+    padding: 0 1.25rem;
   }
 
   .warning {
@@ -154,8 +169,3 @@ const MessageWrapper = styled.div`
   }
 `;
 
-const Formtag = styled.form`
-  position: relative;
-  height: 52.75rem;
-  margin: 0 1.5rem;
-`;

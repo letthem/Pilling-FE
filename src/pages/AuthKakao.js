@@ -7,12 +7,12 @@ import mediImg from "../assets/Home/medicineRight.svg";
 import { useRecoilState } from "recoil";
 import { nicknameState, userInfoState } from "../recoil/atoms/atom";
 import { axiosInstance } from "../api/api";
+import greenOne from "../assets/login/greenIcon.svg";
 
 const AuthKakao = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [userInfo, setUserInfo] = useRecoilState(nicknameState);
-
 
   const [accessTokenFetching, setAccessTokenFetching] = useState(false);
   const code = new URLSearchParams(location.search).get("code");
@@ -25,8 +25,6 @@ const AuthKakao = () => {
   const kakoLogin = async () => {
     if (accessTokenFetching) return; // Return early if fetching
 
-    console.log("getAccessToken 호출");
-
     try {
       setAccessTokenFetching(true);
 
@@ -38,28 +36,22 @@ const AuthKakao = () => {
         },
         {
           headers,
-        })
+        }
+      );
       const accessToken = res.data.access_token;
-      console.log("accessToken:", accessToken);
 
-      localStorage.setItem('access_token', accessToken);
+      localStorage.setItem("access_token", accessToken);
+      console.log(accessToken);
 
-      navigate("/Join");
+      navigate("/join");
     } catch (e) {
       console.error("Error:", e); // console.error로 오류 메시지 출력
-     console.log("code:", code);
-
     } finally {
-      console.log("code:", code);
       setAccessTokenFetching(false);
-
     }
   };
 
-
-
   useEffect(() => {
-    console.log("")
     if (code) {
       kakoLogin();
     }
@@ -68,9 +60,10 @@ const AuthKakao = () => {
   return (
     <PLFrame>
       <AnimateDiv>
-        <p>PILLING</p>
-        <img src={mediImg} />
-        <span>로그인 중입니다. 잠시만 기다려주세요!</span>
+        <p>필링과 함께 하러 가는 중!</p>
+        <imgBox>
+          <img className="one" src={greenOne} />
+        </imgBox>
       </AnimateDiv>
     </PLFrame>
   );
@@ -78,20 +71,26 @@ const AuthKakao = () => {
 
 export default AuthKakao;
 
-const AnimateDiv = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 2.5rem;
-  font-family: "Super_Plants";
-
-  img {
-    margin: 2.5rem 0;
+const imgBox = styled.div`
+position: relative;
+  img{
   }
+`;
 
-  span {
-    color: black;
-    font-size: 0.625rem;
-    font-family: "SUIT-Bold";
+const AnimateDiv = styled.div`
+  width: 100%;
+  min-height: 40.25rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  color: #000;
+  text-align: center;
+  font-family: "SUIT-SemiBold";
+  font-size: 1rem;
+  line-height: 100%;
+
+  p {
+    text-align: center;
+    margin-bottom: 1.25rem;
   }
 `;
