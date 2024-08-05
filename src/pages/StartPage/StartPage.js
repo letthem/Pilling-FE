@@ -40,7 +40,7 @@ const StartPage = () => {
 export default StartPage;
 
 const StartWrapper = styled.div`
-  min-height: 667px;
+  min-height: 41.6875rem;
   height: 100%;;
   display: flex;
   flex-direction: column;
@@ -57,11 +57,11 @@ const PhoneImg = styled.img`
   /* bottom: 0.9375rem; */
   /* left: 4.6875rem; */
   scale: 130%;
-  bottom: -5px;
+  bottom: -0.3125rem;
   left: 20%;
   /* transform: translate(-50%, -50%); */
 
-  @media (min-width: 760px){
+  @media (min-width: 47.5rem){
     left: 35%;
   }
 
@@ -83,7 +83,7 @@ const IntroBox = styled.div`
   /* top: 4.375rem; */
   /* height: 3rem;
   width: 100%; */
-  bottom: 500px;
+  bottom: 31.25rem;
   display: flex;
   text-align: center;
   line-height: 120%;
@@ -93,7 +93,7 @@ const IntroBox = styled.div`
   
   @media (max-width: 24.375rem){
     font-size: 0.8125rem;
-    bottom: 440px;
+    bottom: 27.5rem;
 
   }
 
@@ -103,9 +103,9 @@ const IntroBox = styled.div`
 `;
 
 const FirstBox = styled.div`
-  width: calc(100%-64px);
+  width: calc(100%-4rem);
   min-width: 14.375rem;
-  margin: 0 22px 0 42px;
+  margin: 0 1.375rem 0 2.625rem;
   padding: 0.9375rem 1.5rem;
   /* padding: 0.969rem 1.5rem; */
   border-radius: 3.75rem;
@@ -120,7 +120,7 @@ const SecondBox = styled.div`
   position: absolute;
   width: calc(100%-4rem);
   margin: 0 1.375rem 0 2.625rem;
-  top: 130px;
+  top: 8.125rem;
   padding: 0.969rem 1.5rem;
   border-radius: 3.75rem;
   background: radial-gradient(
@@ -133,7 +133,7 @@ const SecondBox = styled.div`
 
 const ThirdBox = styled.div`
   position: absolute;
-  top: 230px;
+  top: 14.375rem;
   left: 3.125rem;
   padding: 0.969rem 1.5rem;
   border-radius: 3.75rem;

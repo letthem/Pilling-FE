@@ -69,11 +69,12 @@ export const TagList = styled.div`
 export const TagItem = styled.div`
   padding: 0 0.97rem;
   height: 2.375rem;
-  border: 0.0313rem solid
+  border: 0.05rem solid
     ${({ selected }) => (selected ? "#C4F261" : "#ADADAD")};
   border-radius: 1.25rem;
   background-color: ${({ selected }) => (selected ? "#C4F261" : "white")};
   cursor: pointer;
+  box-sizing: border-box;
 
   display: flex;
   align-items: center;

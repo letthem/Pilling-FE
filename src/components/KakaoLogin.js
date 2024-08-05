@@ -116,8 +116,8 @@ const KakaoBtn = styled.div`
   bottom: 5rem;
 
   img {
-    width: 33px;
-    height: 29px;
+    width: 2.0625rem;
+    height: 1.8125rem;
   }
 
   span {

@@ -275,7 +275,7 @@ const PmInfotmation = styled.div`
   margin: 0 1.375rem;
   height: 12.5625rem;
   position: absolute;
-  bottom: 60px;
+  bottom: 3.75rem;
   border-radius: 1.875rem;
   background: #fff;
   box-shadow: 0rem 0rem 0.25rem 0rem #d1d3d9;
