@@ -35,7 +35,7 @@ export const Title = styled.span`
   justify-content: center;
 
   span {
-    font-family: "SUIT-Semibold";
+    font-family: "SUIT-SemiBold";
     font-size: 1.063rem;
     line-height: 100%;
   }

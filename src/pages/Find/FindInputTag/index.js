@@ -1,46 +1,76 @@
 import { useEffect, useRef, useState } from "react";
 import findhIcon from "../../../assets/Home/search.svg";
 import { FileInputWrapper, FindInputBox, FindForm } from "./styles";
-import deleteImg from '../../../assets/Home/Find/deleteImg.svg'
+import deleteImg from "../../../assets/Home/Find/deleteImg.svg";
+import { axiosInstance } from "../../../api/api";
 
-const FindItem = ({meidicine}) => {
-    return <div>
-        {meidicine}
-    </div>
-}
+const FindInputTag = ({ value, setValue, setMedicines }) => {
+  const handleDelete = () => {
+    setValue("");
+    setMedicines([]);
+  };
 
-const FindInputTag = ({value, setValue}) => {
+  const handleChange = (e) => {
+    setValue(e.target.value);
+  };
 
-
-    const meidicines = ['어린이용타이레놀', '타이레놀 정', '어린이타이레놀산']
-    const handleSubmit = (e) => {
-        e.preventdefault();
-        // api 요청 
-        //약 배열 get
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const itemName = value.trim();
+    if (!itemName) return;
+    setValue(itemName);
+    localStorage.setItem("searchValue", itemName);
+    // api 요청
+    //약 배열 get
+    const yourToken = localStorage.getItem("access_token");
+    if (yourToken) {
+      try {
+        const res = await axiosInstance.get(`/search?itemName=${itemName}`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+          },
+        });
+        setMedicines(res.data);
+        localStorage.setItem(
+          "medicines",
+          JSON.stringify(res.data)
+        )
+      } catch (e) {
+        console.log(e.message);
+      }
     }
+  };
 
-
-    const handleDelete = () => {
-        setValue('');
+  useEffect(() => {
+    const storedValue = localStorage.getItem("searchValue");
+    const medicines = localStorage.getItem("medicines");
+    if (storedValue) {
+      setValue(storedValue);
     }
+  }, []);
 
-    const handleChange = (e) => {
-        setValue(e.target.value)
-    }
-
-   
-
-    return(
-        <FileInputWrapper>
-            <FindForm onSubmit={handleSubmit}>
-                <FindInputBox value={value} onChange={handleChange} type="text"placeholder="궁금한 약 이름을 검색하세요"/>
-                <img className="search" src={findhIcon} alt="돋보기" />
-                {value && <img src={deleteImg} alt="delete" className="delete" onClick={handleDelete}/>} 
-            </FindForm>
-        </FileInputWrapper>
-        
-    )
-}
+  return (
+    <FileInputWrapper>
+      <FindForm onSubmit={handleSubmit}>
+        <FindInputBox
+          value={value}
+          onChange={handleChange}
+          type="text"
+          placeholder="궁금한 약 이름을 검색하세요"
+        />
+        <img className="search" src={findhIcon} alt="돋보기" />
+        {value && (
+          <img
+            src={deleteImg}
+            alt="delete"
+            className="delete"
+            onClick={handleDelete}
+          />
+        )}
+      </FindForm>
+    </FileInputWrapper>
+  );
+};
 export default FindInputTag;
 
 /*
