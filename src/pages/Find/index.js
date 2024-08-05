@@ -6,6 +6,8 @@ import {
   FindBody,
   FindBySymptom,
   FindHeader,
+  FindInputLoading,
+  FindInputLoadingBox,
   FindWrapper,
   Symptom,
   SymptomList,
@@ -17,8 +19,9 @@ import arrowRightIcon from "../../assets/Home/Find/arrowRight.svg";
 import FindInputTag from "./FindInputTag";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom"; // 수정된 부분
-import FindItemName from "./FindItemName";
 import { axiosInstance } from "../../api/api";
+import loadingImg from "../../assets/login/greenIcon.svg";
+import FindItemName from "./FindItemName";
 
 const Find = () => {
   const symptomItems = [
@@ -64,10 +67,10 @@ const Find = () => {
 		setValue(storedValue);
 		}
 		*/
-	const storedMedicines = localStorage.getItem("medicines");
-	if (storedMedicines) {
-		setMedicines(JSON.parse(storedMedicines));
-		}
+    const storedMedicines = localStorage.getItem("medicines");
+    if (storedMedicines) {
+      setMedicines(JSON.parse(storedMedicines));
+    }
   }, [value]);
 
   // 약검색 api 요청 -> input submit 되었을 때
@@ -83,10 +86,7 @@ const Find = () => {
       });
       setMedicines(res.data);
       console.log(res.data);
-      localStorage.setItem(
-        "medicines",
-        JSON.stringify(res.data)
-      ); 
+      localStorage.setItem("medicines", JSON.stringify(res.data));
     } catch (e) {
       console.log(e.message);
     }
@@ -102,8 +102,8 @@ const Find = () => {
     <PLFrame>
       <FindWrapper>
         <FindHeader>
-          <ArrowDiv>
-            <ArrowIcon src={arrowIcon} alt="arrow" onClick={clickForHome} />
+          <ArrowDiv onClick={clickForHome}>
+            <ArrowIcon src={arrowIcon} alt="arrow" />
           </ArrowDiv>
           <FindInputTag
             value={value}
@@ -114,7 +114,7 @@ const Find = () => {
         {!value ? (
           <FindBySymptom>
             <SymptomTitle>증상 별 약 검색하기</SymptomTitle>
-            <SymptomList>            
+            <SymptomList>
               <Symptoms>
                 {symptomItems.map((item) => (
                   <Symptom key={item} onClick={() => clickFind(item)}>
@@ -126,15 +126,18 @@ const Find = () => {
               </Symptoms>
             </SymptomList>
           </FindBySymptom>
+        ) : medicines.length > 0 ? (
+          <FindBody>
+            <p className="searchResultNum">
+              검색결과 <span>{medicines.length}</span>
+            </p>
+            <FindItemName medicines={medicines} />
+          </FindBody>
         ) : (
-          medicines.length > 0 && (
-            <FindBody>
-              <p className="searchResultNum">
-                검색결과 <span>{medicines.length}</span>
-              </p>
-              <FindItemName medicines={medicines} />
-            </FindBody>
-          )
+          <FindInputLoadingBox>
+            <FindInputLoading>검색 정보를 불러오고 있어요!</FindInputLoading>
+            <img src={loadingImg} />
+          </FindInputLoadingBox>
         )}
       </FindWrapper>
       <Navbar />

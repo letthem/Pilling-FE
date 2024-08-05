@@ -9,6 +9,7 @@ export const FindHeader = styled.div`
   display: flex;
   align-items: center;
   position: relative;
+  width: calc(100%-48px);
   margin: 1.438rem 1.5rem 2.063rem;
   height: 3rem;
 `;
@@ -135,4 +136,20 @@ export const FindBody = styled.div`
     font-family: "GS-SemiBold";
     font-size: 1.0625rem;
   }
+`;
+
+export const FindInputLoadingBox = styled.div`
+  min-height: 40.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #000;
+  font-family: "SUIT-SemiBold";
+  font-size: 1rem;
+  line-height: 1.2;
+`;
+
+export const FindInputLoading = styled.div`
+  margin-bottom: 1.375rem;
 `;
