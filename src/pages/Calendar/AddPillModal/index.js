@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { axiosInstance } from "../../../api/api";
 import {
   ModalBackground,
   ModalContainer,
@@ -10,8 +11,9 @@ import {
 import search from "./../../../assets/Calendar/search.svg";
 import TagModal from "./TagModal";
 import CancelConfirmModal from "../../../components/CancelConfirmModal";
+import WarningModal from "./WarningModal";
 
-const AddPillModal = ({ onClose, onSave }) => {
+const AddPillModal = ({ onClose, onSave, clickedDate }) => { 
   const [inputValue, setInputValue] = useState("");
   const [results, setResults] = useState([]);
   const [selectedPill, setSelectedPill] = useState(null);
@@ -20,7 +22,7 @@ const AddPillModal = ({ onClose, onSave }) => {
     return savedTags ? JSON.parse(savedTags) : [];
   });
   const [isCancelConfirmOpen, setIsCancelConfirmOpen] = useState(false);
-
+  const [isNoneModalOpen, setIsNoneModalOpen] = useState(false);
   const inputRef = useRef(null);
 
   useEffect(() => {
@@ -44,20 +46,22 @@ const AddPillModal = ({ onClose, onSave }) => {
     }
   };
 
-  const handleSearch = () => {
-    const pills = [
-      "어린이용타이레놀정80mg",
-      "타이레놀정160mg",
-      "타이레놀8시간이알서방정",
-      "어린이타이레놀현탁액",
-      "어린이타이레놀산160mg",
-      "타이레놀정500mg",
-      "타이레놀정굳굳",
-      "애드빌",
-      "부루펜",
-      "타이레놀이브",
-    ];
-    setResults(pills.filter((pill) => pill.includes(inputValue)));
+  const handleSearch = async () => {
+    try {
+      const response = await axiosInstance.get(`/register`, {
+        params: { itemName: encodeURIComponent(inputValue) },
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+        },
+      });
+      if (response.data.length === 0) {
+        setIsNoneModalOpen(true); // 검색 결과 없을 때 모달 열기
+      } else {
+        setResults(response.data);
+      }
+    } catch (error) {
+      console.error("Error fetching search results:", error);
+    }
   };
 
   const handleKeyPress = (e) => {
@@ -75,16 +79,37 @@ const AddPillModal = ({ onClose, onSave }) => {
     onClose();
   };
 
+  const handlePostPillName = async (result) => {
+    try {
+      const response = await axiosInstance.post(
+        `/medicines`,
+        { name: result.itemName },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+          },
+        }
+      );
+
+      if (response.status === 201) {
+        setSelectedPill(result);
+      }
+    } catch (error) {
+      console.error("Error posting pill name:", error);
+    }
+  };
+
   return (
     <ModalBackground onClick={handleBackgroundClick}>
       {selectedPill ? (
         <TagModal
-          selectedPill={selectedPill}
+          selectedPill={selectedPill.itemName}
           onSave={handleSave}
           onClose={onClose}
           onBack={handleBack}
           customTags={customTags}
           setCustomTags={setCustomTags}
+          clickedDate={clickedDate}
         />
       ) : (
         <ModalContainer>
@@ -102,8 +127,11 @@ const AddPillModal = ({ onClose, onSave }) => {
             </SearchBox>
             <ResultList>
               {results.map((result, index) => (
-                <ResultItem key={index} onClick={() => setSelectedPill(result)}>
-                  {result}
+                <ResultItem
+                  key={index}
+                  onClick={() => handlePostPillName(result)}
+                >
+                  {result.itemName}
                 </ResultItem>
               ))}
             </ResultList>
@@ -118,6 +146,12 @@ const AddPillModal = ({ onClose, onSave }) => {
             onCancel={() => setIsCancelConfirmOpen(false)}
           />
         </ModalContainer>
+      )}
+      {isNoneModalOpen && (
+        <WarningModal
+          message="검색 결과가 존재하지 않습니다"
+          onClose={() => setIsNoneModalOpen(false)}
+        />
       )}
     </ModalBackground>
   );

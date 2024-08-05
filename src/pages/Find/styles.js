@@ -82,21 +82,21 @@ export const SymptomList = styled.div`
 export const Symptoms = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between; 
+  justify-content: space-between;
   margin: 0 2.25rem;
 
-  @media (max-width: 25rem){
-      gap: 1.75rem 1.875rem;
+  @media (max-width: 25rem) {
+    gap: 1.75rem 1.875rem;
   }
 
-  @media (min-width: 25rem){
+  @media (min-width: 25rem) {
     gap: 1.75rem 3.5rem;
   }
 `;
 
 export const Symptom = styled.p`
   min-width: 4.25rem;
-  box-sizing: border-box; 
+  box-sizing: border-box;
   display: flex;
   justify-content: space-between;
   color: #5f5f5f;
@@ -108,7 +108,7 @@ export const Symptom = styled.p`
     width: 1rem;
   }
 
-  @media (max-width: 25rem){
+  @media (max-width: 25rem) {
     width: calc((100% - 3.75rem) / 3); /* Adjust for the gap and padding */
   }
 
@@ -118,7 +118,7 @@ export const Symptom = styled.p`
 `;
 
 export const FindBody = styled.div`
-  margin: 0 1.5rem;
+  margin: 0 1.5rem 5rem;
 
   .searchResultNum {
     color: #1b1a1f;

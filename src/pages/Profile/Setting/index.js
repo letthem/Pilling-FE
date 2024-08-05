@@ -1,23 +1,55 @@
 import React, { useEffect, useRef, useState } from "react";
 import { PLFrame } from "../../../components/PLFrame";
 import TopBar from "../../../components/TobBar";
-import profile from "../../../assets/Profile/profileImg.svg";
+import defaultProfile from "../../../assets/Profile/profileImg.svg"; // 기본 프로필 이미지
 import pencil from "../../../assets/Profile/pencil.svg";
 import {
+  BottomBox,
+  BottomLine,
+  BottomWrapper,
   EditBtn,
   InputContainer,
   NickNameInput,
   NickNameWrapper,
   ProfileImg,
+  SettingWrapper,
 } from "./styles";
 import { useRecoilState } from "recoil";
 import { nicknameState } from "../../../recoil/atoms/atom";
+import { useNavigate } from "react-router";
+import CancelConfirmModal from "../../../components/CancelConfirmModal";
+import { axiosInstance } from "../../../api/api";
 
 const Setting = () => {
   const [userNickname, setUserNickname] = useRecoilState(nicknameState);
-  const [inputValue, setInputValue] = useState(userNickname);
+  const [inputValue, setInputValue] = useState("");
   const [isEditing, setIsEditing] = useState(false);
+  const [isLogoutConfirmOpen, setIsLogoutConfirmOpen] = useState(false);
+  const [profileImage, setProfileImage] = useState(defaultProfile); // 프로필 이미지 상태
   const inputRef = useRef(null);
+  const nav = useNavigate();
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const response = await axiosInstance.get("/users/me", {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+          },
+        });
+        const { nickname, picture } = response.data;
+        setUserNickname(nickname);
+        setInputValue(nickname);
+        if (picture) {
+          setProfileImage(picture);
+        }
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    };
+
+    fetchUserData();
+  }, [setUserNickname]);
 
   const handleInputChange = (e) => {
     const value = e.target.value;
@@ -33,10 +65,23 @@ const Setting = () => {
     setIsEditing(!isEditing);
   };
 
-  const handleConfirmClick = () => {
+  const handleConfirmClick = async () => {
     if (inputValue.trim() !== "") {
-      setUserNickname(inputValue);
-      setIsEditing(false);
+      try {
+        await axiosInstance.patch(
+          "/users",
+          { nickname: inputValue },
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+            },
+          }
+        );
+        setUserNickname(inputValue);
+        setIsEditing(false);
+      } catch (error) {
+        console.error("Error updating nickname:", error);
+      }
     }
   };
 
@@ -52,31 +97,63 @@ const Setting = () => {
     }
   }, [isEditing]);
 
+  const handleLogout = () => {
+    localStorage.removeItem("access_token"); // 로컬 스토리지에서 액세스 토큰 제거
+    nav("/"); // 로그인 페이지로 리다이렉트
+  };
+
+  const handleLogoutClick = () => {
+    setIsLogoutConfirmOpen(true);
+  };
+
+  const handleLogoutConfirm = () => {
+    setIsLogoutConfirmOpen(false);
+    handleLogout();
+  };
+
+  const handleLogoutCancel = () => {
+    setIsLogoutConfirmOpen(false);
+  };
+
   return (
     <PLFrame>
-      <TopBar topBarName={"나의 프로필"} />
-      <ProfileImg>
-        <img src={profile} alt="profileImg" />
-      </ProfileImg>
-      <NickNameWrapper>
-        <InputContainer>
-          <NickNameInput
-            ref={inputRef}
-            value={inputValue}
-            placeholder="닉네임을 입력하세요"
-            onChange={handleInputChange}
-            readOnly={!isEditing}
-            onKeyDown={handleKeyPress}
+      <SettingWrapper>
+        <TopBar topBarName={"나의 프로필"} />
+        <ProfileImg>
+          <img src={profileImage} alt="profileImg" />
+        </ProfileImg>
+        <NickNameWrapper>
+          <InputContainer>
+            <NickNameInput
+              ref={inputRef}
+              value={inputValue}
+              placeholder="닉네임을 입력하세요"
+              onChange={handleInputChange}
+              readOnly={!isEditing}
+              onKeyDown={handleKeyPress}
+            />
+            <EditBtn disabled={inputValue.trim() === ""}>
+              {isEditing ? (
+                <span onClick={handleConfirmClick}>확인</span>
+              ) : (
+                <img onClick={handleEditClick} src={pencil} alt="pencil" />
+              )}
+            </EditBtn>
+          </InputContainer>
+        </NickNameWrapper>
+        <BottomWrapper>
+          <BottomBox>탈퇴</BottomBox>
+          <BottomLine>|</BottomLine>
+          <BottomBox onClick={handleLogoutClick}>로그아웃</BottomBox>
+        </BottomWrapper>
+        {isLogoutConfirmOpen && (
+          <CancelConfirmModal
+            message={"정말 로그아웃 하시겠습니까?"}
+            onConfirm={handleLogoutConfirm}
+            onCancel={handleLogoutCancel}
           />
-          <EditBtn disabled={inputValue.trim() === ""}>
-            {isEditing ? (
-              <span onClick={handleConfirmClick}>확인</span>
-            ) : (
-              <img onClick={handleEditClick} src={pencil} alt="pencil" />
-            )}
-          </EditBtn>
-        </InputContainer>
-      </NickNameWrapper>
+        )}
+      </SettingWrapper>
     </PLFrame>
   );
 };

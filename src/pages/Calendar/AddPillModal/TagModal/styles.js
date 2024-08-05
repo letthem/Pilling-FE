@@ -67,16 +67,22 @@ export const TagList = styled.div`
 `;
 
 export const TagItem = styled.div`
-  padding: 0 0.75rem;
+  padding: 0 0.97rem;
   height: 2.375rem;
   border: 0.0313rem solid
     ${({ selected }) => (selected ? "#C4F261" : "#ADADAD")};
   border-radius: 1.25rem;
   background-color: ${({ selected }) => (selected ? "#C4F261" : "white")};
   cursor: pointer;
+  
   &:hover {
     background-color: ${({ selected }) => (selected ? "#C4F261" : "#f0f0f0")};
   }
+
+  &:not(:hover) {
+    background-color: ${({ selected }) => (selected ? "#C4F261" : "white")};
+  }
+
   display: flex;
   align-items: center;
 

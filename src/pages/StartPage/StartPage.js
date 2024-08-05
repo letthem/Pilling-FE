@@ -69,10 +69,6 @@ const PhoneImg = styled.img`
   
 const IntroBox = styled.div`
   z-index: 5;
-  /* position: fixed; */
-  /* top: 4.375rem; */
-  /* height: 3rem;
-  width: 100%; */
   display: flex;
   text-align: center;
   line-height: 120%;
@@ -143,7 +139,7 @@ const Gobutton = styled.button`
   color: #fff;
   text-align: center;
   font-family: "SUIT-SemiBold";
-  font-size: 18px;
+  font-size: 1.125rem;
   line-height: 100%;
   .link {
     color: white;

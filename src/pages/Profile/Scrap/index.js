@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { PLFrame } from "../../../components/PLFrame";
 import {
   Btn,
@@ -15,43 +15,79 @@ import { useNavigate } from "react-router";
 import Basic from "./Basic";
 import Negative from "./Negative";
 import Positive from "./Positive";
+import { axiosInstance } from "../../../api/api";
 
 const Scrap = () => {
   const nav = useNavigate();
   const [activeTab, setActiveTab] = useState("기본");
+  const [basicPills, setBasicPills] = useState([]);
+  const [negativePills, setNegativePills] = useState([]);
+  const [positivePills, setPositivePills] = useState([]);
 
-  const [basicPills, setBasicPills] = useState([
-    { name: "위스콘 더블액션 현탁액" },
-    { name: "타이레놀" },
-    { name: "애드빌" },
-  ]);
-  const [negativePills, setNegativePills] = useState([
-    { name: "네거티브약1" },
-    { name: "네거티브약2" },
-  ]);
-  const [positivePills, setPositivePills] = useState([
-    { name: "포지티브약1" },
-    { name: "포지티브약2" },
-  ]);
+  const fetchData = async (category, setState) => {
+    try {
+      const response = await axiosInstance.get(`/scraps?category=${category}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+        },
+      });
+      setState(
+        response.data.map((item) => ({
+          id: item.id,
+          name: item.medicine_name,
+          image: item.medicine_image,
+        }))
+      );
+    } catch (error) {
+      console.error(`Error fetching ${category} data:`, error);
+    }
+  };
 
-  const handleDeletePill = (tab, pillName) => {
+  useEffect(() => {
+    fetchData("F", setBasicPills);
+    fetchData("B", setNegativePills);
+    fetchData("G", setPositivePills);
+  }, []);
+
+  const handleDeletePill = (tab, pillId) => {
     if (tab === "기본") {
-      setBasicPills((prevPills) => prevPills.filter((pill) => pill.name !== pillName));
+      setBasicPills((prevPills) =>
+        prevPills.filter((pill) => pill.id !== pillId)
+      );
     } else if (tab === "부작용 있는") {
-      setNegativePills((prevPills) => prevPills.filter((pill) => pill.name !== pillName));
+      setNegativePills((prevPills) =>
+        prevPills.filter((pill) => pill.id !== pillId)
+      );
     } else if (tab === "효과 좋은") {
-      setPositivePills((prevPills) => prevPills.filter((pill) => pill.name !== pillName));
+      setPositivePills((prevPills) =>
+        prevPills.filter((pill) => pill.id !== pillId)
+      );
     }
   };
 
   const renderContent = () => {
     switch (activeTab) {
       case "기본":
-        return <Basic pills={basicPills} onDelete={(pillName) => handleDeletePill("기본", pillName)} />;
+        return (
+          <Basic
+            pills={basicPills}
+            onDelete={(pillId) => handleDeletePill("기본", pillId)}
+          />
+        );
       case "부작용 있는":
-        return <Negative pills={negativePills} onDelete={(pillName) => handleDeletePill("부작용 있는", pillName)} />;
+        return (
+          <Negative
+            pills={negativePills}
+            onDelete={(pillId) => handleDeletePill("부작용 있는", pillId)}
+          />
+        );
       case "효과 좋은":
-        return <Positive pills={positivePills} onDelete={(pillName) => handleDeletePill("효과 좋은", pillName)} />;
+        return (
+          <Positive
+            pills={positivePills}
+            onDelete={(pillId) => handleDeletePill("효과 좋은", pillId)}
+          />
+        );
       default:
         return null;
     }
@@ -71,19 +107,19 @@ const Scrap = () => {
         </TopBarWrapper>
         <TapBarWrapper>
           <TabItem
-            isActive={activeTab === "기본"}
+            $isActive={activeTab === "기본"}
             onClick={() => setActiveTab("기본")}
           >
             기본
           </TabItem>
           <TabItem
-            isActive={activeTab === "부작용 있는"}
+            $isActive={activeTab === "부작용 있는"}
             onClick={() => setActiveTab("부작용 있는")}
           >
             부작용 있는
           </TabItem>
           <TabItem
-            isActive={activeTab === "효과 좋은"}
+            $isActive={activeTab === "효과 좋은"}
             onClick={() => setActiveTab("효과 좋은")}
           >
             효과 좋은
