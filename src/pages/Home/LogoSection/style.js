@@ -4,12 +4,12 @@ export const LogoImg = styled.img`
   font-family: "Super_Plants";
   font-size: 3.75rem;
   text-align: left;
-  margin: 2.625rem 8.75rem 0 2.1875rem;
+  margin: 1.375rem 8.75rem 0 2.1875rem;
 `;
 export const LogoSectionWrapper = styled.div`
   font-family: "SUIT-SemiBold";
   font-size: 1.25rem;
-  margin: 1.6875rem 0 3.125rem;
+  margin: 1.125rem 0 3.125rem;
   display: grid;
   grid-template-columns: 1fr auto;
   gap: 6.375rem;
@@ -49,5 +49,5 @@ export const Intro = styled.div`
 export const Image = styled.img`
   position: absolute;
   right: 0.5938rem;
-  top: 0.3125rem;
+  top: 0px;
 `;

@@ -148,6 +148,12 @@ export const FindInputLoadingBox = styled.div`
   font-family: "SUIT-SemiBold";
   font-size: 1rem;
   line-height: 1.2;
+  
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
 `;
 
 export const FindInputLoading = styled.div`
