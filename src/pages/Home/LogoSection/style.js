@@ -1,51 +1,53 @@
 import styled from "styled-components";
 
-export const Logo = styled.div`
+export const LogoImg = styled.img`
   font-family: "Super_Plants";
   font-size: 3.75rem;
   text-align: left;
-  margin: 42px 140px 0 35px;
+  margin: 2.625rem 8.75rem 0 2.1875rem;
 `;
 export const LogoSectionWrapper = styled.div`
-  font-family: "SUIT-Semibold";
-  font-size: 20px;
-  margin: 15px 0 50px;
+  font-family: "SUIT-SemiBold";
+  font-size: 1.25rem;
+  margin: 1.6875rem 0 3.125rem;
   display: grid;
-  grid-template-columns: 1fr auto; 
-  gap: 102px; 
+  grid-template-columns: 1fr auto;
+  gap: 6.375rem;
   align-items: center;
-  line-height: 2rem;
+  line-height: 1.2;
   position: relative;
+
+  p {
+    margin-bottom: 0.3125rem;
+  }
 
   .nickname {
     font-family: "SUIT-Bold";
     position: relative;
     display: inline-block;
-    padding: 0 3px 0.8em 3px; 
-    background: #fff; 
+    background: #fff;
     z-index: 2;
-    
 
     &::after {
       content: "";
       position: absolute;
-      top: 15px;
-      left: 0px;
+      top: 0.875rem;
+      left: 0rem;
       width: 100%;
-      height: 0.8em;
-      background: #C4F261;
-      z-index: -1; 
+      height: 0.75rem;
+      background: #c4f261;
+      z-index: -1;
     }
   }
 `;
 
 export const Intro = styled.div`
   width: auto;
-  margin-left: 39px;
+  margin-left: 2.4375rem;
 `;
 
 export const Image = styled.img`
   position: absolute;
-  right: 9.55px;
-  top: 7.5px;
+  right: 0.5938rem;
+  top: 0.3125rem;
 `;

@@ -111,7 +111,7 @@ export const Day = styled.div`
       props.$isClicked
         ? "GS-Regular"
         : props.$isToday
-          ? "GS-Semibold"
+          ? "GS-SemiBold"
           : "GS-Regular"};
     font-size: 0.688rem;
     line-height: 0.963rem;
