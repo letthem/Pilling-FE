@@ -53,17 +53,17 @@ const Container = styled.ul`
   justify-content: space-around;
   align-items: center;
   list-style: none;
-  max-width: 442px;
-  min-width: 325px;
-  width: calc(100% - 70px);
-  height: 48px;
-  border-radius: 40px;
+  max-width: 27.625rem;
+  min-width: 20.3125rem;
+  width: calc(100% - 4.375rem);
+  height: 3rem;
+  border-radius: 2.5rem;
   background: ${({ isProfilePage }) => (isProfilePage ? "#ffffff" : "#f7f6f9")};
-  box-shadow: 0px 0px 4px 0px rgba(115, 123, 152, 0.25);
+  box-shadow: 0rem 0rem 0.25rem 0rem rgba(115, 123, 152, 0.25);
   position: fixed;
-  bottom: 14px;
-  margin: 0 24px;
-  padding: 0 11px;
+  bottom: 0.875rem;
+  margin: 0 1.5rem;
+  padding: 0 0.6875rem;
 `;
 
 const MeunItem = styled.li`
@@ -77,9 +77,9 @@ const StyledNavLink = styled(NavLink)`
   color: #000;
   display: flex;
   justify-content: center;
-  width: 60px;
-  height: 32px;
-  border-radius: 20px;
+  width: 3.75rem;
+  height: 2rem;
+  border-radius: 1.25rem;
 
   &.active {
     background-color: #c4f260;
@@ -87,6 +87,6 @@ const StyledNavLink = styled(NavLink)`
 `;
 
 const Icon = styled.img`
-  width: 20px;
+  width: 1.25rem;
   height: auto;
 `;

@@ -136,7 +136,7 @@ const JoinCheckBox = styled.button`
 
 const MessageWrapper = styled.div`
   height: 4.375rem;
-  margin-top: 15px;
+  margin-top: 0.9375rem;
 
   .instruction,
   .warning {

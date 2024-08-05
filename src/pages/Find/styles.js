@@ -9,14 +9,14 @@ export const FindHeader = styled.div`
   display: flex;
   align-items: center;
   position: relative;
-  margin: 23px 24px 33px;
+  margin: 1.4375rem 1.5rem 2.0625rem;
 
   `
 export const ArrowIcon = styled.img`
     background-color: #F7F6F9;
-    border-radius: 500px;
-    margin-right: 9px;
-    padding: 16px;
+    border-radius: 31.25rem;
+    margin-right: 0.5625rem;
+    padding: 1rem;
 `
 
 export const FindBtn = styled.input`
@@ -24,23 +24,23 @@ export const FindBtn = styled.input`
   display: flex;
   align-items: center;
   width: 90%;
-  height: 52px;
-  border-radius: 30px;
-  border: 1px solid #fff;
+  height: 3.25rem;
+  border-radius: 1.875rem;
+  border: 0.0625rem solid #fff;
   background: #F7F6F9;
   text-align: left;
-  font-size: 14px;
+  font-size: 0.875rem;
   font-weight: 400;
   font-family: "SUIT-Regular";
   color: #ADADAD;
-  padding-left: 20px;
+  padding-left: 1.25rem;
   box-shadow:
-    inset 0 4.2px 5px -6px #adadad,
-    inset -5px 0 5px -8px #adadad,
-    inset 5px 0 5px -8px #adadad;
+    inset 0 0.2625rem 0.3125rem -0.375rem #adadad,
+    inset -0.3125rem 0 0.3125rem -0.5rem #adadad,
+    inset 0.3125rem 0 0.3125rem -0.5rem #adadad;
 
     img {
-    margin-right: 12px;
+    margin-right: 0.75rem;
   }
   
 
@@ -49,25 +49,25 @@ export const FindBtn = styled.input`
 
 
 export const FindBySymptom = styled.div`
-margin: 0 36px;
+margin: 0 2.25rem;
 `
 export const SymptomTitle = styled.div`
     color: #1B1A1F;
     font-family: 'SUIT-Semibold';
-    font-size: 16px;
-    margin-bottom: 32.5px;
+    font-size: 1rem;
+    margin-bottom: 2.0313rem;
 `
 
 export const Symptoms = styled.div`
     display: flex;
     flex-wrap: wrap;
-    gap: 56px; /* 항목 간 간격 */
+    gap: 3.5rem; /* 항목 간 간격 */
 `
 
 export const Symptom = styled.span`
   display: flex;
   justify-content: space-between;
-  width: calc((100% - 2 * 56px) / 3); /* 3개씩 나열하기 위한 너비 계산 */
+  width: calc((100% - 2 * 3.5rem) / 3); /* 3개씩 나열하기 위한 너비 계산 */
   color: #5F5F5F;
   box-sizing: border-box; /* 패딩과 보더를 포함한 너비 계산 */
   text-align: center; /* 가운데 정렬 */
@@ -75,22 +75,22 @@ export const Symptom = styled.span`
 `
 
 export const FindBody = styled.div`
-margin: 0 24px;
+margin: 0 1.5rem;
 
 p{
   color: #1B1A1F;
   font-family: 'SUIT-Regular';
-  font-size: 14px;
-  margin-bottom: 21px;
+  font-size: 0.875rem;
+  margin-bottom: 1.3125rem;
 }
 
 
 
 span{
-  margin-left: 8px;
+  margin-left: 0.5rem;
   color: #C4F261;
   font-family: "GS-Semibold";
-  font-size: 17px;
+  font-size: 1.0625rem;
 }
 `
 

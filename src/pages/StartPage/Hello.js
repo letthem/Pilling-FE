@@ -17,7 +17,7 @@ const HelloDiv = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 68px;
+  height: 4.25rem;
   color: #1b1a1f;
   text-align: center;
   font-family: "SUIT-Bold";

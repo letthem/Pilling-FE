@@ -113,12 +113,12 @@ const Gobutton = styled.button`
     text-decoration: none;
   }
 
-  @media (max-width: 500px) {
+  @media (max-width: 31.25rem) {
     /* 소형 휴대폰 */
     bottom: 18rem;
   }
 
-  @media (min-width: 500px) and (max-width: 1024px) {
+  @media (min-width: 31.25rem) and (max-width: 64rem) {
     margin-top: 3rem;
     bottom: 9.188rem;
   }

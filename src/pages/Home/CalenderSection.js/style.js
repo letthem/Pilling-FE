@@ -25,7 +25,7 @@ export const CalenderBox = styled.div`
   width: 90%;
   height: auto;
   border-radius: 1.875rem;
-  box-shadow: 0px 0px 0.25rem 0px rgba(115, 123, 152, 0.25);
+  box-shadow: 0rem 0rem 0.25rem 0rem rgba(115, 123, 152, 0.25);
   position: relative;
 
   p {

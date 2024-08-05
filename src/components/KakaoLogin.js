@@ -29,8 +29,8 @@ const LoginDiv = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 512px;
-  min-height: 844px;
+  max-width: 32rem;
+  min-height: 52.75rem;
   margin: auto;
   height: auto;
 `;
@@ -40,23 +40,23 @@ const KakaoBtn = styled.div`
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
-  border-radius: 20px;
+  border-radius: 1.25rem;
   background-color: #ffe500;
   width: 100%;
-  height: 60px;
-  margin: 548px 20px 0;
+  height: 3.75rem;
+  margin: 34.25rem 1.25rem 0;
 
   span {
-    margin-left: 5px;
+    margin-left: 0.3125rem;
     font-family: "SUIT-SemiBold";
   }
 `;
 
 const TermsDiv = styled.div`
-  margin-top: 24px;
+  margin-top: 1.5rem;
   p {
     color: #adadad;
-    font-size: 12px;
-    margin-bottom: 13px;
+    font-size: 0.75rem;
+    margin-bottom: 0.8125rem;
   }
 `;

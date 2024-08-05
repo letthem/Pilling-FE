@@ -91,7 +91,7 @@ const AnimateDiv = styled.div`
 
   span {
     color: black;
-    font-size: 10px;
+    font-size: 0.625rem;
     font-family: "SUIT-Bold";
   }
 `;

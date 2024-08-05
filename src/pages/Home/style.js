@@ -10,11 +10,11 @@ export const HomeWrapper = styled.div`
 
 export const LogoSection = styled.div`
   font-family: "SUIT-SemiBold";
-  font-size: 20px;
-  margin-top: 15px;
+  font-size: 1.25rem;
+  margin-top: 0.9375rem;
   display: grid;
   grid-template-columns: 1fr auto; 
-  gap: 102px; 
+  gap: 6.375rem; 
   align-items: center;
   line-height: 2.125rem;
 
@@ -24,12 +24,12 @@ export const LogoSection = styled.div`
 `;
 
 export const Intro = styled.div`
-  width: 150px;
-  margin-left: 39px;
+  width: 9.375rem;
+  margin-left: 2.4375rem;
 `;
 
 export const Image = styled.img`
-  margin-right: 9.55px;
+  margin-right: 0.5969rem;
 `;
 
 export const SearchBarSection = styled.div`
@@ -39,11 +39,11 @@ export const SearchBarSection = styled.div`
   position: relative;
 
   
-    margin-bottom: 58px;
+    margin-bottom: 3.625rem;
   
 
-  @media (min-width: 500px) {
-    margin-bottom: 100px;
+  @media (min-width: 31.25rem) {
+    margin-bottom: 6.25rem;
 
   }
 `;
@@ -53,20 +53,20 @@ export const SearchBtn = styled(Link)`
   display: flex;
   align-items: center;
   width: 90%;
-  height: 64px;
-  border-radius: 30px;
-  border: 1px solid #fff;
+  height: 4rem;
+  border-radius: 1.875rem;
+  border: 0.0625rem solid #fff;
   background: #f7f6f9;
   text-align: left;
-  font-size: 14px;
+  font-size: 0.875rem;
   font-weight: 400;
   font-family: "SUIT-Regular";
   color: #1B1A1F;
-  padding-left: 20px;
+  padding-left: 1.25rem;
   box-shadow:
-    inset 0 4.2px 5px -6px #adadad,
-    inset -5px 0 5px -8px #adadad,
-    inset 5px 0 5px -8px #adadad;
+    inset 0 0.2625rem 0.3125rem -0.375rem #adadad,
+    inset -0.3125rem 0 0.3125rem -0.5rem #adadad,
+    inset 0.3125rem 0 0.3125rem -0.5rem #adadad;
 
     text-decoration: none;
     
@@ -77,23 +77,23 @@ export const SearchBtn = styled(Link)`
     */
 
   img {
-    margin-right: 12px;
+    margin-right: 0.75rem;
   }
 `;
 
 export const MedicineLeft = styled.img`
   position: absolute;
-  left: 12px;
-  top: 14px;
+  left: 0.75rem;
+  top: 0.875rem;
 `;
 
 /*
-@media (max-width: 500px) {
+@media (max-width: 31.25rem) {
     //소형 휴대폰 
  
   }
 
-  @media (min-width: 500px) and (max-width: 1024px) {
+  @media (min-width: 31.25rem) and (max-width: 64rem) {
 
 }
     */
