@@ -1,12 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-import KakaoImg from "../assets/login/kakao-white.svg";
+import KakaoImg from "../assets/login/kakao-white.png";
 import withPilling from "../assets/login/withPilling.svg";
 import logoImg from "../assets/login/Logo.svg";
 
 const KakaoLogin = () => {
   const Rest_api_key = process.env.REACT_APP_KAKAO_API_KEY; // REST API KEY
-  const redirect_uri = "http://localhost:3000/redirect/auth/kakao"; // Redirect URI 나중에 배포 후 바꿔야 함!!!!!!!!!!!!!!!!!
+  const redirect_uri = process.env.REACT_APP_KAKAO_REDIRECT_URI; // Redirect URI 나중에 배포 후 바꿔야 함!!!!!!!!!!!!!!!!!
   const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${Rest_api_key}&redirect_uri=${redirect_uri}&response_type=code`;
 
   const handleLogin = () => {
@@ -114,6 +114,11 @@ const KakaoBtn = styled.div`
   cursor: pointer;
   position: fixed;
   bottom: 5rem;
+
+  img {
+    width: 33px;
+    height: 29px;
+  }
 
   span {
     text-align: left;
