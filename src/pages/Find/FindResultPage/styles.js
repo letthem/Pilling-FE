@@ -11,7 +11,7 @@ export const ResultHeader = styled.div`
   align-items: center;
   justify-content: space-between;
   position: relative;
-  width: calc(100%-3rem);
+  width: calc(100% - 3rem);
   margin: 1.4375rem 1.5rem 2.0625rem;
   position: relative;
 `;
@@ -267,9 +267,9 @@ export const ScrapItem = styled.div`
 `;
 
 export const SearchLoadingBox = styled.div`
-  width: calc(100% - 3rem);
+  width: calc(100% - 48px);
   min-width: 20.4375rem;
-  margin: 18.8125rem 1.5rem 0;
+  margin-top: 210px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -283,9 +283,7 @@ export const SearchLoadingBox = styled.div`
     margin-top: 1.375rem;
   }
 
-  @media (max-width: 25rem){
-    margin: 13.125rem 1.5rem 0;
-
+  @media (max-width: 400px) {
+    margin: 210px 24px 0;
   }
 `;
-
