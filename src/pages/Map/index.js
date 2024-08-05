@@ -188,13 +188,13 @@ const Map = () => {
     <PLFrame>
       <MapWrapper>
         <MapHeader>약국지도</MapHeader>
+        <KakaoMap id="map" ref={container}></KakaoMap>
         {isLoading ? (
           <>
-            <LoadingBox>여보세요</LoadingBox>
+            <LoadingBox>여보슈???</LoadingBox>
           </>
         ) : (
           <>
-            <KakaoMap id="map" ref={container}></KakaoMap>
             <NavBarWrapper>
               {info.name && (
                 <>

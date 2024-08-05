@@ -185,12 +185,12 @@ const FindResultPage = () => {
               <WhoCantContent>{itemDetails.seQ}</WhoCantContent>
             </WhoCant>
           </ResultBody>
-         ) :  (
+        ) : (
           <SearchLoadingBox>
             검색 정보를 불러오고 있어요!
             <img src={loadingImg} alt="loading" />
           </SearchLoadingBox>
-        ) }
+        )}
         <Navbar />
       </FindResultWrapper>
     </PLFrame>
