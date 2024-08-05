@@ -56,7 +56,7 @@ const IntroSection = styled.div`
   font-family: "SUIT-Medium";
   font-size: 1.125rem;
   line-height: 1.5rem;
-  z-index: 10;
+  z-index: 100;
   position: relative;
 `;
 

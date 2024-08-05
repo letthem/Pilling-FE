@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import { axiosInstance } from "../../api/api";
 import { PLFrame } from "../../components/PLFrame";
@@ -9,9 +9,23 @@ import { nicknameState } from "../../recoil/atoms/atom";
 const Join = () => {
   const [name, setName] = useState("");
   const [warn, setWarn] = useState("");
+  const [isKeyboardOpen, setIsKeyboardOpen] = useState(false);
   const setUserNickname = useSetRecoilState(nicknameState);
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerHeight > window.visualViewport.height) {
+        setIsKeyboardOpen(true);
+      } else {
+        setIsKeyboardOpen(false);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const handleChange = (e) => {
     const nickname = e.target.value;
@@ -36,7 +50,7 @@ const Join = () => {
         { nickname: name },
         {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem('access_token')}`
+            Authorization: `Bearer ${localStorage.getItem("access_token")}`
           }
         }
       );
@@ -82,6 +96,7 @@ const Join = () => {
           type="submit"
           disabled={!isNicknameValid}
           valid={isNicknameValid}
+          isKeyboardOpen={isKeyboardOpen}
         >
           확인
         </JoinCheckBox>
@@ -92,11 +107,11 @@ const Join = () => {
 
 export default Join;
 
-  const Formtag = styled.form`
-    position: relative;
-    min-height: 41.5rem;
-    margin: 0 1.5rem;
-  `;
+const Formtag = styled.form`
+  position: relative;
+  min-height: 41.5rem;
+  margin: 0 1.5rem;
+`;
 
 const JoinBox = styled.div`
   position: absolute;
@@ -110,8 +125,6 @@ const JoinBox = styled.div`
     line-height: normal;
     margin-bottom: 0.313rem;
   }
-
-
 `;
 
 const JoinInput = styled.input`
@@ -135,7 +148,7 @@ const JoinInput = styled.input`
 
 const JoinCheckBox = styled.button`
   position: absolute;
-  bottom: 0.875rem;
+  bottom: ${(props) => (props.isKeyboardOpen ? "10rem" : "0.875rem")};
   width: 100%;
   height: 3.75rem;
   color: ${(props) => (props.valid ? "white" : "rgba(27, 26, 31, 0.2)")};
@@ -147,6 +160,7 @@ const JoinCheckBox = styled.button`
   font-family: "SUIT-Medium";
   font-size: 1.125rem;
   line-height: 100%;
+  transition: bottom 0.3s;
 `;
 
 const MessageWrapper = styled.div`
@@ -168,4 +182,3 @@ const MessageWrapper = styled.div`
     line-height: 120%;
   }
 `;
-
