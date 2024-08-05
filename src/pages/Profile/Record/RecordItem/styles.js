@@ -21,7 +21,7 @@ export const TagList = styled.div`
   margin: 0.625rem 1.125rem 0;
   height: 1.5625rem;
   display: flex;
-  border-radius: 10px;
+  border-radius: 0.625rem;
   overflow-x: scroll;
 
   &::-webkit-scrollbar {
@@ -41,7 +41,7 @@ export const TagItem = styled.div`
   background-color: #c4f261;
   /* width: 3.3125rem; */
   height: 1.5625rem;
-  padding: 0 12px;
+  padding: 0 0.75rem;
   white-space: nowrap;
 
   color: #1b1a1f;

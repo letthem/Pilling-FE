@@ -20,6 +20,7 @@ import { axiosInstance } from "../../api/api";
 const Profile = () => {
   const nav = useNavigate();
   const [userNickname, setUserNickname] = useState("");
+  const [profileImageUrl, setProfileImageUrl] = useState(profile);
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -30,6 +31,7 @@ const Profile = () => {
           },
         });
         setUserNickname(response.data.nickname);
+        setProfileImageUrl(response.data.picture || profile); // 프로필 이미지 URL 설정
       } catch (error) {
         console.error("Error fetching user data:", error);
       }
@@ -41,7 +43,7 @@ const Profile = () => {
   return (
     <PLFrame>
       <ProfileImg>
-        <img src={profile} alt="profileImg" />
+        <img src={profileImageUrl} alt="profileImg" />
       </ProfileImg>
       <ProfileInfo>
         <NickName>

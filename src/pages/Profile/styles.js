@@ -3,18 +3,21 @@ import styled from "styled-components";
 // ProfileTop
 
 export const ProfileImg = styled.div`
-  width: 5.75rem;
-  height: 5.75rem;
-  margin-top: 4.875rem;
-  margin-left: 1.5rem;
+  width: 6.25rem;
+  height: 6.25rem;
+  margin-top: 4.5rem;
+  margin-left: 1.875rem;
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 50%;
+  overflow: hidden;
 
   img {
     width: 100%;
-    height: 100%;
-    overflow: hidden;
+    object-fit: contain;
+    object-position: center;
+    border-radius: inherit;
   }
 `;
 

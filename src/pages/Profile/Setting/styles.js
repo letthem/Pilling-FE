@@ -1,17 +1,20 @@
 import styled from "styled-components";
 
 export const ProfileImg = styled.div`
-  width: 6.5rem;
-  height: 6.5rem;
+  width: 6.25rem;
+  height: 6.25rem;
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 2rem auto 0;
+  border-radius: 50%;
+  overflow: hidden;
 
   img {
     width: 100%;
-    height: 100%;
-    overflow: hidden;
+    object-fit: contain;
+    object-position: center;
+    border-radius: inherit;
   }
 `;
 

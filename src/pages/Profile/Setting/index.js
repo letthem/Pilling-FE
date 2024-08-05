@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { PLFrame } from "../../../components/PLFrame";
 import TopBar from "../../../components/TobBar";
-import profile from "../../../assets/Profile/profileImg.svg";
+import defaultProfile from "../../../assets/Profile/profileImg.svg"; // 기본 프로필 이미지
 import pencil from "../../../assets/Profile/pencil.svg";
 import {
   BottomBox,
@@ -25,26 +25,30 @@ const Setting = () => {
   const [inputValue, setInputValue] = useState("");
   const [isEditing, setIsEditing] = useState(false);
   const [isLogoutConfirmOpen, setIsLogoutConfirmOpen] = useState(false);
+  const [profileImage, setProfileImage] = useState(defaultProfile); // 프로필 이미지 상태
   const inputRef = useRef(null);
   const nav = useNavigate();
 
   useEffect(() => {
-    const fetchNickname = async () => {
+    const fetchUserData = async () => {
       try {
         const response = await axiosInstance.get("/users/me", {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("access_token")}`,
           },
         });
-        const nickname = response.data.nickname;
+        const { nickname, picture } = response.data;
         setUserNickname(nickname);
         setInputValue(nickname);
+        if (picture) {
+          setProfileImage(picture);
+        }
       } catch (error) {
-        console.error("Error fetching nickname:", error);
+        console.error("Error fetching user data:", error);
       }
     };
 
-    fetchNickname();
+    fetchUserData();
   }, [setUserNickname]);
 
   const handleInputChange = (e) => {
@@ -116,7 +120,7 @@ const Setting = () => {
       <SettingWrapper>
         <TopBar topBarName={"나의 프로필"} />
         <ProfileImg>
-          <img src={profile} alt="profileImg" />
+          <img src={profileImage} alt="profileImg" />
         </ProfileImg>
         <NickNameWrapper>
           <InputContainer>

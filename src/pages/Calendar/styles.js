@@ -47,7 +47,7 @@ export const Ment = styled.p`
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  margin-bottom: 100px;
+  margin-bottom: 6.25rem;
 `;
 
 // ItemList

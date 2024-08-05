@@ -122,8 +122,8 @@ export const Day = styled.div`
 
   p {
     position: absolute;
-    left: ${(props) => (props.$allItemsChecked ? "7px" : "8px")};
-    bottom: ${(props) => (props.$allItemsChecked ? "3px" : "4px")};
+    left: ${(props) => (props.$allItemsChecked ? "0.4375rem" : "0.5rem")};
+    bottom: ${(props) => (props.$allItemsChecked ? "0.1875rem" : "0.25rem")};
   }
 `;
 
