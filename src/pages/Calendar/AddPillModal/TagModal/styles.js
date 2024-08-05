@@ -62,14 +62,14 @@ export const TagList = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 0.375rem;
-  margin: 0.75rem 1.875rem 0;
+  margin: 0.75rem 1.875rem 0 2.125rem;
   flex-grow: 1;
 `;
 
 export const TagItem = styled.div`
   padding: 0 0.97rem;
   height: 2.375rem;
-  border: 0.05rem solid
+  border: 0.0313rem solid
     ${({ selected }) => (selected ? "#C4F261" : "#ADADAD")};
   border-radius: 1.25rem;
   background-color: ${({ selected }) => (selected ? "#C4F261" : "white")};

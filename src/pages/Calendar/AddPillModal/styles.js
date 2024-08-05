@@ -144,7 +144,7 @@ export const CloseButton = styled.button`
 
 export const DeleteModalContainer = styled.div`
   position: absolute;
-  top: 17rem;
+  top: 16.75rem;
   background: white;
   display: flex;
   flex-direction: column;
