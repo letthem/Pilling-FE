@@ -62,7 +62,7 @@ export const TagList = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 0.375rem;
-  margin: 0.75rem 1.875rem 0;
+  margin: 0.75rem 1.875rem 0 2.125rem;
   flex-grow: 1;
 `;
 
@@ -74,14 +74,7 @@ export const TagItem = styled.div`
   border-radius: 1.25rem;
   background-color: ${({ selected }) => (selected ? "#C4F261" : "white")};
   cursor: pointer;
-  
-  &:hover {
-    background-color: ${({ selected }) => (selected ? "#C4F261" : "#f0f0f0")};
-  }
-
-  &:not(:hover) {
-    background-color: ${({ selected }) => (selected ? "#C4F261" : "white")};
-  }
+  box-sizing: border-box;
 
   display: flex;
   align-items: center;

@@ -6,7 +6,6 @@ export const WeeklyCalenderWrapper = styled.div`
   align-items: center;
   margin-bottom: 2.25rem;
   width: 100%;
-  height: 100%;
   z-index: 10;
   height: auto;
 `;

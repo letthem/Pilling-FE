@@ -267,9 +267,10 @@ export const ScrapItem = styled.div`
 `;
 
 export const SearchLoadingBox = styled.div`
-  width: calc(100% - 48px);
+  width: calc(100% - 3rem);
   min-width: 20.4375rem;
-  margin-top: 210px;
+  min-height: 56.25rem;
+  margin-top: 13.125rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -283,7 +284,7 @@ export const SearchLoadingBox = styled.div`
     margin-top: 1.375rem;
   }
 
-  @media (max-width: 400px) {
-    margin: 210px 24px 0;
+  @media (max-width: 25rem) {
+    margin: 13.125rem 1.5rem 0;
   }
 `;

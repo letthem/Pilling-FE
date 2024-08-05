@@ -9,7 +9,7 @@ export const FindHeader = styled.div`
   display: flex;
   align-items: center;
   position: relative;
-  width: calc(100%-48px);
+  width: calc(100%-3rem);
   margin: 1.438rem 1.5rem 2.063rem;
   height: 3rem;
 `;

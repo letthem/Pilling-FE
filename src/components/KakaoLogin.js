@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import KakaoImg from "../assets/login/kakao-white.svg";
+import KakaoImg from "../assets/login/kakao-white.png";
 import withPilling from "../assets/login/withPilling.svg";
 import logoImg from "../assets/login/Logo.svg";
 
@@ -56,7 +56,7 @@ const IntroSection = styled.div`
   font-family: "SUIT-Medium";
   font-size: 1.125rem;
   line-height: 1.5rem;
-  z-index: 10;
+  z-index: 100;
   position: relative;
 `;
 
@@ -114,6 +114,11 @@ const KakaoBtn = styled.div`
   cursor: pointer;
   position: fixed;
   bottom: 5rem;
+
+  img {
+    width: 2.0625rem;
+    height: 1.8125rem;
+  }
 
   span {
     text-align: left;
