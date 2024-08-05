@@ -67,27 +67,27 @@ export const TabItem = styled.div`
   flex-grow: 1;
   text-align: center;
   padding: 0 0.75rem;
-  color: ${({ isActive }) => (isActive ? "#1b1a1f" : "#7d7c81")};
+  color: ${({ $isActive }) => ($isActive ? "#1b1a1f" : "#7d7c81")};
 
   & + & {
     margin-left: 0.25rem;
   }
 
   &:nth-child(1) {
-    background-color: ${({ isActive }) => (isActive ? "#c4f261" : "white")};
-    color: ${({ isActive }) => (isActive ? "black" : "#adadad")};
+    background-color: ${({ $isActive }) => ($isActive ? "#c4f261" : "white")};
+    color: ${({ $isActive }) => ($isActive ? "black" : "#adadad")};
     cursor: pointer;
   }
 
   &:nth-child(2) {
-    background-color: ${({ isActive }) => (isActive ? "#d1d3d9" : "white")};
-    color: ${({ isActive }) => (isActive ? "black" : "#adadad")};
+    background-color: ${({ $isActive }) => ($isActive ? "#d1d3d9" : "white")};
+    color: ${({ $isActive }) => ($isActive ? "black" : "#adadad")};
     cursor: pointer;
   }
 
   &:nth-child(3) {
-    background-color: ${({ isActive }) => (isActive ? "#fdcccc" : "white")};
-    color: ${({ isActive }) => (isActive ? "black" : "#adadad")};
+    background-color: ${({ $isActive }) => ($isActive ? "#fdcccc" : "white")};
+    color: ${({ $isActive }) => ($isActive ? "black" : "#adadad")};
     cursor: pointer;
   }
 `;

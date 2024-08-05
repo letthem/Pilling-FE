@@ -15,7 +15,7 @@ const Navbar = () => {
 
   return (
     <NavContainer>
-      <Container isProfilePage={isProfilePage}>
+      <Container $isProfilePage={isProfilePage}>
         <MeunItem>
           <StyledNavLink to="/home">
             <Icon src={HomeLogo} onClick={removeData} />
@@ -62,7 +62,7 @@ const Container = styled.ul`
   width: calc(100% - 4.375rem);
   height: 3rem;
   border-radius: 2.5rem;
-  background: ${({ isProfilePage }) => (isProfilePage ? "#ffffff" : "#f7f6f9")};
+  background: ${({ $isProfilePage }) => ($isProfilePage ? "#ffffff" : "#f7f6f9")};
   box-shadow: 0rem 0rem 0.25rem 0rem rgba(115, 123, 152, 0.25);
   position: fixed;
   bottom: 0.875rem;

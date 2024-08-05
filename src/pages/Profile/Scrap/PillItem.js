@@ -46,7 +46,7 @@ const PillItem = ({ pillName, bgColor, onDelete, id }) => {
   return (
     <>
       <PillItemWrapper>
-        <PillImg bgColor={bgColor}>
+        <PillImg $bgColor={bgColor}>
           <img src={pill} alt="pill" />
         </PillImg>
         <PillBox>
@@ -86,7 +86,7 @@ const PillItemWrapper = styled.div`
 const PillImg = styled.div`
   width: 2.5rem;
   height: 2.5rem;
-  background-color: ${(props) => props.bgColor || "#c4f261"};
+  background-color: ${(props) => props.$bgColor || "#c4f261"};
   border-radius: 50%;
   display: flex;
   justify-content: center;

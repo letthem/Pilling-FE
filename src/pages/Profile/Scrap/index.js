@@ -107,19 +107,19 @@ const Scrap = () => {
         </TopBarWrapper>
         <TapBarWrapper>
           <TabItem
-            isActive={activeTab === "기본"}
+            $isActive={activeTab === "기본"}
             onClick={() => setActiveTab("기본")}
           >
             기본
           </TabItem>
           <TabItem
-            isActive={activeTab === "부작용 있는"}
+            $isActive={activeTab === "부작용 있는"}
             onClick={() => setActiveTab("부작용 있는")}
           >
             부작용 있는
           </TabItem>
           <TabItem
-            isActive={activeTab === "효과 좋은"}
+            $isActive={activeTab === "효과 좋은"}
             onClick={() => setActiveTab("효과 좋은")}
           >
             효과 좋은
