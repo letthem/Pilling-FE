@@ -69,8 +69,8 @@ export const TagList = styled.div`
 export const TagItem = styled.div`
   padding: 0 0.97rem;
   height: 2.375rem;
-  border: 0.0313rem solid
-    ${({ selected }) => (selected ? "#C4F261" : "#ADADAD")};
+  border: 0.0625rem solid
+    ${({ selected }) => (selected ? "#C4F261" : "#D8D8D8")};
   border-radius: 1.25rem;
   background-color: ${({ selected }) => (selected ? "#C4F261" : "white")};
   cursor: pointer;
@@ -101,12 +101,12 @@ export const SaveButton = styled.div`
   position: absolute;
   bottom: 1.75rem;
   left: 7.0625rem;
-  background: ${({ disabled }) => (disabled ? "#F7F6F9;" : "#1B1A1F")};
+  background: ${({ $disabled }) => ($disabled ? "#F7F6F9;" : "#1B1A1F")};
   border-radius: 1rem;
-  cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
-
+  cursor: ${({ $disabled }) => ($disabled ? "not-allowed" : "pointer")};
+  pointer-events: ${({ $disabled }) => ($disabled ? "none" : "auto")};
   span {
-    color: ${({ disabled }) => (disabled ? "#ccc" : "white")};
+    color: ${({ $disabled }) => ($disabled ? "#ccc" : "white")};
     font-family: "SUIT-Medium";
     font-size: 0.875rem;
     font-style: normal;

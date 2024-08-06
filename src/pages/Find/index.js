@@ -85,7 +85,6 @@ const Find = () => {
         },
       });
       setMedicines(res.data);
-      console.log(res.data);
       localStorage.setItem("medicines", JSON.stringify(res.data));
     } catch (e) {
       console.log(e.message);

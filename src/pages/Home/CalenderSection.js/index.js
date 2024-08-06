@@ -59,8 +59,6 @@ const CalenderSection = () => {
           },
         }
       );
-      console.log("성공");
-
 
       // 상태를 업데이트하여 화면에 반영
       setDayMedicines((prevMedicines) =>

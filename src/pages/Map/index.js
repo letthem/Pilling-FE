@@ -96,8 +96,6 @@ const Map = () => {
               phone: phoneCallNumberByKakao,
             };
 
-            console.log(timePmAllRe);
-
             // Display the marker with business hours
             displayMarker(place, timeRun, PmInfoByDB, map, i);
           } catch (error) {
@@ -396,10 +394,12 @@ const MapHeader = styled.div`
   font-family: "SUIT-SemiBold";
   color: #1b1a1f;
   font-size: 1.0625rem;
-  height: 3.5625rem;
+  height: 4.375rem;
   display: flex;
   justify-content: center;
   align-items: center;
+  border-bottom-left-radius: 2.25rem;
+  border-bottom-right-radius: 2.25rem;
 `;
 
 const KakaoMap = styled.div`

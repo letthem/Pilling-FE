@@ -43,7 +43,7 @@ export const SearchBarSection = styled.div`
   align-items: center;
   position: relative;
 
-  margin-bottom: 58px;
+  margin-bottom: 3.625rem;
 
   @media (min-width: 31.25rem) {
     margin-bottom: 6.25rem;

@@ -1,6 +1,6 @@
 import { useRecoilState } from "recoil";
 import medicineRight from "../../../assets/Home/medicineRight.svg";
-import { Intro, Image, LogoSectionWrapper, LogoImg } from "./style";
+import { Intro, Image, LogoSectionWrapper, LogoImg, LogoSectionContainer } from "./style";
 import { nicknameState } from "../../../recoil/atoms/atom";
 import logoImg from "../../../assets/login/Logo.svg";
 import { useEffect, useState } from "react";
@@ -17,7 +17,6 @@ const LogoSection = () => {
           Authorization: `Bearer ${localStorage.getItem("access_token")}`,
         },
       });
-      console.log(res.data.nickname);
       setMyName(res.data.nickname);
     } catch (e) {
       console.log(e.message);
@@ -29,7 +28,7 @@ const LogoSection = () => {
   }, [myNmae]);
 
   return (
-    <>
+    <LogoSectionContainer>
       <LogoImg src={logoImg} />
       <LogoSectionWrapper>
         <Intro>
@@ -40,7 +39,7 @@ const LogoSection = () => {
         </Intro>
         <Image src={medicineRight} />
       </LogoSectionWrapper>
-    </>
+    </LogoSectionContainer>
   );
 };
 export default LogoSection;

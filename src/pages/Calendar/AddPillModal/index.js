@@ -54,18 +54,17 @@ const AddPillModal = ({ onClose, onSave, clickedDate }) => {
           Authorization: `Bearer ${localStorage.getItem("access_token")}`,
         },
       });
-      if (
-        response.status === "404" ||
-        response.data.message === "해당하는 이름에 대한 약 정보가 없습니다"
-      ) {
+  
+      setResults(response.data);
+    } catch (error) {
+      if (error.response && error.response.status === 404) {
         setIsNoneModalOpen(true); // 검색 결과 없을 때 모달 열기
       } else {
-        setResults(response.data);
+        console.error("Error fetching search results:", error);
       }
-    } catch (error) {
-      console.error("Error fetching search results:", error);
     }
   };
+  
 
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {

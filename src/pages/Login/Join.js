@@ -56,7 +56,6 @@ const Join = () => {
       );
 
       setUserNickname(name);
-      console.log("로그인 성공");
       navigate("start", {
         state: { nickname: name },
       });

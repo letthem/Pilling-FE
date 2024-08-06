@@ -1,16 +1,17 @@
+import React, { useState, useEffect } from "react";
 import Navbar from "../../../components/Navbar";
 import { PLFrame } from "../../../components/PLFrame";
 import {
   CantEatWith,
-  CantEatWithContent,
+  CantEatWithContent as StyledCantEatWithContent,
   CantEatWithTitle,
   FindResultWrapper,
   HeaderTitle,
   ItemEat,
-  ItemEatContent,
+  ItemEatContent as StyledItemEatContent,
   ItemEatTitle,
   ItemEffect,
-  ItemEffectContent,
+  ItemEffectContent as StyledItemEffectContent,
   ItemEffectTitle,
   ItemImg,
   ItemName,
@@ -21,10 +22,10 @@ import {
   ScrapItems,
   ScrapItem,
   SideEffect,
-  SideEffectContent,
+  SideEffectContent as StyledSideEffectContent,
   SideEffectTitle,
   WhoCant,
-  WhoCantContent,
+  WhoCantContent as StyledWhoCantContent,
   WhoCantTitle,
   NoImgContainer,
   SearchLoadingBox,
@@ -35,7 +36,6 @@ import arrowIcon from "../../../assets/Home/Find/arrow.svg";
 import scrapImg from "../../../assets/Home/Find/scrap.svg";
 import isScrapImg from "../../../assets/Home/Find/fullScrap.svg";
 import plainscrap from "../../../assets/Home/Find/plainscrap.svg";
-import { useState, useEffect } from "react";
 import greenIcon from "../../../assets/Home/Find/greenicon.svg";
 import pinkIcon from "../../../assets/Home/Find/pinkicon.svg";
 import grayIcon from "../../../assets/Home/Find/grayicon.svg";
@@ -74,7 +74,6 @@ const FindResultPage = () => {
       // 각 요청의 결과를 처리합니다.
       for (const res of responses) {
         const scrapList = res.data;
-        console.log(scrapList);
         const itemScrap = scrapList.find(
           (scrapItem) => scrapItem.medicine_name === itemName
         );
@@ -85,8 +84,6 @@ const FindResultPage = () => {
           break; // 조건을 만족하는 스크랩을 찾으면 반복 종료
         }
       }
-
-      console.log("스크랩 정보 get");
     } catch (e) {
       console.log(e.message);
     }
@@ -101,7 +98,6 @@ const FindResultPage = () => {
           Authorization: `Bearer ${localStorage.getItem("access_token")}`,
         },
       });
-      console.log("스크랮 삭제 ㅅㄱ");
       setIsScrap(false);
       setScrapId(null);
     }
@@ -119,7 +115,6 @@ const FindResultPage = () => {
         medicine_name: itemDetails.itemName,
         category: category,
       };
-      console.log(scrapData);
 
       const res = await axiosInstance.post(`/scraps/new`, scrapData, {
         headers: {
@@ -129,8 +124,6 @@ const FindResultPage = () => {
 
       setIsScrap(true);
       setScrapId(res.data.id);
-      setModal(false);
-      console.log("스크랩 성공");
       setModal(false);
     } catch (error) {
       console.log(error.message);
@@ -162,6 +155,17 @@ const FindResultPage = () => {
     getScrap();
   }, []);
 
+  const formatText = (text) => {
+    const parts = text.split(".");
+    return parts.map((part, index) => (
+      <React.Fragment key={index}>
+        {part.trim()}
+        {index < parts.length - 1 && "."}
+        {index < parts.length - 1 && <br />}
+      </React.Fragment>
+    ));
+  };
+
   return (
     <PLFrame>
       <FindResultWrapper>
@@ -169,7 +173,7 @@ const FindResultPage = () => {
           <ArrowDiv onClick={goBack}>
             <ArrowIcon src={arrowIcon} alt="arrow" />
           </ArrowDiv>
-          <HeaderTitle>약 검색 결과 </HeaderTitle>
+          <HeaderTitle>약 검색 결과</HeaderTitle>
           <ScrapBox
             src={isScrap ? isScrapImg : modal ? scrapImg : plainscrap}
             alt="scrapImg"
@@ -208,25 +212,35 @@ const FindResultPage = () => {
             <ItemName>{itemDetails.itemName}</ItemName>
             <ItemEat>
               <ItemEatTitle>복용방법</ItemEatTitle>
-              <ItemEatContent>{itemDetails.usemethod}</ItemEatContent>
+              <StyledCantEatWithContent>
+                {formatText(itemDetails.usemethod)}
+              </StyledCantEatWithContent>
             </ItemEat>
             <ItemEffect>
               <ItemEffectTitle>어떤 효능이 있나요?</ItemEffectTitle>
-              <ItemEffectContent>{itemDetails.efcy}</ItemEffectContent>
+              <StyledCantEatWithContent>
+                {formatText(itemDetails.efcy)}
+              </StyledCantEatWithContent>
             </ItemEffect>
             <CantEatWith>
               <CantEatWithTitle>
                 이러한 성분들은 함께 복용하면 안돼요
               </CantEatWithTitle>
-              <CantEatWithContent>{itemDetails.atpn}</CantEatWithContent>
+              <StyledCantEatWithContent>
+                {formatText(itemDetails.intrc)}
+              </StyledCantEatWithContent>
             </CantEatWith>
             <SideEffect>
               <SideEffectTitle>부작용이 있을 수 있어요</SideEffectTitle>
-              <SideEffectContent>{itemDetails.seQ}</SideEffectContent>
+              <StyledSideEffectContent>
+                {formatText(itemDetails.seQ)}
+              </StyledSideEffectContent>
             </SideEffect>
             <WhoCant>
               <WhoCantTitle>이런 분들은 복용을 주의하세요</WhoCantTitle>
-              <WhoCantContent>{itemDetails.intrc}</WhoCantContent>
+              <StyledWhoCantContent>
+                {formatText(itemDetails.atpn)}
+              </StyledWhoCantContent>
             </WhoCant>
           </ResultBody>
         ) : (

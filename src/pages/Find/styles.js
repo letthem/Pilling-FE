@@ -111,7 +111,7 @@ export const Symptoms = styled.div`
   flex-wrap: wrap;
   justify-content: space-between;
   margin: 0 2.25rem;
-  gap: 32px 30px;
+  gap: 2rem 1.875rem;
 `;
 
 export const Symptom = styled.p`
@@ -130,11 +130,11 @@ export const Symptom = styled.p`
     width: 1rem;
   }
 
-  @media (max-width: 400px) {
+  @media (max-width: 25rem) {
     width: calc((100% - 3.75rem) / 3);
   }
 
-  @media (min-width: 400px) {
+  @media (min-width: 25rem) {
     width: calc((100% - 7rem) / 3);
   }
 `;

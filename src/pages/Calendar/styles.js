@@ -155,7 +155,7 @@ export const TagItemBox = styled.div`
     font-size: 0.6875rem;
     font-style: normal;
     font-weight: 400;
-    padding: 4px 0 2px 0;
+    padding: 0.25rem 0 0.125rem 0;
     line-height: 1.2;
   }
   & + & {

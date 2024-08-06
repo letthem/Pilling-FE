@@ -1,7 +1,13 @@
 import styled from "styled-components";
 
+export const LogoSectionContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 export const LogoImg = styled.img`
   font-family: "Super_Plants";
+  width: 13.3125rem;
+  height: 3.1875rem;
   font-size: 3.75rem;
   text-align: left;
   margin: 1.375rem 8.75rem 0 2.1875rem;
@@ -9,7 +15,7 @@ export const LogoImg = styled.img`
 export const LogoSectionWrapper = styled.div`
   font-family: "SUIT-SemiBold";
   font-size: 1.25rem;
-  margin: 18px 0 38px;
+  margin: 1.125rem 0 2.375rem;
   display: grid;
   grid-template-columns: 1fr auto;
   gap: 6.375rem;

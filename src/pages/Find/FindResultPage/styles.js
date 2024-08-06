@@ -90,7 +90,7 @@ export const ItemEatTitle = styled.p`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 1rem 1.5rem;
+  margin: 1rem 1.5rem 0.7rem;
   width: 4.125rem;
   height: 1.9375rem;
   font-size: 0.75rem;
@@ -101,9 +101,9 @@ export const ItemEatTitle = styled.p`
 `;
 
 export const ItemEatContent = styled.div`
-  margin: 0 1.5rem 1.5rem;
+  margin: 0 1.75rem 1.5rem;
   color: #000;
-  font-family: "SUIT-Regular";
+  font-family: "SUIT-Medium";
   font-size: 0.8125rem;
   line-height: 160%;
 `;
@@ -121,7 +121,7 @@ export const ItemEffectTitle = styled.p`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 1rem 1.5rem;
+  margin: 1rem 1.5rem 0.7rem;
   width: 7.5625rem;
   height: 1.9375rem;
   font-size: 0.75rem;
@@ -132,9 +132,9 @@ export const ItemEffectTitle = styled.p`
 `;
 
 export const ItemEffectContent = styled.div`
-  margin: 0 1.5rem 1.5rem;
+  margin: 0 1.75rem 1.5rem;
   color: #000;
-  font-family: "SUIT-Regular";
+  font-family: "SUIT-Medium";
   font-size: 0.8125rem;
   line-height: 160%;
 `;
@@ -153,20 +153,20 @@ export const CantEatWithTitle = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 1rem 1.5rem;
+  margin: 1rem 1.5rem 0.7rem;
   width: 12.6875rem;
   height: 1.9375rem;
   font-size: 0.75rem;
-  font-family: "SUIT-Medium";
+  font-family: "SUIT-SemiBold";
   color: #1b1a1f;
   border-radius: 1rem;
   background: #c4f261;
 `;
 
 export const CantEatWithContent = styled.div`
-  margin: 0 1.5rem 1.5rem;
+  margin: 0 1.75rem 1.5rem;
   color: #000;
-  font-family: "SUIT-Regular";
+  font-family: "SUIT-Medium";
   font-size: 0.8125rem;
   line-height: 160%;
 `;
@@ -185,20 +185,20 @@ export const SideEffectTitle = styled.p`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 1rem 1.5rem;
+  margin: 1rem 1.5rem 0.7rem;
   width: 8.625rem;
   height: 1.9375rem;
   font-size: 0.75rem;
-  font-family: "SUIT-Medium";
+  font-family: "SUIT-SemiBold";
   color: #1b1a1f;
   border-radius: 1rem;
   background: #c4f261;
 `;
 
 export const SideEffectContent = styled.div`
-  margin: 0 1.5rem 1.5rem;
+  margin: 0 1.75rem 1.5rem;
   color: #000;
-  font-family: "SUIT-Regular";
+  font-family: "SUIT-Medium";
   font-size: 0.8125rem;
   line-height: 160%;
 `;
@@ -217,20 +217,20 @@ export const WhoCantTitle = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 1rem 1.5rem;
+  margin: 1rem 1.5rem 0.7rem;
   width: 10.5625rem;
   height: 1.9375rem;
   font-size: 0.75rem;
-  font-family: "SUIT-Medium";
+  font-family: "SUIT-SemiBold";
   color: #1b1a1f;
   border-radius: 1rem;
   background: #c4f261;
 `;
 
 export const WhoCantContent = styled.div`
-  margin: 0 1.5rem 1.5rem;
+  margin: 0 1.75rem 1.5rem;
   color: #000;
-  font-family: "SUIT-Regular";
+  font-family: "SUIT-Medium";
   font-size: 0.8125rem;
   line-height: 160%;
 `;
@@ -275,7 +275,7 @@ export const SearchLoadingBox = styled.div`
   width: calc(100% - 3rem);
   width: calc(100% - 3rem);
   min-width: 20.4375rem;
-  margin-top: 210px;
+  margin-top: 13.125rem;
   display: flex;
   flex-direction: column;
   align-items: center;
