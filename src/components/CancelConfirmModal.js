@@ -7,7 +7,7 @@ const CancelConfirmModal = ({ onConfirm, onCancel, message }) => {
       <ModalContainer>
         <Message>{message}</Message>
         <ButtonContainer>
-          <CancelButton onClick={onCancel}>아니오</CancelButton>
+          <CancelButton onClick={onCancel}>아니요</CancelButton>
           <ConfirmButton onClick={onConfirm}>예</ConfirmButton>
         </ButtonContainer>
       </ModalContainer>
@@ -64,7 +64,7 @@ const CancelButton = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 0.0375rem solid #d9d9d9;
+  border: 0.0625rem solid #d8d8d8;
   background: white;
   border-radius: 1.25rem;
   color: #1b1a1f;
@@ -79,6 +79,7 @@ const ConfirmButton = styled.div`
   align-items: center;
   background: #1b1a1f;
   border-radius: 1.25rem;
+  border: 0.0625rem solid #1b1a1f;
   color: white;
   cursor: pointer;
 `;
