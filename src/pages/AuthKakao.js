@@ -23,11 +23,11 @@ const AuthKakao = () => {
 
   //인가 코드 백으로 보내는 코드
   const kakoLogin = async () => {
+    console.log("응답보냄!");
     if (accessTokenFetching) return; // Return early if fetching
 
     try {
       setAccessTokenFetching(true);
-
       const res = await axiosInstance.post(
         `/auth/kakao/login`,
         //`${process.env.REACT_APP_KAKAO_REDIRECT_URI}/?code=${code}`,
@@ -38,12 +38,16 @@ const AuthKakao = () => {
           headers,
         }
       );
+
       const accessToken = res.data.access_token;
-
       localStorage.setItem("access_token", accessToken);
-      console.log(accessToken);
 
-      navigate("/join");
+      if ("new" in res.data && res.data.new === true) {
+        const alreadyId = res.data.new;
+        navigate("/join");
+      } else {
+        navigate("/home");
+      }
     } catch (e) {
       console.error("Error:", e); // console.error로 오류 메시지 출력
     } finally {
@@ -72,8 +76,8 @@ const AuthKakao = () => {
 export default AuthKakao;
 
 const imgBox = styled.div`
-position: relative;
-  img{
+  position: relative;
+  img {
   }
 `;
 

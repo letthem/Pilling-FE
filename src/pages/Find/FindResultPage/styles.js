@@ -11,16 +11,20 @@ export const ResultHeader = styled.div`
   align-items: center;
   justify-content: space-between;
   position: relative;
-  width: calc(100% - 3rem);
   margin: 1.4375rem 1.5rem 2.0625rem;
   position: relative;
 `;
 
 export const HeaderTitle = styled.div`
   width: 6.25rem;
+  font-family: "SUIT-SemiBold";
+  font-size: 1.0625rem;
+  line-height: 1;
 `;
 
-export const ScrapBox = styled.img``;
+export const ScrapBox = styled.img`
+  cursor: pointer;
+`;
 
 export const ResultBody = styled.div`
   display: flex;
@@ -54,7 +58,7 @@ export const NoImgContainer = styled.div`
 `;
 
 export const ItemImg = styled.img`
-  width: calc(100% - 3rem);
+  width: calc(100% - 3.125rem);
   margin: 0 1.5rem;
   min-width: 20.4375rem;
   max-width: 29rem;
@@ -66,7 +70,7 @@ export const ItemName = styled.div`
   min-width: 20.4375rem;
   margin: 1rem 0 1.5rem 0.25rem;
   color: #1b1a1f;
-  font-family: "SUIT-Medium";
+  font-family: "SUIT-SemiBold";
   font-size: 1.5rem;
   text-align: left;
   line-height: 1.3;
@@ -260,6 +264,7 @@ export const ScrapItem = styled.div`
   align-items: center;
   font-family: "SUIT-Regular";
   font-size: 0.8125rem;
+  cursor: pointer;
 
   img {
     margin-right: 0.75rem;
@@ -267,12 +272,12 @@ export const ScrapItem = styled.div`
 `;
 
 export const SearchLoadingBox = styled.div`
-  width: calc(100% - 48px);
+  width: calc(100% - 3rem);
   min-width: 20.4375rem;
-  margin-top: 210px;
+  min-height: 62.5rem;
+  margin-top: 18.75rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   color: #000;
   font-family: "SUIT-SemiBold";
@@ -283,7 +288,7 @@ export const SearchLoadingBox = styled.div`
     margin-top: 1.375rem;
   }
 
-  @media (max-width: 400px) {
-    margin: 210px 24px 0;
+  @media (max-width: 25rem) {
+    margin: 13.125rem 1.5rem 0;
   }
 `;

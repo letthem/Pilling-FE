@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import KakaoImg from "../assets/login/kakao-white.svg";
+import KakaoImg from "../assets/login/KakaoLogo2.svg";
 import withPilling from "../assets/login/withPilling.svg";
 import logoImg from "../assets/login/Logo.svg";
 
@@ -23,20 +23,14 @@ const KakaoLogin = () => {
       <LoginDiv>
         <PillingImg src={withPilling} alt="withPilling" />
         <KakaoBtn onClick={handleLogin}>
-          <img src={KakaoImg} alt="kakao logo" />
+          <img src={KakaoImg} alt="kakao logo" />{" "}
           <span>필링 이용하러 가기</span>
         </KakaoBtn>
         <TermsDiv>
-          <a
-            target="_blank"
-            href="https://ritzy-lodge-c78.notion.site/ac32066211a541fe88b785544a214841"
-          >
+          <a href="https://ritzy-lodge-c78.notion.site/ac32066211a541fe88b785544a214841">
             서비스 이용약관
           </a>
-          <a
-            target="_blank"
-            href="https://ritzy-lodge-c78.notion.site/02d328e5a3f4451a8f3f5c014c4af474"
-          >
+          <a href="https://www.notion.so/02d328e5a3f4451a8f3f5c014c4af474?d=c44709def56340548a6576292eedc3fd#1ecdb0b8927e461688afe88130b38e20">
             개인정보 처리방침
           </a>
         </TermsDiv>
@@ -84,7 +78,7 @@ const LoginDiv = styled.div`
 `;
 
 const LogoImg = styled.img`
-  z-index: 50;
+  z-index: 100;
   font-family: "Super_Plants";
   font-size: 4rem;
   text-align: left;
@@ -95,7 +89,7 @@ const LogoImg = styled.img`
 const PillingImg = styled.img`
   z-index: 1;
   position: absolute;
-  bottom: 2.5rem;
+  bottom: 1.875rem;
   width: 100%;
   max-height: 30rem;
 `;
@@ -113,18 +107,16 @@ const KakaoBtn = styled.div`
   margin: 0 1.25rem;
   cursor: pointer;
   position: fixed;
-  bottom: 5rem;
+  bottom: 4.75rem;
 
   span {
-    text-align: left;
     margin-left: 0.3125rem;
-    margin-right: 0.5rem;
     font-family: "SUIT-SemiBold";
   }
 `;
 
 const TermsDiv = styled.div`
-  margin-top: -2.5rem;
+  margin-top: 0.3125rem;
   text-align: center;
   color: #d1d3d9;
   font-size: 0.75rem;
@@ -134,11 +126,9 @@ const TermsDiv = styled.div`
     display: block;
     color: #d1d3d9;
     margin-bottom: 0.5625rem;
-    cursor: pointer;
   }
 
   a:last-child {
     margin-bottom: 0;
-    cursor: pointer;
   }
 `;
