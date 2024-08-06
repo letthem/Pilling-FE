@@ -266,7 +266,7 @@ const TagModal = ({
             </TagList>
             <SaveButton
               onClick={handleSave}
-              disabled={selectedTags.length === 0}
+              $disabled={selectedTags.length === 0}
             >
               <span>등록 완료</span>
             </SaveButton>
