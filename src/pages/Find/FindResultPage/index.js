@@ -194,7 +194,7 @@ const FindResultPage = () => {
             </ModalBox>
           )}
         </ResultHeader>
-        { Object.keys(itemDetails).length > 0 ? (
+        {Object.keys(itemDetails).length > 0 ? (
           <ResultBody>
             {itemDetails.image ? (
               <ItemImg src={itemDetails.image} alt="약" />
@@ -222,20 +222,19 @@ const FindResultPage = () => {
             </CantEatWith>
             <SideEffect>
               <SideEffectTitle>부작용이 있을 수 있어요</SideEffectTitle>
-              <SideEffectContent>{itemDetails.intrc}</SideEffectContent>
+              <SideEffectContent>{itemDetails.seQ}</SideEffectContent>
             </SideEffect>
             <WhoCant>
               <WhoCantTitle>이런 분들은 복용을 주의하세요</WhoCantTitle>
-              <WhoCantContent>{itemDetails.seQ}</WhoCantContent>
+              <WhoCantContent>{itemDetails.intrc}</WhoCantContent>
             </WhoCant>
           </ResultBody>
-        ) : ( 
-        <SearchLoadingBox>
-          검색 정보를 불러오고 있어요!
-          <img src={loadingImg} alt="loading" />
-        </SearchLoadingBox>
-        )
-      }
+        ) : (
+          <SearchLoadingBox>
+            검색 정보를 불러오고 있어요!
+            <img src={loadingImg} alt="loading" />
+          </SearchLoadingBox>
+        )}
         <Navbar />
       </FindResultWrapper>
     </PLFrame>

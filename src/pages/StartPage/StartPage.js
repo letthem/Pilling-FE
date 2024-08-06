@@ -23,7 +23,7 @@ const StartPage = () => {
               달력으로 <span>나의 복용 기록</span>을 관리할 수 있어요
             </SecondBox>
             <ThirdBox>
-              <span>약국 지도, 24시간 약국</span>을 한눈에 볼 수 있어요
+              <span>약국 지도</span>을 한눈에 볼 수 있어요
             </ThirdBox>
           </IntroBox>
           <PhoneImg src={phoneImg} />
@@ -46,7 +46,6 @@ const StartWrapper = styled.div`
   flex-direction: column;
 `;
 
-
 const PhoneImg = styled.img`
   z-index: 0;
   width: 100%;
@@ -64,22 +63,25 @@ const PhoneImg = styled.img`
   @media (min-width: 47.5rem){
     left: 35%;
   }
+`;
 
+const Intro = styled.div`
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 32rem;
+  min-height: 37.5rem;
+`;
 
-  `;
-
-  const Intro = styled.div`
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-  `;
-  
 const IntroBox = styled.div`
   z-index: 5;
   position: fixed;
+  width: 100%;
+  max-width: 32rem;
+
   /* top: 4.375rem; */
   /* height: 3rem;
   width: 100%; */
@@ -89,12 +91,9 @@ const IntroBox = styled.div`
   line-height: 120%;
   font-size: 1rem;
 
-
-  
-  @media (max-width: 24.375rem){
+  @media (max-width: 24.375rem) {
     font-size: 0.8125rem;
     bottom: 27.5rem;
-
   }
 
   span {
@@ -132,6 +131,8 @@ const SecondBox = styled.div`
 `;
 
 const ThirdBox = styled.div`
+  width: calc(100% - 9.375rem);
+  margin: 0 7.75rem 0 1.875rem;
   position: absolute;
   top: 14.375rem;
   left: 3.125rem;

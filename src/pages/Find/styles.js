@@ -3,13 +3,22 @@ import styled from "styled-components";
 export const FindWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  min-height: 62.5rem;
+
+  @media (max-width: 25rem) {
+    min-height: 37.5rem;
+  }
+
+  @media (min-width: 25rem) {
+    min-height: 62.5rem;
+  }
 `;
 
 export const FindHeader = styled.div`
   display: flex;
   align-items: center;
   position: relative;
-  width: calc(100%-3rem);
+  width: calc(100% - 3rem);
   margin: 1.438rem 1.5rem 2.063rem;
   height: 3rem;
 `;
@@ -63,6 +72,14 @@ export const FindBySymptom = styled.div`
   flex-direction: column;
   justify-content: center;
   position: relative;
+
+  @media (max-width: 25rem) {
+    min-height: 31.25rem;
+  }
+
+  @media (min-width: 25rem) {
+    min-height: 56.25rem;
+  }
 `;
 
 export const SymptomTitle = styled.div`
@@ -78,6 +95,15 @@ export const SymptomList = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-height: 53.125rem;
+
+  @media (max-width: 25rem) {
+    min-height: 37.5rem;
+  }
+
+  @media (min-width: 25rem) {
+    min-height: 56.25rem;
+  }
 `;
 
 export const Symptoms = styled.div`
@@ -85,14 +111,7 @@ export const Symptoms = styled.div`
   flex-wrap: wrap;
   justify-content: space-between;
   margin: 0 2.25rem;
-
-  @media (max-width: 25rem) {
-    gap: 1.75rem 1.875rem;
-  }
-
-  @media (min-width: 25rem) {
-    gap: 1.75rem 3.5rem;
-  }
+  gap: 32px 30px;
 `;
 
 export const Symptom = styled.p`
@@ -103,18 +122,20 @@ export const Symptom = styled.p`
   color: #5f5f5f;
   text-align: center;
   font-size: 0.9375rem;
+  line-height: 1;
+
   cursor: pointer;
 
   img {
     width: 1rem;
   }
 
-  @media (max-width: 25rem) {
-    width: calc((100% - 3.75rem) / 3); /* Adjust for the gap and padding */
+  @media (max-width: 400px) {
+    width: calc((100% - 3.75rem) / 3);
   }
 
-  @media (min-width: 25rem) {
-    width: calc((100% - 7rem) / 3); /* Adjust for the gap and padding */
+  @media (min-width: 400px) {
+    width: calc((100% - 7rem) / 3);
   }
 `;
 
@@ -148,12 +169,11 @@ export const FindInputLoadingBox = styled.div`
   font-family: "SUIT-SemiBold";
   font-size: 1rem;
   line-height: 1.2;
-  
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
 
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `;
 
 export const FindInputLoading = styled.div`

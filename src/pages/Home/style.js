@@ -19,7 +19,7 @@ export const LogoSection = styled.div`
   /* margin-top: 0.75rem; */
   display: grid;
   grid-template-columns: 1fr auto;
-  gap: 6.375rem;
+  gap: 6.375rem; 
   align-items: center;
   line-height: 2.125rem;
 
@@ -43,7 +43,7 @@ export const SearchBarSection = styled.div`
   align-items: center;
   position: relative;
 
-  margin-bottom: 3.625rem;
+  margin-bottom: 58px;
 
   @media (min-width: 31.25rem) {
     margin-bottom: 6.25rem;

@@ -10,6 +10,7 @@ import locationImg from "../../assets/Map/location.svg";
 import phonecall from "../../assets/Map/phonecall.svg";
 import positionNow from "../../assets/Map/positionwhere.svg";
 import deleteBtn from "../../assets/Map/deleteB.svg";
+import { format } from "date-fns";
 
 const Map = () => {
   const { kakao } = window;
@@ -20,6 +21,9 @@ const Map = () => {
   const [markerPosition, setMarkerPosition] = useState({});
   const [bakcMarkerImg, setBackMarkerImg] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+
+  const toDate = new Date();
+  const todayDayIndex = toDate.getDay(); // Get today’s day index (0-6)
 
   // 정보를 get 해오는 함수
   const fetchPlacesInfo = async (position, map) => {
@@ -48,21 +52,51 @@ const Map = () => {
             );
 
             const timePm = res.data.timeFri;
+            const timePmAll = [
+              res.data.timeSun,
+              res.data.timeMon,
+              res.data.timeTue,
+              res.data.timeWed,
+              res.data.timeThu,
+              res.data.timeFri,
+              res.data.timeSat,
+            ];
+
             const formatMinutes = (minutes) =>
               minutes === "00" ? "00" : minutes;
-            const openhours = timePm.slice(0, 2);
-            const openminutes = timePm.slice(2, 4);
-            const closehours = timePm.slice(5, 7);
-            const closeminutes = timePm.slice(7, 9);
-            const timeRun = `${parseInt(openhours, 10)}:${formatMinutes(openminutes)} ~ ${parseInt(closehours, 10)}:${formatMinutes(closeminutes)}`;
+
+            const formatTimePeriod = (timePeriod) => {
+              if (!timePeriod || timePeriod.length !== 9) {
+                return "영업일이 아닙니다";
+              }
+
+              const openhours = timePeriod.slice(0, 2);
+              const openminutes = timePeriod.slice(2, 4);
+              const closehours = timePeriod.slice(5, 7);
+              const closeminutes = timePeriod.slice(7, 9);
+
+              return `${parseInt(openhours, 10)}:${formatMinutes(openminutes)} ~ ${parseInt(closehours, 10)}:${formatMinutes(closeminutes)}`;
+            };
+
+            const timePmAllRe = timePmAll.map(formatTimePeriod);
+
+            //원래 코드////////
+            const openhours1 = timePm.slice(0, 2);
+            const openminutes1 = timePm.slice(2, 4);
+            const closehours1 = timePm.slice(5, 7);
+            const closeminutes1 = timePm.slice(7, 9);
+            const timeRun = `${parseInt(openhours1, 10)}:${formatMinutes(openminutes1)} ~ ${parseInt(closehours1, 10)}:${formatMinutes(closeminutes1)}`;
+            //
 
             const PmInfoByDB = {
               name: res.data.name,
-              time: timeRun,
+              time: timePmAllRe,
               addr: res.data.addr,
               distance: place.distance,
               phone: phoneCallNumberByKakao,
             };
+
+            console.log(timePmAllRe);
 
             // Display the marker with business hours
             displayMarker(place, timeRun, PmInfoByDB, map, i);
@@ -188,44 +222,39 @@ const Map = () => {
     <PLFrame>
       <MapWrapper>
         <MapHeader>약국지도</MapHeader>
+        <LoadingBox></LoadingBox>
         <KakaoMap id="map" ref={container}></KakaoMap>
-        {isLoading ? (
-          <>
-            <LoadingBox>여보슈???</LoadingBox>
-          </>
-        ) : (
-          <>
-            <NavBarWrapper>
-              {info.name && (
-                <>
-                  <NowDistance>
-                    <p>
-                      현위치에서 <span>{info.distance}m</span>
-                    </p>
-                  </NowDistance>
-                  <PmInfotmation>
-                    <Delete src={deleteBtn} onClick={deleteInfo} />
-                    <PmName>{info.name}</PmName>
-                    <PmTime>
-                      <p>
-                        영업시간<span>{info.time}</span>
-                      </p>
-                    </PmTime>
-                    <PmNumberBox>
-                      <img src={phonecall} alt="전화 아이콘" />
-                      <PmNumber>{info.phone}</PmNumber>
-                    </PmNumberBox>
-                    <PmPositionShowBox>
-                      <img src={positionNow} alt="위치 아이콘" />
-                      <PmPositionShow>{info.addr}</PmPositionShow>
-                    </PmPositionShowBox>
-                  </PmInfotmation>
-                </>
-              )}
-              <Navbar />
-            </NavBarWrapper>
-          </>
-        )}
+        <NavBarWrapper>
+          {info.name && (
+            <>
+              <NowDistance>
+                <p>
+                  현위치에서 <span>{info.distance}m</span>
+                </p>
+              </NowDistance>
+              <PmInfotmation>
+                <Delete src={deleteBtn} onClick={deleteInfo} />
+                <PmName>{info.name}</PmName>
+                {info.time[todayDayIndex].length === 9 ? (
+                  <ClosePmTime>{info.time[todayDayIndex]}</ClosePmTime>
+                ) : (
+                  <PmTime className="open">
+                    영업시간<span>{info.time[todayDayIndex]}</span>
+                  </PmTime>
+                )}
+                <PmNumberBox>
+                  <img src={phonecall} alt="전화 아이콘" />
+                  <PmNumber>{info.phone}</PmNumber>
+                </PmNumberBox>
+                <PmPositionShowBox>
+                  <img src={positionNow} alt="위치 아이콘" />
+                  <PmPositionShow>{info.addr}</PmPositionShow>
+                </PmPositionShowBox>
+              </PmInfotmation>
+            </>
+          )}
+          <Navbar />
+        </NavBarWrapper>
       </MapWrapper>
     </PLFrame>
   );
@@ -271,7 +300,7 @@ const NowDistance = styled.div`
 const PmInfotmation = styled.div`
   z-index: 50;
   width: calc(100% - 2.75rem);
-  max-width: 32rem;
+  max-width: 29rem;
   margin: 0 1.375rem;
   height: 12.5625rem;
   position: absolute;
@@ -338,6 +367,22 @@ const PmTime = styled.div`
   }
 `;
 
+const ClosePmTime = styled.div`
+  width: 7.5rem;
+  height: 2rem;
+  flex-shrink: 0;
+  border-radius: 2.5rem;
+  background: #2b2a2f;
+  margin-left: 1.5rem;
+  color: #fff;
+  font-family: "SUIT-SemiBold";
+  font-size: 0.75rem;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
 const MapWrapper = styled.div`
   width: 100%;
   display: flex;
@@ -385,6 +430,8 @@ export const LoadingBox = styled.div`
   font-family: "SUIT-SemiBold";
   font-size: 1rem;
   line-height: 1.2%;
+  position: absolute;
+  top: 2.5rem;
 
   img {
     margin-top: 1.375rem;
