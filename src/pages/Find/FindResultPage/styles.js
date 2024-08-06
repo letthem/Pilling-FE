@@ -90,7 +90,7 @@ export const ItemEatTitle = styled.p`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 1rem 1.5rem;
+  margin: 1rem 1.5rem 0.7rem;
   width: 4.125rem;
   height: 1.9375rem;
   font-size: 0.75rem;
@@ -121,7 +121,7 @@ export const ItemEffectTitle = styled.p`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 1rem 1.5rem;
+  margin: 1rem 1.5rem 0.7rem;
   width: 7.5625rem;
   height: 1.9375rem;
   font-size: 0.75rem;
@@ -153,7 +153,7 @@ export const CantEatWithTitle = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 1rem 1.5rem;
+  margin: 1rem 1.5rem 0.7rem;
   width: 12.6875rem;
   height: 1.9375rem;
   font-size: 0.75rem;
@@ -185,7 +185,7 @@ export const SideEffectTitle = styled.p`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 1rem 1.5rem;
+  margin: 1rem 1.5rem 0.7rem;
   width: 8.625rem;
   height: 1.9375rem;
   font-size: 0.75rem;
@@ -217,7 +217,7 @@ export const WhoCantTitle = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 1rem 1.5rem;
+  margin: 1rem 1.5rem 0.7rem;
   width: 10.5625rem;
   height: 1.9375rem;
   font-size: 0.75rem;
