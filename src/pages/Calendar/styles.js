@@ -12,10 +12,9 @@ export const CalendarWrapper = styled.div`
 `;
 
 export const CalendarContainer = styled.div`
-  margin-top: 2.5rem;
+  margin-top: 12px;
   border-radius: 1.875rem;
   background-color: #f7f6f9;
-  /* width: 21.375rem; */
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -30,7 +29,7 @@ export const PlusBtn = styled.div`
   align-items: center;
   border-radius: 50%;
   border: 0.125rem dashed #c4f261;
-  margin-top: 2.75rem;
+  margin-top: 30px;
   cursor: pointer;
 `;
 
@@ -40,8 +39,8 @@ export const Add = styled.img`
 `;
 
 export const Ment = styled.p`
-  margin-top: 1.125rem;
-  color: #737b98;
+  margin-top: 14px;
+  color: black;
   font-family: "SUIT-Regular";
   font-size: 0.938rem;
   font-style: normal;

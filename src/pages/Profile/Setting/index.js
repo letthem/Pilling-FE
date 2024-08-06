@@ -62,7 +62,7 @@ const Setting = () => {
   };
 
   const handleEditClick = () => {
-    setIsEditing(!isEditing);
+    setIsEditing(true);
   };
 
   const handleConfirmClick = async () => {
