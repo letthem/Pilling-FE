@@ -36,7 +36,7 @@ export const FindInputBox = styled.input`
   width: calc(100% - 3.25rem);
   margin-left: 3.25rem;
   border: none;
-  background: #f7f6f9;
+  background: transparent;
   text-align: left;
   font-size: 0.875rem;
   font-family: "SUIT-Regular";

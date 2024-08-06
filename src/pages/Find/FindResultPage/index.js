@@ -218,7 +218,7 @@ const FindResultPage = () => {
               <CantEatWithTitle>
                 이러한 성분들은 함께 복용하면 안돼요
               </CantEatWithTitle>
-              <CantEatWithContent>{itemDetails.atpn}</CantEatWithContent>
+              <CantEatWithContent>{itemDetails.intrc}</CantEatWithContent>
             </CantEatWith>
             <SideEffect>
               <SideEffectTitle>부작용이 있을 수 있어요</SideEffectTitle>
@@ -226,7 +226,7 @@ const FindResultPage = () => {
             </SideEffect>
             <WhoCant>
               <WhoCantTitle>이런 분들은 복용을 주의하세요</WhoCantTitle>
-              <WhoCantContent>{itemDetails.intrc}</WhoCantContent>
+              <WhoCantContent>{itemDetails.atpn}</WhoCantContent>
             </WhoCant>
           </ResultBody>
         ) : (

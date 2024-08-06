@@ -94,7 +94,7 @@ export const ItemEatTitle = styled.p`
   width: 4.125rem;
   height: 1.9375rem;
   font-size: 0.75rem;
-  font-family: "SUIT-Medium";
+  font-family: "SUIT-SemiBold";
   color: #fff;
   border-radius: 1rem;
   background: #1b1a1f;
@@ -103,7 +103,7 @@ export const ItemEatTitle = styled.p`
 export const ItemEatContent = styled.div`
   margin: 0 1.5rem 1.5rem;
   color: #000;
-  font-family: "SUIT-Regular";
+  font-family: "SUIT-Medium";
   font-size: 0.8125rem;
   line-height: 160%;
 `;
@@ -125,7 +125,7 @@ export const ItemEffectTitle = styled.p`
   width: 7.5625rem;
   height: 1.9375rem;
   font-size: 0.75rem;
-  font-family: "SUIT-Medium";
+  font-family: "SUIT-SemiBold";
   color: #fff;
   border-radius: 1rem;
   background: #1b1a1f;
@@ -134,7 +134,7 @@ export const ItemEffectTitle = styled.p`
 export const ItemEffectContent = styled.div`
   margin: 0 1.5rem 1.5rem;
   color: #000;
-  font-family: "SUIT-Regular";
+  font-family: "SUIT-Medium";
   font-size: 0.8125rem;
   line-height: 160%;
 `;
@@ -157,7 +157,7 @@ export const CantEatWithTitle = styled.div`
   width: 12.6875rem;
   height: 1.9375rem;
   font-size: 0.75rem;
-  font-family: "SUIT-Medium";
+  font-family: "SUIT-SemiBold";
   color: #1b1a1f;
   border-radius: 1rem;
   background: #c4f261;
@@ -166,7 +166,7 @@ export const CantEatWithTitle = styled.div`
 export const CantEatWithContent = styled.div`
   margin: 0 1.5rem 1.5rem;
   color: #000;
-  font-family: "SUIT-Regular";
+  font-family: "SUIT-Medium";
   font-size: 0.8125rem;
   line-height: 160%;
 `;
@@ -189,7 +189,7 @@ export const SideEffectTitle = styled.p`
   width: 8.625rem;
   height: 1.9375rem;
   font-size: 0.75rem;
-  font-family: "SUIT-Medium";
+  font-family: "SUIT-SemiBold";
   color: #1b1a1f;
   border-radius: 1rem;
   background: #c4f261;
@@ -198,7 +198,7 @@ export const SideEffectTitle = styled.p`
 export const SideEffectContent = styled.div`
   margin: 0 1.5rem 1.5rem;
   color: #000;
-  font-family: "SUIT-Regular";
+  font-family: "SUIT-Medium";
   font-size: 0.8125rem;
   line-height: 160%;
 `;
@@ -221,7 +221,7 @@ export const WhoCantTitle = styled.div`
   width: 10.5625rem;
   height: 1.9375rem;
   font-size: 0.75rem;
-  font-family: "SUIT-Medium";
+  font-family: "SUIT-SemiBold";
   color: #1b1a1f;
   border-radius: 1rem;
   background: #c4f261;
@@ -230,7 +230,7 @@ export const WhoCantTitle = styled.div`
 export const WhoCantContent = styled.div`
   margin: 0 1.5rem 1.5rem;
   color: #000;
-  font-family: "SUIT-Regular";
+  font-family: "SUIT-Medium";
   font-size: 0.8125rem;
   line-height: 160%;
 `;
