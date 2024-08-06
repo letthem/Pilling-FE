@@ -94,14 +94,14 @@ export const ItemEatTitle = styled.p`
   width: 4.125rem;
   height: 1.9375rem;
   font-size: 0.75rem;
-  font-family: "SUIT-SemiBold";
+  font-family: "SUIT-Medium";
   color: #fff;
   border-radius: 1rem;
   background: #1b1a1f;
 `;
 
 export const ItemEatContent = styled.div`
-  margin: 0 1.5rem 1.5rem;
+  margin: 0 1.75rem 1.5rem;
   color: #000;
   font-family: "SUIT-Medium";
   font-size: 0.8125rem;
@@ -125,14 +125,14 @@ export const ItemEffectTitle = styled.p`
   width: 7.5625rem;
   height: 1.9375rem;
   font-size: 0.75rem;
-  font-family: "SUIT-SemiBold";
+  font-family: "SUIT-Medium";
   color: #fff;
   border-radius: 1rem;
   background: #1b1a1f;
 `;
 
 export const ItemEffectContent = styled.div`
-  margin: 0 1.5rem 1.5rem;
+  margin: 0 1.75rem 1.5rem;
   color: #000;
   font-family: "SUIT-Medium";
   font-size: 0.8125rem;
@@ -164,7 +164,7 @@ export const CantEatWithTitle = styled.div`
 `;
 
 export const CantEatWithContent = styled.div`
-  margin: 0 1.5rem 1.5rem;
+  margin: 0 1.75rem 1.5rem;
   color: #000;
   font-family: "SUIT-Medium";
   font-size: 0.8125rem;
@@ -196,7 +196,7 @@ export const SideEffectTitle = styled.p`
 `;
 
 export const SideEffectContent = styled.div`
-  margin: 0 1.5rem 1.5rem;
+  margin: 0 1.75rem 1.5rem;
   color: #000;
   font-family: "SUIT-Medium";
   font-size: 0.8125rem;
@@ -228,7 +228,7 @@ export const WhoCantTitle = styled.div`
 `;
 
 export const WhoCantContent = styled.div`
-  margin: 0 1.5rem 1.5rem;
+  margin: 0 1.75rem 1.5rem;
   color: #000;
   font-family: "SUIT-Medium";
   font-size: 0.8125rem;
