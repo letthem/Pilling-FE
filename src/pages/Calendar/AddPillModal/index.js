@@ -13,7 +13,7 @@ import TagModal from "./TagModal";
 import CancelConfirmModal from "../../../components/CancelConfirmModal";
 import WarningModal from "./WarningModal";
 
-const AddPillModal = ({ onClose, onSave, clickedDate }) => { 
+const AddPillModal = ({ onClose, onSave, clickedDate }) => {
   const [inputValue, setInputValue] = useState("");
   const [results, setResults] = useState([]);
   const [selectedPill, setSelectedPill] = useState(null);
@@ -54,7 +54,10 @@ const AddPillModal = ({ onClose, onSave, clickedDate }) => {
           Authorization: `Bearer ${localStorage.getItem("access_token")}`,
         },
       });
-      if (response.data.length === 0) {
+      if (
+        response.status === "404" ||
+        response.data.message === "해당하는 이름에 대한 약 정보가 없습니다"
+      ) {
         setIsNoneModalOpen(true); // 검색 결과 없을 때 모달 열기
       } else {
         setResults(response.data);

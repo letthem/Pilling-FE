@@ -140,15 +140,22 @@ export const TagItemBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  text-align: center;
   background-color: #c4f261;
   border-radius: 1.25rem;
 
   span {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     color: #1b1a1f;
     font-family: SUIT;
     font-size: 0.6875rem;
     font-style: normal;
     font-weight: 400;
+    padding: 4px 0 2px 0;
     line-height: 1.2;
   }
   & + & {

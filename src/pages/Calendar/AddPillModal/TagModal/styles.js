@@ -62,7 +62,7 @@ export const TagList = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 0.375rem;
-  margin: 0.75rem 1.875rem 0 2.125rem;
+  margin: 0.75rem 1.875rem 0 2.25rem;
   flex-grow: 1;
 `;
 
