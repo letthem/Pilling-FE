@@ -32,7 +32,7 @@ export const FindForm = styled.form`
 `;
 
 export const FindInputBox = styled.input`
-  width: caclc(100% -3.25rem);
+  width: calc(100% - 3.25rem);
   margin-left: 3.25rem;
   border: none;
   background: #f7f6f9;

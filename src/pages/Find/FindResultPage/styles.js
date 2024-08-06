@@ -273,9 +273,9 @@ export const ScrapItem = styled.div`
 
 export const SearchLoadingBox = styled.div`
   width: calc(100% - 3rem);
+  width: calc(100% - 3rem);
   min-width: 20.4375rem;
-  min-height: 62.5rem;
-  margin-top: 18.75rem;
+  margin-top: 210px;
   display: flex;
   flex-direction: column;
   align-items: center;

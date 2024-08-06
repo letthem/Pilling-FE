@@ -17,9 +17,9 @@ export const LogoSection = styled.div`
   font-family: "SUIT-SemiBold";
   font-size: 1.25rem;
   /* margin-top: 0.75rem; */
-  /* display: grid;
+  display: grid;
   grid-template-columns: 1fr auto;
-  gap: 6.375rem; */
+  gap: 6.375rem; 
   align-items: center;
   line-height: 2.125rem;
 
