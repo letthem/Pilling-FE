@@ -275,7 +275,7 @@ export const SearchLoadingBox = styled.div`
   width: calc(100% - 3rem);
   width: calc(100% - 3rem);
   min-width: 20.4375rem;
-  margin-top: 210px;
+  margin-top: 13.125rem;
   display: flex;
   flex-direction: column;
   align-items: center;

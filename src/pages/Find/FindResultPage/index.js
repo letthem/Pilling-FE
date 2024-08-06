@@ -84,8 +84,6 @@ const FindResultPage = () => {
           break; // 조건을 만족하는 스크랩을 찾으면 반복 종료
         }
       }
-
-      console.log("스크랩 정보 get");
     } catch (e) {
       console.log(e.message);
     }
@@ -100,7 +98,6 @@ const FindResultPage = () => {
           Authorization: `Bearer ${localStorage.getItem("access_token")}`,
         },
       });
-      console.log("스크랮 삭제 ㅅㄱ");
       setIsScrap(false);
       setScrapId(null);
     }
@@ -127,8 +124,6 @@ const FindResultPage = () => {
 
       setIsScrap(true);
       setScrapId(res.data.id);
-      setModal(false);
-      console.log("스크랩 성공");
       setModal(false);
     } catch (error) {
       console.log(error.message);

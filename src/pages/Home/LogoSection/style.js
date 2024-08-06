@@ -9,7 +9,7 @@ export const LogoImg = styled.img`
 export const LogoSectionWrapper = styled.div`
   font-family: "SUIT-SemiBold";
   font-size: 1.25rem;
-  margin: 18px 0 38px;
+  margin: 1.125rem 0 2.375rem;
   display: grid;
   grid-template-columns: 1fr auto;
   gap: 6.375rem;

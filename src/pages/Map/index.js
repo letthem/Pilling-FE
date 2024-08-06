@@ -96,8 +96,6 @@ const Map = () => {
               phone: phoneCallNumberByKakao,
             };
 
-            console.log(timePmAllRe);
-
             // Display the marker with business hours
             displayMarker(place, timeRun, PmInfoByDB, map, i);
           } catch (error) {

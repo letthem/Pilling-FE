@@ -16,14 +16,12 @@ const AuthKakao = () => {
 
   const [accessTokenFetching, setAccessTokenFetching] = useState(false);
   const code = new URLSearchParams(location.search).get("code");
-  console.log("code:", code);
   const headers = {
     "Content-Type": "application/json;charset=utf-8",
   };
 
   //인가 코드 백으로 보내는 코드
   const kakoLogin = async () => {
-    console.log("응답보냄!");
     if (accessTokenFetching) return; // Return early if fetching
 
     try {

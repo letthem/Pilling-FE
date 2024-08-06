@@ -17,7 +17,6 @@ const LogoSection = () => {
           Authorization: `Bearer ${localStorage.getItem("access_token")}`,
         },
       });
-      console.log(res.data.nickname);
       setMyName(res.data.nickname);
     } catch (e) {
       console.log(e.message);
