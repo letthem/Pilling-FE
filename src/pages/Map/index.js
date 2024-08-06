@@ -270,7 +270,7 @@ const Delete = styled.img`
 
 const NowDistance = styled.div`
   position: fixed;
-  top: 4.3125rem;
+  top: 5rem;
   color: #fff;
   width: 9.375rem;
   height: 2.625rem;
