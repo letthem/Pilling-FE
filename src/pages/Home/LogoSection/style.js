@@ -1,7 +1,13 @@
 import styled from "styled-components";
 
+export const LogoSectionContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 export const LogoImg = styled.img`
   font-family: "Super_Plants";
+  width: 13.3125rem;
+  height: 3.1875rem;
   font-size: 3.75rem;
   text-align: left;
   margin: 1.375rem 8.75rem 0 2.1875rem;

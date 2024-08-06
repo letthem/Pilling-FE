@@ -173,7 +173,7 @@ const FindResultPage = () => {
           <ArrowDiv onClick={goBack}>
             <ArrowIcon src={arrowIcon} alt="arrow" />
           </ArrowDiv>
-          <HeaderTitle>약 검색 결과 </HeaderTitle>
+          <HeaderTitle>약 검색 결과</HeaderTitle>
           <ScrapBox
             src={isScrap ? isScrapImg : modal ? scrapImg : plainscrap}
             alt="scrapImg"
