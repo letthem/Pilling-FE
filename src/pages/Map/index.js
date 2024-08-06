@@ -391,8 +391,10 @@ const MapWrapper = styled.div`
 `;
 
 const MapHeader = styled.div`
+  z-index: 10;
   font-family: "SUIT-SemiBold";
   color: #1b1a1f;
+  background-color: white;
   font-size: 1.0625rem;
   height: 4.375rem;
   display: flex;
@@ -403,9 +405,11 @@ const MapHeader = styled.div`
 `;
 
 const KakaoMap = styled.div`
-  height: calc(100vh - 3.5625rem);
+  height: calc(100vh);
   width: 100%;
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
 `;
 
 const NavBarWrapper = styled.div`
