@@ -31,7 +31,7 @@ const ModalBackground = styled.div`
 
 const ModalContainer = styled.div`
   position: absolute;
-  top: 18.875rem;
+  top: 15.5rem;
   background: white;
   display: flex;
   flex-direction: column;

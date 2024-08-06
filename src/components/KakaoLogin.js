@@ -82,14 +82,14 @@ const LogoImg = styled.img`
   font-family: "Super_Plants";
   font-size: 4rem;
   text-align: left;
-  margin: 5.5294rem 0 1.75rem 1.7506rem;
+  margin: 4.25rem 0 1.75rem 1.7506rem;
   position: relative;
 `;
 
 const PillingImg = styled.img`
   z-index: 1;
   position: absolute;
-  bottom: 1.875rem;
+  bottom: 2.5rem;
   width: 100%;
   max-height: 30rem;
 `;
@@ -108,27 +108,32 @@ const KakaoBtn = styled.div`
   cursor: pointer;
   position: fixed;
   bottom: 5rem;
-
+  img {
+    width: 2.0625rem;
+    height: 1.8125rem;
+    padding-top: 0.0625rem;
+  }
   span {
+    text-align: left;
     margin-left: 0.3125rem;
+    margin-right: 0.5rem;
     font-family: "SUIT-SemiBold";
   }
 `;
-
 const TermsDiv = styled.div`
-  margin-top: 0.3125rem;
+  margin-top: -2.5rem;
   text-align: center;
   color: #d1d3d9;
   font-size: 0.75rem;
   cursor: pointer;
-
   a {
     display: block;
     color: #d1d3d9;
     margin-bottom: 0.5625rem;
+    cursor: pointer;
   }
-
   a:last-child {
     margin-bottom: 0;
+    cursor: pointer;
   }
 `;
